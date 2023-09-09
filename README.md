@@ -42,7 +42,9 @@ php artisan serve
 
 ### Configurar banco de dados no laravel:
 
-Deve-se modificar no arquivo .env como nos trechos abaixo:
+Deve-se modificar no arquivo .env as configurações de acordo com seu banco de dados.
+
+Trechos de bancos exemplos:
 
 ### Postgresql
 
