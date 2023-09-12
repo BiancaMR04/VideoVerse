@@ -33,6 +33,19 @@ return [
     |
     */
 
+    'supabase' => [
+        'driver' => 'pgsql',
+        'host' => env('SUPABASE_HOST', 'your-supabase-url.supabase.co'),
+        'port' => env('SUPABASE_PORT', 5432),
+        'database' => env('SUPABASE_DATABASE', 'your-database-name'),
+        'username' => env('SUPABASE_USERNAME', 'your-database-username'),
+        'password' => env('SUPABASE_PASSWORD', 'your-database-password'),
+        'charset' => 'utf8',
+        'prefix' => '',
+        'schema' => 'public',
+    ],
+    
+
     'connections' => [
 
         'sqlite' => [
