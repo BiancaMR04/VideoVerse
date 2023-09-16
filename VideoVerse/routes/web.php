@@ -24,6 +24,10 @@ Route::get('/', function () {
 });
 */
 
+Route::get('/cadastro', function () {
+    return view('tela_cadastro');
+});
+
 Route::get('/test-database', function () {
     try {
         $results = DB::select('SELECT * FROM usuarios');
