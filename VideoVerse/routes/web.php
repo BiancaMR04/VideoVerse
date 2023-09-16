@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('cadastro');
 });
 
+Route::get('/cadastro', function () {
+    return view('cadastro');
+});
+
 /*
 Route::get('/', function () {
     return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
