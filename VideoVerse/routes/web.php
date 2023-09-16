@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,7 @@ Route::get('/', function () {
 Route::get('/', function () {
     return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
 });
+*/
 
 Route::get('/test-database', function () {
     try {
@@ -30,4 +32,4 @@ Route::get('/test-database', function () {
         return "Erro ao conectar ao banco de dados: " . $e->getMessage();
     }
 })->name('test-database'); // Nomeie a rota como 'test-database'
-*/
+
