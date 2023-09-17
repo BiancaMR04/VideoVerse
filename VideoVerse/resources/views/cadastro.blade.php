@@ -136,7 +136,7 @@ color: white;
     </div>
     <div style="text-align: center; margin-top: -0.4em;">
         <a style="color: white; font-size: 13px; display:">Já tem uma conta?</a>
-        <a href="#" style="text-decoration: underline; color: white; font-size: 13px;">Faça login</a>
+        <a href="/login" style="text-decoration: underline; color: white; font-size: 13px;">Faça login</a>
     </div>
 </form>
 

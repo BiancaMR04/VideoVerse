@@ -3,50 +3,59 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Supabase\SupabaseClient;
+use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
+use App\Models\User;
+
+require ('/home/eduardo/VideoVerse/VideoVerse/VideoVerse/vendor/autoload.php');
 
 class CadastroController extends Controller
 {
-    public function mostrar(){
+
+    public function view(){
         return view('cadastro');
     }
 
     public function cadastro(Request $request){
-        // Verifique se algum dos campos está vazio
-        if (empty($request->input('nome')) || empty($request->input('email')) || empty($request->input('senha')) || empty($request->input('data_nascimento'))) {
-            //return response()->json(['error' => 'Email inválido.']);
-            return view('cadastro_erro');
-        }
-    
-        if ($request->input('email') == 'teste@email.com') {
-            return response()->json(['error' => 'Email inválido']);
-        }
-        
+        $nome = $request->input('nome');
+        $email = $request->input('email');
+        $senha = $request->input('senha');
+        $data_nascimento = $request->input('data_nascimento');
 
-        $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'senha' => 'required|string|min:6',
-            'data_nascimento' => 'required|date',
-        ]);
+        $msg = '';
+
+        if(empty($nome) || empty($email) || empty($senha) || empty($data_nascimento)){
+            $msg = 'Todos os campos devem ser preenchidos!';
+            return view('cadastro_erro', ['msg' => $msg]);
+        }
     
+        $emailInserido = $request->input('email');
+        $resultado = DB::select('SELECT * FROM usuarios WHERE email = ?', [$emailInserido]);
+
+        if (!empty($resultado)) {
+            $msg = 'Esse e-mail já está cadastrado!';
+            return view('cadastro_erro', ['msg' => $msg]);
+        }
+
+
         try {
             // Crie uma instância do modelo de usuário e preencha com os dados do formulário
             $user = new User();
-            $user->nome = $request->input('nome');
+            $user->nome_de_usuario = $request->input('nome');
             $user->email = $request->input('email');
-            $user->senha = Hash::make($request->input('senha'));
-            $user->data_nascimento = $request->input('data_nascimento');
+            $user->senha = $request->input('senha'); 
+            $user->data_de_nascimento = $request->input('data_nascimento');
     
             // Salve o usuário no banco de dados
             $user->save();
     
             // Redirecione para uma página de sucesso ou faça algo mais
-            return redirect()->route('pagina_de_sucesso');
+            return redirect()->route('home');
         } catch (\Exception $e) {
             // Em caso de erro, você pode redirecionar de volta para o formulário de cadastro com uma mensagem de erro
-            return redirect()->route('cadastro')->with('error', 'Ocorreu um erro durante o cadastro. Tente novamente.');
+            $msg = 'Erro ao processar cadastro: ' . $e->getMessage();
+            return view('cadastro_erro', ['msg' => $msg]);
         }
     }
-    
-    
 }

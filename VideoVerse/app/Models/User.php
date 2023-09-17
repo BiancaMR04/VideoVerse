@@ -7,10 +7,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+
+    /**
+     * Indica se o modelo deve registrar automaticamente as datas de criação e atualização.
+     *
+     * @var bool
+     */
+    public $timestamps = false; // Desabilita as colunas created_at e updated_at
+
+    /**
+     * O formato de data personalizado para a coluna data_de_cadastro.
+     *
+     * @var string
+     */
+    protected $dateFormat = 'd-m-Y'; // Define o formato de data da coluna data_de_cadastro
+
+    /**
+     * The name of the table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'usuarios';
 
     /**
      * The attributes that are mass assignable.

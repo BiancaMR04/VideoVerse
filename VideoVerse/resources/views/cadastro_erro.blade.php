@@ -92,7 +92,7 @@ color: white;
 .logo {
     display: block;
     margin-left: 500px;
-    margin-top: -50px; /* Adicione margem à esquerda para mover a imagem para a direita */
+    margin-top: -50px; 
 }
 
 
@@ -129,7 +129,7 @@ color: white;
     </div>
 
     <div style="text-align: center; margin-top: 0.4em;">
-        <a style="color: red; font-size: 14px;">Todos os campos devem ser preenchidos!</a>
+        <p style="color: red; font-size: 14px">{{ $msg }}</p>
     </div>
 
     <div class="btn">
@@ -137,11 +137,11 @@ color: white;
     </div>
     <div style="text-align: center; margin-top: -0.4em;">
         <a style="color: white; font-size: 13px;">Já tem uma conta?</a>
-        <a href="#" style="text-decoration: underline; color: white; font-size: 13px;">Faça login</a>
+        <a href="/login" style="text-decoration: underline; color: white; font-size: 13px;">Faça login</a>
     </div>
 </form>
-
 <!-- End: Login Form Basic -->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/resources/js/script.min.js?h=35a745003519d0480832903c736bc4ec"></script>
 </body>
