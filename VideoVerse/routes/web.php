@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,15 +13,16 @@ use Illuminate\Support\Facades\DB;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// classe Home chamando a função index
+Route::get('/', [HomeController::class,'index']);
+//
+Route::controller(LoginController::class)->group(function(){
+    //rota de login
+    Route::get('/entrar', 'index')-> name('entrar.index');
 
-Route::get('/', function () {
-    return view('entrar');
+
+    Route::get('/cadastro', 'mostrar');
 });
-
-Route::get('/entrar', function () {
-    return view('entrar');
-});
-
 Route::get('/cadastro', function () {
     return view('tela_cadastro');
 });
