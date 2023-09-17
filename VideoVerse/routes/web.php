@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 Route::view('/', 'login')->name('home');
 
@@ -24,11 +27,14 @@ Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 
 //Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
 
+
 /*
 Route::get('/', function () {
     return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
 });
 */
+
+
 Route::get('/test-database', function () {
     try {
         $results = DB::select('SELECT * FROM usuarios');

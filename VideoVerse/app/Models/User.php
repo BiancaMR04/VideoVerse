@@ -7,13 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+
 use Illuminate\Database\Eloquent\Model;
+
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
+
      * Indica se o modelo deve registrar automaticamente as datas de criação e atualização.
      *
      * @var bool
@@ -35,6 +38,7 @@ class User extends Authenticatable
     protected $table = 'usuarios';
 
     /**
+
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
