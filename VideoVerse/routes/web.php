@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,18 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+Route::view('/', 'login')->name('home');
+
+Route::view('/login', 'login')->name('login');
+
+Route::view('/index', 'index')->name('home');
+
+Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
+Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
+
+//Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
+
 
 /*
 Route::get('/', function () {
@@ -24,9 +34,6 @@ Route::get('/', function () {
 });
 */
 
-Route::get('/cadastro', function () {
-    return view('tela_cadastro');
-});
 
 Route::get('/test-database', function () {
     try {
