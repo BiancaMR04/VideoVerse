@@ -18,11 +18,9 @@ Route::get('/', function () {
     return view('entrar');
 });
 
-/*
-Route::get('/', function () {
-    return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
+Route::get('/entrar', function () {
+    return view('entrar');
 });
-*/
 
 Route::get('/cadastro', function () {
     return view('tela_cadastro');
