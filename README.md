@@ -40,27 +40,3 @@ Para rodar a aplicação utilize o comando abaixo:
 php artisan serve
 ```
 
-### Configurar banco de dados no laravel:
-
-Deve-se modificar no arquivo .env as configurações de acordo com seu banco de dados.
-
-Trechos de bancos exemplos:
-
-### Postgresql
-
-```dotenv
-DB_CONNECTION=pgsql
-DB_HOST=127.0.0.1
-DB_PORT=5432 //porta padrão do postgresql
-DB_DATABASE=videoverse //nome do banco criado
-DB_USERNAME=meu_usuario
-DB_PASSWORD=minha_senha
-```
-### SQLite
-
-```dotenv
-DB_CONNECTION=sqlite
-DB_DATABASE=../database/videoverse.sqlite
-DB_FOREIGN_KEYS=true
-```
-
