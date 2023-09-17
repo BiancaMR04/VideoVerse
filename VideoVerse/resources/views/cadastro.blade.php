@@ -100,7 +100,8 @@ color: white;
 
 <body style="color: rgb(43,48,52); background: #1A1818; height: 100vh; display: flex; justify-content: center; align-items: center;">
 <!-- Start: Login Form Basic -->
-<form class="form" method="post" action="/processar_cadastro.php">
+<form class="form" method="post" action="/cadastro">
+    @csrf
     <p id="heading">Cadastro</p>
     <div class="field">
         <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 22 22">
@@ -126,32 +127,20 @@ color: white;
         </svg>
         <input placeholder="Data de Nascimento" class="input-field" type="date" name="data_nascimento">
     </div>
+
+    <div id="mensagemErro" style="color: red;">
+    </div>
+
     <div class="btn">
         <button class="button2">Cadastre-se</button>
     </div>
     <div style="text-align: center; margin-top: -0.4em;">
-        <a style="color: white; font-size: 13px;">Já tem uma conta?</a>
+        <a style="color: white; font-size: 13px; display:">Já tem uma conta?</a>
         <a href="#" style="text-decoration: underline; color: white; font-size: 13px;">Faça login</a>
     </div>
 </form>
 
-<!-- Mensagem de erro -->
-<div id="mensagemErro" style="color: red; display: none;"><?php echo $mensagemErro; ?></div>
 
-<!-- Mensagem de sucesso -->
-<div id="mensagemSucesso" style="color: green; display: none;"><?php echo $mensagemSucesso; ?></div>
-
-<script>
-    <?php
-    // Verifique se há uma mensagem de erro ou sucesso e exiba-a
-    if (!empty($mensagemErro)) {
-        echo 'document.getElementById("mensagemErro").style.display = "block";';
-    }
-    if (!empty($mensagemSucesso)) {
-        echo 'document.getElementById("mensagemSucesso").style.display = "block";';
-    }
-    ?>
-</script>
 
 <!-- End: Login Form Basic -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>

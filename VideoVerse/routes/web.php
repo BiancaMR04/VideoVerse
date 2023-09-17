@@ -13,13 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('cadastro');
-});
+Route::view('/', 'cadastro')->name('cadastro');
 
-Route::get('/cadastro', function () {
-    return view('cadastro');
-});
+Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
+Route::get('/cadastro', 'CadastroController@mostrar')-> name('cadastro');
+
+Route::view('/cadastro_erro', 'cadastro_erro')->name('cadastro_erro');
 
 /*
 Route::get('/', function () {
