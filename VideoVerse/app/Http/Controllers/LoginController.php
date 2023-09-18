@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Supabase\SupabaseClient;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
+use App\Models\User;
 
 
 
-class LoginController{
+class LoginController extends Controller{
+
     public function view(){
         return view('login');
     }
@@ -23,15 +27,33 @@ class LoginController{
             return view('login_erro', ['msg' => $msg]);
         }
 
-        $emailInserido = $request->input('email');
-        $senhaInserida = $request->input('senha');
-        $resultado = DB::select('SELECT * FROM usuarios WHERE email = ? AND senha = ?', [$emailInserido, $senhaInserida]);
+        try{
+            // Valida o email recebido
+            $request->validate([
+                'email' => 'required|email',
+            ]);
 
-        if (empty($resultado)) {
-            $msg = 'E-mail ou senha incorretos!';
+            $user = User::where('email', $email)->first();
+
+            if (!$user) {
+                $msg = 'E-mail não cadastrado!';
+                return view('login_erro', ['msg' => $msg]);
+            }
+
+            $senhaCorreta = $user->senha; 
+
+            if($senhaCorreta != $senha){
+                $msg = 'Senha incorreta!';
+                return view('login_erro', ['msg' => $msg]);
+            }
+        }
+        catch(\Exception $e){
+            if($e->getMessage() == 'The email field must be a valid email address.'){
+                $msg = 'E-mail inválido!';
+                return view('login_erro', ['msg' => $msg]);
+            }
+            $msg = 'Erro ao processar login: ' . $e->getMessage();
             return view('login_erro', ['msg' => $msg]);
         }
-
-        return redirect()->route('home');
     }
 }
