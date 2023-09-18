@@ -111,7 +111,7 @@
                 <input placeholder="Senha" class="input-field" type="password" name="senha">
             </div>
             <div class="btn">
-                <button class="button1">Cadastre-se</button>
+                <button class="button1">Entrar</button>
             </div>
                 <div style="text-align: center; margin-top: 0.2em;">
                     <a style="color: white; font-size: 13px;">Não tem uma conta?</a>
