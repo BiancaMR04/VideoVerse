@@ -18,7 +18,9 @@ use App\Http\Controllers\LoginController;
 Route::get('/', function () {
     return view('index');
 });
-
+Route::get('/login', function () {
+    return view('login');
+});
 /*
 Route::get('/', function () {
     return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
