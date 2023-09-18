@@ -14,9 +14,8 @@
         "laravel/framework": "^10.10",
 >>>>>>> 91d29bebcdaa418c561e20fccda1e8968f21015c
         "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8",
-        "rennokki/laravel-eloquent-query-cache": "^3.4",
-        "supabase/supabase-php": "^0.0.3"
+        "laravel/tinker": "^2.8"
+
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -14,16 +14,19 @@ use App\Http\Controllers\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// classe Home chamando a função index
-Route::get('/', [HomeController::class,'index']);
 
-Route::controller(LoginController::class)->group(function(){
-    //rota do formulário de login
-    Route::get('/entrar', 'index')-> name('entrar.index');
-    //entrar na conta do usuario
-    Route::post('/entrar', 'visualizar')-> name('entrar.visualizar');
-    //sair da conta do usuario
-    Route::get('/sair', 'destruir')-> name('entrar.destruir');
+Route::get('/', function () {
+    return view('index');
+});
+
+/*
+Route::get('/', function () {
+    return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
+});
+*/
+
+Route::get('/cadastro', function () {
+    return view('tela_cadastro');
 });
 
 Route::get('/test-database', function () {
