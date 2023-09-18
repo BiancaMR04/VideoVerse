@@ -39,6 +39,13 @@ class CadastroController extends Controller
         }
 
 
+        $request->validate([
+            'nome'            => 'required|string|max:255',
+            'email'           => 'required|email',
+            'senha'           => 'required|string|min:6',
+            'data_nascimento' => 'required|date',
+        ]);
+
         try {
             // Crie uma instância do modelo de usuário e preencha com os dados do formulário
             $user = new User();
@@ -47,13 +54,19 @@ class CadastroController extends Controller
             $user->senha = $request->input('senha'); 
             $user->data_de_nascimento = $request->input('data_nascimento');
     
-            // Salve o usuário no banco de dados
             $user->save();
-    
-            // Redirecione para uma página de sucesso ou faça algo mais
+            
+            // Sucesso!
             return redirect()->route('home');
         } catch (\Exception $e) {
-            // Em caso de erro, você pode redirecionar de volta para o formulário de cadastro com uma mensagem de erro
+            if($e->getMessage() == 'The email field must be a valid email address.'){
+                $msg = 'E-mail inválido!';
+                return view('cadastro_erro', ['msg' => $msg]);
+            }
+            if($e->getMessage() == 'The senha field must be at least 6 characters.'){
+                $msg = 'A senha deve ter pelo menos 6 caracteres!';
+                return view('cadastro_erro', ['msg' => $msg]);
+            }
             $msg = 'Erro ao processar cadastro: ' . $e->getMessage();
             return view('cadastro_erro', ['msg' => $msg]);
         }

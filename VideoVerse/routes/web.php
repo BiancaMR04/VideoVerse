@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'login')->name('home');
 
-Route::view('/login', 'login')->name('login');
+Route::get('/login', 'LoginController@view')->name('login');
+Route::post('/login', 'LoginController@login')-> name('login');
 
 Route::view('/index', 'index')->name('home');
 
