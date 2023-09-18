@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,16 +16,14 @@ use App\Http\Controllers\HomeController;
 */
 // classe Home chamando a função index
 Route::get('/', [HomeController::class,'index']);
-//
+
 Route::controller(LoginController::class)->group(function(){
-    //rota de login
+    //rota do formulário de login
     Route::get('/entrar', 'index')-> name('entrar.index');
-
-
-    Route::get('/cadastro', 'mostrar');
-});
-Route::get('/cadastro', function () {
-    return view('tela_cadastro');
+    //entrar na conta do usuario
+    Route::post('/entrar', 'visualizar')-> name('entrar.visualizar');
+    //sair da conta do usuario
+    Route::get('/sair', 'destruir')-> name('entrar.destruir');
 });
 
 Route::get('/test-database', function () {
