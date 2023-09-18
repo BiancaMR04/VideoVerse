@@ -15,21 +15,14 @@ use App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/login', function () {
-    return view('login');
-});
-/*
-Route::get('/', function () {
-    return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
-});
-*/
+Route::view('/', 'login')->name('home');
 
-Route::get('/cadastro', function () {
-    return view('tela_cadastro');
-});
+Route::view('/login', 'login')->name('login');
+
+Route::view('/index', 'index')->name('home');
+
+Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
+Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 
 Route::get('/test-database', function () {
     try {
