@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Supabase\SupabaseClient;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
 
-require ('/home/eduardo/VideoVerse/VideoVerse/VideoVerse/vendor/autoload.php');
+require ('C:\Users\kenny\OneDrive\Documentos\Nova pasta\VideoVerse\VideoVerse\VideoVerse\vendor\autoload.php');
 
 class CadastroController extends Controller
 {
@@ -22,6 +23,8 @@ class CadastroController extends Controller
         $email = $request->input('email');
         $senha = $request->input('senha');
         $data_nascimento = $request->input('data_nascimento');
+        $data_de_cadastro = Carbon::now();
+        
 
         $msg = '';
 
@@ -46,6 +49,7 @@ class CadastroController extends Controller
             $user->email = $request->input('email');
             $user->senha = $request->input('senha'); 
             $user->data_de_nascimento = $request->input('data_nascimento');
+            $user->data_de_cadastro = $data_de_cadastro;
     
             // Salve o usuário no banco de dados
             $user->save();
