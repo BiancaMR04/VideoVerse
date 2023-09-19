@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-
-
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,26 +14,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-
 Route::view('/', 'login')->name('home');
 
-Route::view('/login', 'login')->name('login');
+Route::get('/login', 'LoginController@view')->name('login');
+Route::post('/login', 'LoginController@login')-> name('login');
 
 Route::view('/index', 'index')->name('home');
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
-
-//Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
-
-
-/*
-Route::get('/', function () {
-    return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
-});
-*/
-
 
 Route::get('/test-database', function () {
     try {

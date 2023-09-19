@@ -26,7 +26,7 @@
   
   .form:hover {
     transform: scale(1.05);
-    border: 1px solid #b24Df4;
+    border: 1px solid red;
   }
   
   #heading {
@@ -110,8 +110,11 @@
                 </svg>
                 <input placeholder="Senha" class="input-field" type="password" name="senha">
             </div>
+            <div style="text-align: center; margin-top: 0.4em;">
+                <p style="color: red; font-size: 14px">{{ $msg }}</p>
+            </div>
             <div class="btn">
-                <button class="button1">Entrar</button>
+                <button class="button1">Cadastre-se</button>
             </div>
                 <div style="text-align: center; margin-top: 0.2em;">
                     <a style="color: white; font-size: 13px;">Não tem uma conta?</a>
