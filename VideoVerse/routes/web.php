@@ -14,17 +14,16 @@ use App\Http\Controllers\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/', 'login')->name('home');
+Route::view('/', 'criar_canal')->name('home');
 
 Route::get('/login', 'LoginController@view')->name('login');
 Route::post('/login', 'LoginController@login')-> name('login');
-
-Route::view('/index', 'index')->name('home');
 
 Route::view('/home', 'inicio_logado')->name('home');
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
+
 
 Route::get('/test-database', function () {
     try {
