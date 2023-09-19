@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CadastroCanalController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +18,7 @@ use App\Http\Controllers\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/', 'criar_canal')->name('home');
+Route::view('/', 'index')->name('home');
 
 Route::get('/login', 'LoginController@view')->name('login');
 Route::post('/login', 'LoginController@login')-> name('login');
@@ -23,6 +27,11 @@ Route::view('/home', 'inicio_logado')->name('home');
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
+
+//rota para o cadastro de canal é /cadastro-canal
+Route::post('/cadastro-canal', [CadastroCanalController::class, 'cadastrarCanal'])->name('cadastrar_canal_post');
+
+
 
 
 Route::get('/test-database', function () {

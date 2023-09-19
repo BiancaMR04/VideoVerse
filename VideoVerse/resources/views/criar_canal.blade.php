@@ -152,66 +152,65 @@
                         </div>
                     </nav>
                 </div>
-                    <div class="col-xl-9 offset-xl-0" style="color: rgb(33, 37, 41);border-color: rgb(33,37,41);">
+                <div class="col-xl-9 offset-xl-0" style="color: rgb(33, 37, 41);border-color: rgb(33,37,41);">
                     <h1 class="text-center-horizontal" style="color: rgba(255, 255, 255, 0.91); font-family: 'Anek Bangla', sans-serif; text-shadow: 3px 3px 7px rgb(0, 0, 0); margin-right: -15rem;">Crie seu canal</h1>
-                        <!-- Start: Contact Form Basic -->
-                        <section class="position-relative py-4 py-xl-5">
-                            <div class="container position-relative">
-                                <!-- Start: Login Form Basic -->
-                                <section class="position-relative py-4 py-xl-5">
-                                    <div class="container position-relative">
-                                        <div class="row d-flex justify-content-center">
-                                            <div class="col-md-6 col-xl-4" style="width: 390.5px;max-width: none;">
-                                                <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0);">
+                    <!-- Start: Contact Form Basic -->
+                    <section class="position-relative py-4 py-xl-5">
+                        <div class="container position-relative">
+                            <!-- Start: Login Form Basic -->
+                            <section class="position-relative py-4 py-xl-5">
+                                <div class="container position-relative">
+                                    <div class="row d-flex justify-content-center">
+                                        <div class="col-md-6 col-xl-4" style="width: 390.5px;max-width: none;">
+                                            <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0);">
                                                 <div class="card-body text-center border rounded d-flex float-none flex-column align-items-center" style="width: 769px; min-width: 0px; padding: 0px; margin-left: -11rem; margin-right: 0rem; border-radius: 15px; background: #323232; position: relative;">
-                                                <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
-                                                    <form action="upload_fundo.php" method="post" enctype="multipart/form-data">
-                                                        <!-- Adicionando um campo de upload de arquivo com um ID para referência -->
-                                                        <input type="file" name="foto_fundo" id="foto_fundo" accept="image/*" style="display: none;">
-                                                        <label for="foto_fundo" style="cursor: pointer;">
-                                                            <!-- Adicionando uma imagem de pré-visualização vazia -->
-                                                            <img id="preview_fundo" style="width: 700px; height: 150px; border: 2px solid black; border-radius: 10px; margin-top: -10px;" src="{{ asset('images.jpeg') }}">
-                                                            <p style="color: #767676; width: 152.281px; height: 11px; margin-top: -5px; line-height: normal; font-size: 14px; margin-right: -5px;">Alterar foto de fundo</p>
-                                                        </label>
-                                                        <!-- Removendo o botão "Enviar Foto de Fundo" -->
+                                                    <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
+                                                    <form action="{{ route('cadastrar_canal_post') }}" method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="file" name="foto_fundo" id="foto_fundo" accept="image/*" style="display: none;">
+                                                            <label for="foto_fundo" style="cursor: pointer;">
+                                                                <img id="preview_fundo" style="width: 700px; height: 150px; border: 2px solid black; border-radius: 10px; margin-top: -10px;" src="{{ asset('images.jpeg') }}">
+                                                                <p style="color: #767676; width: 152.281px; height: 11px; margin-top: -5px; line-height: normal; font-size: 14px; margin-right: -5px;">Alterar foto de fundo</p>
+                                                            </label>
+                                                        </form>
+                                                        <form action="{{ route('cadastrar_canal_post') }}" method="post" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="file" name="foto" id="foto" accept="image/*" style="display: none;">
+                                                            <label for="foto" style="cursor: pointer;">
+                                                                <img id="preview" style="border: 2px solid black; border-radius: 50px; width: 100px; height: 100px; margin-top: -50px;" src="{{ asset('profile.jpg') }}">
+                                                                <p style="line-height: normal; font-size: 14px; color: #767676; width: 139.875px; min-width: 143px; height: 103px; margin-bottom: -250px; margin-right: 0rem;">Alterar foto de perfil</p>
+                                                            </label>
+                                                        </form>
+                                                    </div>
+                                                    <form action="{{ route('cadastrar_canal_post') }}" method="post" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="mb-3">
+                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Nome do canal</p>
+                                                            <label for="nome_canal" class="form-label">Nome do Canal</label>
+                                                            <input type="text" class="form-control" id="nome_canal" name="nome_canal" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <p style="color: #9c9c9c; font-size: 18px; width: 93px; height: 7px;">Descrição</p>
+                                                            <label for="descricao" class="form-label">Descrição do Canal</label>
+                                                            <textarea class="form-control" id="descricao" name="descricao" required></textarea>
+                                                        </div>
+                                                        <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
+                                                        <div class="mb-3">
+                                                            <button type="submit" class="btn btn-primary">Criar Canal</button>
+                                                        </div>
                                                     </form>
-                                                    <form action="upload.php" method="post" enctype="multipart/form-data" style="position: relative;">
-                                                        <!-- Adicionando um campo de upload de arquivo com um ID para referência -->
-                                                        <input type="file" name="foto" id="foto" accept="image/*" style="display: none;">
-                                                        <label for="foto" style="cursor: pointer;">
-                                                            <!-- Adicionando uma imagem de pré-visualização vazia -->
-                                                            <img id="preview" style="border: 2px solid black; border-radius: 50px; width: 100px; height: 100px; margin-top: -50px;" src="{{ asset('profile.jpg') }}">
-                                                            <p style="line-height: normal; font-size: 14px; color: #767676; width: 139.875px; min-width: 143px; height: 103px; margin-bottom: -250px; margin-right: 0rem;">Alterar foto de perfil</p>
-                                                        </label>
-                                                        <!-- Removendo o botão "Enviar Foto" -->
-                                                    </form>
-                                                </div>
-                                                <form method="post" style="width: 350px;">
-                                                    <div class="mb-3">
-                                                        <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Nome do canal</p>
-                                                        <input class="form-control" type="text" style="border-radius: 15px; background: #282d30;">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <p style="color: #9c9c9c; font-size: 18px; width: 93px; height: 7px;">Descrição</p>
-                                                        <input class="form-control" type="text" style="border-radius: 15px; background: #282d30; height: 130px; line-height: 25px; letter-spacing: 0px; display: inline; overflow: auto; position: relative;" placeholder="Escreva aqui uma breve descrição do seu canal. Esta descrição ajudará os espectadores a entender do que se trata o seu canal e o que podem esperar encontrar nele. Seja claro e conciso, e tente destacar o que torna o seu canal único e interessante.">
-                                                    </div>
-                                                    <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
-                                                    <div class="mb-3">
-                                                        <button class="btn btn-primary d-block w-100" type="submit">Criar canal</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </section>
-                                <!-- End: Login Form Basic -->
-                            </div>
-                        </section>
-                        <!-- End: Contact Form Basic -->
-                    </div>
+                                </div>
+                            </section>
+                            <!-- End: Login Form Basic -->
+                        </div>
+                    </section>
+                    <!-- End: Contact Form Basic -->
+                </div>
+
                 </div>
             </header>
             <script>
