@@ -11,13 +11,18 @@
 <body style="background: #1A1818;">
     <header class="p-sm-5 p-4" style="margin: -26px;margin-top: -38px;margin-left: 0px;margin-right: 0px;">
         <div class="row">
-            <div class="col-xl-2"> 
-                <img src="resources/views/assets/img/Vídeo.png" alt="Minha Imagem" width="120" height="124" style="height: 100px;width: 125px;">
+                <div class="col-xl-2">
+                    <img src="/assets/img/Vídeo.png?h=06fdb30897254d0e550962347d72be97" width="120" height="124" style="height: 100px;width: 125px;">
+                </div>
+                <div class="col-xl-7 offset-xl-0">
+                    <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder="Pesquisar..." autocomplete="on" style="border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 600px;color: rgb(255,255,255);height: 30px;margin-left: 180px;margin-top: 1rem;">
+                </div>
+                <div class="col">
+                    <div></div>
+                    
+                    <button class="btn btn-primary" type="button" style="width: 120px;height: 40px;margin-top: 1rem;margin-left: 10rem;">Login</button>
+                </div>
             </div>
-            <div class="col-xl-8">
-                <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder="Pesquisar..." autocomplete="on" style="border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 850px;color: rgb(255,255,255);height: 30px;margin-left: 180px;margin-top: 10px;">
-            </div>
-        </div>
         <div class="row">
             <div class="col-xl-2 offset-xl-0">
                 <nav class="navbar navbar-light navbar-expand-md">

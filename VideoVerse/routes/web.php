@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -21,6 +22,8 @@ Route::view('/', 'login')->name('home');
 Route::view('/login', 'login')->name('login');
 
 Route::view('/index', 'index')->name('home');
+
+Route::view('/home', 'inicio_logado')->name('home');
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
