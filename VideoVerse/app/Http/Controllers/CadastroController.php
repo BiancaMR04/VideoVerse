@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
 
-require ('C:\Users\kenny\OneDrive\Documentos\Nova pasta\VideoVerse\VideoVerse\VideoVerse\vendor\autoload.php');
+require ('C:\Users\maria\OneDrive\Área de Trabalho\TrabalhoRP\VideoVerse\VideoVerse\vendor\autoload.php');
 
 class CadastroController extends Controller
 {
