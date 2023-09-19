@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Supabase\SupabaseClient;
 use Illuminate\Support\Facades\DB;
@@ -22,6 +23,7 @@ class CadastroController extends Controller
         $email = $request->input('email');
         $senha = $request->input('senha');
         $data_nascimento = $request->input('data_nascimento');
+        $data_de_cadastro = Carbon::now();
 
         $msg = '';
 
@@ -39,20 +41,22 @@ class CadastroController extends Controller
         }
 
 
-        $request->validate([
-            'nome'            => 'required|string|max:255',
-            'email'           => 'required|email',
-            'senha'           => 'required|string|min:6',
-            'data_nascimento' => 'required|date',
-        ]);
-
         try {
+
+            $request->validate([
+                'nome'            => 'required|string|max:255',
+                'email'           => 'required|email',
+                'senha'           => 'required|string|min:6',
+                'data_nascimento' => 'required|date',
+            ]);
+
             // Crie uma instância do modelo de usuário e preencha com os dados do formulário
             $user = new User();
             $user->nome_de_usuario = $request->input('nome');
             $user->email = $request->input('email');
             $user->senha = $request->input('senha'); 
             $user->data_de_nascimento = $request->input('data_nascimento');
+            $user->data_de_cadastro = $data_de_cadastro;
     
             $user->save();
             
