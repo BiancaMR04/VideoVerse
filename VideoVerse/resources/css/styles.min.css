@@ -60,4 +60,10 @@ header h1 {
     background-color: #f9f9fb;
 }
 
+.minhaImgem {
+    height: 100px;
+    width: 125px;
+    background-image: url("assets/img/Vídeo.png");
+    }
+
 
