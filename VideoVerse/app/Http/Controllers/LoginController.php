@@ -27,11 +27,13 @@ class LoginController extends Controller{
             return view('login_erro', ['msg' => $msg]);
         }
 
-        try{
-            // Valida o email recebido
+        try {
+
             $request->validate([
                 'email' => 'required|email',
             ]);
+            
+            //Encontra o usuário com o e-mail inserido
 
             $user = User::where('email', $email)->first();
 
@@ -40,14 +42,17 @@ class LoginController extends Controller{
                 return view('login_erro', ['msg' => $msg]);
             }
 
-            $senhaCorreta = $user->senha; 
+
+            $senhaCorreta = $user->senha;
+
 
             if($senhaCorreta != $senha){
                 $msg = 'Senha incorreta!';
                 return view('login_erro', ['msg' => $msg]);
+            }else{
+                return redirect()->route('home');
             }
-        }
-        catch(\Exception $e){
+        } catch(\Exception $e){
             if($e->getMessage() == 'The email field must be a valid email address.'){
                 $msg = 'E-mail inválido!';
                 return view('login_erro', ['msg' => $msg]);

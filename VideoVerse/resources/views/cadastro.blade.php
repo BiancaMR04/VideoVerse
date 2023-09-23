@@ -1,107 +1,19 @@
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Tela de Cadastro</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-<link rel="stylesheet" href="/resources/css/styles.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tela de Cadastro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="/resources/css/styles.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/cadastro.css') }}">
 </head>
-<style>
-.form {
-max-width: 800px;
-margin: 0 auto;
-display: flex;
-flex-direction: column;
-gap: 15px;
-padding-left: 4em;
-padding-right: 4em;
-padding-bottom: 4em;
-background-color: #171717;
-border-radius: 25px;
-transition: .4s ease-in-out;
-}
-
-.form:hover {
-transform: scale(1.05);
-border: 1px solid #B42DF4;
-}
-
-#heading {
-text-align: center;
-margin: 2em;
-color: #B42DF4;
-font-size: 1.7em;
-}
-
-.field {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 0.5em;
-border-radius: 25px;
-padding: 1em;
-border: none;
-outline: none;
-color: white;
-background-color: #171717;
-box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-}
-
-.input-icon {
-height: 1.3em;
-width: 1.3em;
-fill: white;
-}
-
-.input-field {
-background: none;
-border: none;
-outline: none;
-width: 100%;
-color: #d3d3d3;
-}
-
-.form .btn {
-display: flex;
-justify-content: center;
-flex-direction: row;
-margin-top: 2.5em;
-}
-
-.button2 {
-padding: 0.5em;
-padding-left: 2.3em;
-padding-right: 2.3em;
-border-radius: 5px;
-width: 250px;
-height: 50px;
-border: none;
-outline: none;
-transition: .4s ease-in-out;
-background-color: #252525;
-color: white;
-}
-
-.button2:hover {
-background-color: #B42DF4;
-color: white;
-}
-
-.logo {
-    display: block;
-    margin-left: 500px;
-    margin-top: -50px; /* Adicione margem à esquerda para mover a imagem para a direita */
-}
-
-
-</style>
 
 <body style="color: rgb(43,48,52); background: #1A1818; height: 100vh; display: flex; justify-content: center; align-items: center;">
 <!-- Start: Login Form Basic -->
 <form class="form" method="post" action="/cadastro">
-    @csrf
+    @csrf       
     <p id="heading">Cadastro</p>
     <div class="field">
         <svg class="input-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 22 22">
@@ -140,10 +52,11 @@ color: white;
     </div>
 </form>
 
-
-
 <!-- End: Login Form Basic -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/resources/js/script.min.js?h=35a745003519d0480832903c736bc4ec"></script>
+<img src="assets/img/Polygon1.png" alt="Triângulo" class="triangle-image">
+<img src="assets/img/Polygon2.png" alt="Triângulo" class="triangle-image2">
+<img src="assets/img/Vídeo.png" alt="Logo" class="logo">
 </body>
 </html>

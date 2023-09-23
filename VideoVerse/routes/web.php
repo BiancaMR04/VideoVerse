@@ -20,10 +20,13 @@ use App\Http\Controllers\CadastroCanalController;
 */
 Route::view('/', 'index')->name('home');
 
+Route::view('/', 'home')->name('home');
+
 Route::get('/login', 'LoginController@view')->name('login');
 Route::post('/login', 'LoginController@login')-> name('login');
 
-Route::view('/home', 'inicio_logado')->name('home');
+Route::view('/index', 'index');
+
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
