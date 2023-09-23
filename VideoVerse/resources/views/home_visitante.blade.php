@@ -14,17 +14,10 @@
         <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
     </div>
 
-    <div class="dropdown">
-        <div class="profile-image-container">
-            <img id="profile-image" src="https://img.quizur.com/f/img648ca358045449.79012472.jpg?lastEdited=1686938471" alt="Imagem de perfil">
-            <div class="dropdown-content" id="myDropdown">
-                <a href="#">Meu perfil</a>
-                <a href="/meu_canal">Meu canal</a>
-                <a href="/login">Sair</a>
-            </div>
-        </div>
+    <div class="btn">
+        <button class="button" id="btn_entrar">Entrar</button>
+        <button class="button" id="btn_cadastrar">Cadastre-se</button>
     </div>
-
 
     <div class="sidebar">
         <a href="/">
@@ -84,15 +77,10 @@
             </div>
             <span class="icon-label">Configurações</span>
         </div>
-        <a href="/login" class="icon-container">
-            <div class="icon">
-                <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Sair-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1NhaXItaWNvbi5wbmciLCJpYXQiOjE2OTUyNDYxMDksImV4cCI6MTcyNjc4MjEwOX0.jPXbmqw3cRts6dJxL5ZXqYYesIB0tNZc9KzlZtwB1k8&t=2023-09-20T21%3A41%3A50.112Z" width="32" height="28" style="width: 33px;height: 33px; margin-left: 3px;">
-            </div>
-            <span class="icon-label">Sair</span>
-        </a>
     </div>
     <div class="content">
         <!-- Seu conteúdo aqui -->
     </div>
+    <script src="js/home.js"></script>
 </body>
 </html>

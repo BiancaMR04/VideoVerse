@@ -31,12 +31,11 @@ Route::view('/index', 'index');
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 
-//rota para o cadastro de canal é /cadastro-canal
-Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
-Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
+Route::get('/meu_canal', 'MeuCanalController@view')->name('meu_canal');
 
+Route::view('/view_canal', 'view_canal')->name('view_canal');
 
-
+//Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
 
 Route::get('/test-database', function () {
     try {
