@@ -165,25 +165,25 @@
                                             <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0);">
                                                 <div class="card-body text-center border rounded d-flex float-none flex-column align-items-center" style="width: 769px; min-width: 0px; padding: 0px; margin-left: -11rem; margin-right: 0rem; border-radius: 15px; background: #323232; position: relative;">
                                                     <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
-                                                    <form action="{{ route('cadastrar_canal_post') }}" method="post" enctype="multipart/form-data">
+                                                    dd($request->all());
+                                                    @if(isset($msg) && !empty($msg))
+                                                        <div class="alert alert-danger">
+                                                            {{ $msg }}
+                                                        </div>
+                                                    @endif
+                                                    <form action="{{ route('cadastrar_canal') }}" method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             <input type="file" name="foto_fundo" id="foto_fundo" accept="image/*" style="display: none;">
                                                             <label for="foto_fundo" style="cursor: pointer;">
                                                                 <img id="preview_fundo" style="width: 700px; height: 150px; border: 2px solid black; border-radius: 10px; margin-top: -10px;" src="{{ asset('images.jpeg') }}">
                                                                 <p style="color: #767676; width: 152.281px; height: 11px; margin-top: -5px; line-height: normal; font-size: 14px; margin-right: -5px;">Alterar foto de fundo</p>
                                                             </label>
-                                                        </form>
-                                                        <form action="{{ route('cadastrar_canal_post') }}" method="post" enctype="multipart/form-data">
-                                                            @csrf
-                                                            <input type="file" name="foto" id="foto" accept="image/*" style="display: none;">
+                                                            <input type="file" name="perfil" id="foto" accept="image/*" style="display: none;">
                                                             <label for="foto" style="cursor: pointer;">
                                                                 <img id="preview" style="border: 2px solid black; border-radius: 50px; width: 100px; height: 100px; margin-top: -50px;" src="{{ asset('profile.jpg') }}">
                                                                 <p style="line-height: normal; font-size: 14px; color: #767676; width: 139.875px; min-width: 143px; height: 103px; margin-bottom: -250px; margin-right: 0rem;">Alterar foto de perfil</p>
                                                             </label>
-                                                        </form>
                                                     </div>
-                                                    <form action="{{ route('cadastrar_canal_post') }}" method="post" enctype="multipart/form-data">
-                                                        @csrf
                                                         <div class="mb-3">
                                                             <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Nome do canal</p>
                                                             <label for="nome_canal" class="form-label">Nome do Canal</label>

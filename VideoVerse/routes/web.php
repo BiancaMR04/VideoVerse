@@ -29,7 +29,8 @@ Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 
 //rota para o cadastro de canal é /cadastro-canal
-Route::post('/cadastro-canal', [CadastroCanalController::class, 'cadastrarCanal'])->name('cadastrar_canal_post');
+Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
+Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
 
 
 
