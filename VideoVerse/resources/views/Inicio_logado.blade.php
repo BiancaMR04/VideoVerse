@@ -4,26 +4,85 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Página Inicial</title>
+    <style> 
+        /* Estilo do dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            
+        }
+
+        /* Estilo da imagem de perfil */
+        #profile-image {
+            width: 55px;
+            height: 55px;
+            margin-top: 1rem;
+            margin-left: 22rem;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* Estilo do conteúdo do dropdown */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #323232;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            z-index: 1;
+            margin-top: 2px;
+            margin-left: 15rem;
+        }
+
+        /* Estilo dos links do dropdown */
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* Estilo dos links do dropdown quando o mouse passa por cima */
+        .dropdown-content a:hover {
+            background-color: #4e4e4e;
+            border-radius: 10px;
+        }
+
+        /* Exibir o dropdown quando o mouse passa sobre a imagem */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+
+
+    </style>
     <link rel="stylesheet" href="VideoVerse/resources/css/styles.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 <body style="background: #1A1818;">
     <header class="p-sm-5 p-4" style="margin: -26px;margin-top: -38px;margin-left: 0px;margin-right: 0px;">
         <div class="row">
-            <div class="col-xl-2"> 
-                <img src="{{ asset('Video.png') }}" alt="Logo" width="120" height="130" style="height:100px;width:130px;">
-            </div>
-            <div class="col-xl-8">
-                <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder="Pesquisar..." autocomplete="on" style="border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 850px;color: rgb(255,255,255);height: 30px;margin-left: 180px;margin-top: 1rem;">
-            </div>
-            <div class="col">
-                <div>
-                <button class="btn btn-primary" type="button" style="width: 120px;height: 40px;margin-top: 1rem;margin-left: 7rem;">Entrar</button>
+                <div class="col-xl-2">
+                    <img src="/assets/img/Vídeo.png?h=06fdb30897254d0e550962347d72be97" width="120" height="124" style="height: 100px;width: 125px;">
+                </div>
+                <div class="col-xl-7 offset-xl-0">
+                    <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder="Pesquisar..." autocomplete="on" style="border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 600px;color: rgb(255,255,255);height: 30px;margin-left: 180px;margin-top: 1rem;">
+                </div>
+                <div class="col">
+                    <div>
+                    <div class="dropdown">
+                            <img id="profile-image" src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*g09N-jl7JtVjVZGcd-vL2g.jpeg" alt="Imagem de perfil">
+                            <div class="dropdown-content" id="myDropdown">
+                                <a href="#">Acessar meu perfil</a>
+                                <a href="#">Configurações</a>
+                                <a href="#">Meu canal</a>
+                                <a href="#">Sair</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
         <div class="row">
             <div class="col-xl-2 offset-xl-0">
                 <nav class="navbar navbar-light navbar-expand-md">
@@ -110,5 +169,20 @@
     </header>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Função para fechar o dropdown quando o usuário clicar fora dele
+        window.onclick = function(event) {
+            if (!event.target.matches('#profile-image')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+     </script>
 </body>
 </html>

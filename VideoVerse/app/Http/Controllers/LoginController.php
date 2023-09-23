@@ -34,6 +34,7 @@ class LoginController extends Controller{
             ]);
             
             //Encontra o usuário com o e-mail inserido
+
             $user = User::where('email', $email)->first();
 
             if (!$user) {
@@ -41,7 +42,9 @@ class LoginController extends Controller{
                 return view('login_erro', ['msg' => $msg]);
             }
 
+
             $senhaCorreta = $user->senha;
+
 
             if($senhaCorreta != $senha){
                 $msg = 'Senha incorreta!';

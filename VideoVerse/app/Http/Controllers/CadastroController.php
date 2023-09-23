@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
 
-require ('/home/eduardo/VideoVerse/VideoVerse/VideoVerse/vendor/autoload.php');
+require ('C:\Users\maria\OneDrive\Área de Trabalho\TrabalhoRP\VideoVerse\VideoVerse\vendor\autoload.php');
 
 class CadastroController extends Controller
 {
@@ -24,6 +24,8 @@ class CadastroController extends Controller
         $senha = $request->input('senha');
         $data_nascimento = $request->input('data_nascimento');
         $data_de_cadastro = Carbon::now();
+
+      
 
         $msg = '';
 

@@ -32,6 +32,7 @@
                 <p style="color: red; font-size: 14px">{{ $msg }}</p>
             </div>
             <div class="btn">
+
                 <button class="button1">Entrar</button>
             </div>
                 <div style="text-align: center; margin-top: 0.2em;">

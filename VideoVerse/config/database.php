@@ -4,6 +4,7 @@ use Illuminate\Support\Str;
 
 return [
 
+
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -49,6 +50,7 @@ return [
             'schema' => 'public',
         ],
         
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DATABASE_URL'),

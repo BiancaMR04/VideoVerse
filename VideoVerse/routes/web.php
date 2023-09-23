@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\CadastroCanalController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::view('/', 'index')->name('home');
 
 Route::view('/', 'home')->name('home');
 
@@ -20,16 +27,17 @@ Route::post('/login', 'LoginController@login')-> name('login');
 
 Route::view('/index', 'index');
 
+
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 
-//Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
+//rota para o cadastro de canal é /cadastro-canal
+Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
+Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
 
-/*
-Route::get('/', function () {
-    return redirect()->route('test-database'); // Redirecionamento para a rota nomeada 'test-database'
-});
-*/
+
+
+
 Route::get('/test-database', function () {
     try {
         $results = DB::select('SELECT * FROM usuarios');

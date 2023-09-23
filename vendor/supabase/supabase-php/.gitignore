@@ -1,8 +1,0 @@
-.phpunit.result.cache
-/vendor
-.env
-.env.backup
-.phpdoc
-/.phpunit.cache/
-.vscode
-composer.lock
