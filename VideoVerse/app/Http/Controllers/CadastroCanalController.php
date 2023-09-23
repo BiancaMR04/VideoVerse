@@ -58,6 +58,9 @@ class CadastroCanalController extends Controller
                     $canal->imagem_perfil = $nomeArquivoPerfil;
                     $canal->imagem_fundo = $nomeArquivoFundo;
                     $canal->data_de_cadastro = $dataCadastro;
+                    $canal->ativo = true;
+                    $canal->categorias = '[]';
+                    $canal->inscritos = 0;
 
                     // Salva o canal no banco de dados
                     $canal->save();

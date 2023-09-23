@@ -14,12 +14,14 @@ class Canal extends Model
     protected $fillable = [
         'nome',
         'descricao',
-        'data_criacao_canal', // Nome da coluna correta no banco de dados
+        'data_de_cadastro',
         'categorias',
         'inscritos',
-        'imagem_perfil', // Nome da coluna correta no banco de dados
+        'imagem_foto',
         'imagem_fundo',
+        'ativo',
+        
     ];
-    
 
+    public $timestamps = false;
 }
