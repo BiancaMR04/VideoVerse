@@ -107,7 +107,45 @@
                 <!-- End: 1 Row 3 Columns -->
             </div>
         </div>
+       
+        <div class="container" style="margin-top: 2rem;">
+            <div class="row" id="videoList">
+            </div>
+        </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    const videoList = document.getElementById('videoList');
+    let nextPage = 1;
+
+    function loadVideos() {
+        $.getJSON('sua_api_de_videos.php?page=' + nextPage, function (data) {
+            data.forEach(function (video) {
+                const videoElement = `
+                    <div class="col-md-4">
+                        <img src="${video.thumbnail}" alt="Thumbnail">
+                        <h3>${video.title}</h3>
+                        <p>${video.views} visualizações</p>
+                        <p>${video.channel}</p>
+                        <p>${video.date}</p>
+                    </div>
+                `;
+                $(videoList).append(videoElement);
+            });
+            nextPage++;
+        });
+    }
+
+    loadVideos();
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
+            loadVideos();
+        }
+    });
+</script>
+
     </header>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
 </body>
