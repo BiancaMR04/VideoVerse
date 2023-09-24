@@ -129,6 +129,18 @@ body {
     </div>
 </div>
 
+<form action="/video/{{ $videoId }}/curtir" method="POST">
+  @csrf
+  <button type="submit">Curtir</button>
+</form>
+
+<form action="/video/{{ $videoId }}/comentar" method="POST">
+  @csrf
+  <input type="text" name="comentario" placeholder="Adicione um comentário">
+  <button type="submit">Comentar</button>
+</form>
+
+
 
 </body>
 </html>
