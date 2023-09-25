@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Questrial', sans-serif;
     background-color: #f0f0f0;
 }
 
@@ -26,6 +26,7 @@ body {
 }
 
 .icon-container {
+    text-decoration: none;
     display: flex;
     align-items: center;
     padding: 10px;
@@ -34,12 +35,11 @@ body {
     margin-top: -1px;
     border-radius: 25px;
     box-sizing: border-box;
-    transition: opacity 0.3s ease;
     cursor: pointer;
 }
 
 .icon-container:hover {
-    background-color: #171717; /* Cor de destaque ao passar o mouse */
+    background-color: #1a1a1a; /* Cor de destaque ao passar o mouse */
 }
 
 .icon {
@@ -63,11 +63,6 @@ body {
 .icon-container:hover .icon-label {
     opacity: 1; /* Torna a label visível */
     transform: translateX(0); /* Retorna à posição original */
-}
-
-.content {
-    margin-left: 80px;
-    padding: 20px;
 }
 
 .image {
@@ -96,11 +91,11 @@ body {
 .button {
     margin-right: 5px; /* Adicione um espaço entre os botões */
     padding: 0.5em;
-    padding-left: 2.3em;
-    padding-right: 2.3em;
+    padding-left: 2em;
+    padding-right: 2em;
     margin-top: 0px;
     border-radius: 5px;
-    width: 140px;
+    width: 130px;
     height: 40px;
     border: none;
     outline: none;
@@ -112,4 +107,69 @@ body {
 .button:hover {
     background-color: #B42DF4;
     color: white;
+}
+
+
+/* Estilo da imagem de perfil */
+#profile-image {
+    width: 50px;
+    height: 45px;
+    margin-top: -1.5rem;
+    margin-left: 115rem;
+    border-radius: 100%;
+    cursor: pointer;
+    z-index: 2; /* Definir um valor maior de z-index */
+    position: relative; /* Definir a posição como relativa */
+}
+
+.profile-image-container {
+    width: 50px;
+    height: 45px;
+    margin-top: -1.5rem;
+    margin-left: -0.5rem;
+    border-radius: 100%;
+    cursor: pointer;
+    position: relative; /* Definir a posição como relativa */
+} 
+
+/* Estilo do dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+/* Estilo do conteúdo do dropdown */
+.dropdown-content {
+    position: absolute;
+    background-color: #1a1a1a;
+    min-width: 160px;
+    box-shadow: 0px 0px 2px #B42DF4;
+    border-radius: 10px;
+    z-index: 1;
+    margin-top: 0rem;
+    margin-left: 107.8rem;
+    opacity: 0; /* Começa com opacidade 0 (invisível) */
+    transform: translateY(-10px); /* Inicia ligeiramente acima */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Estilo dos links do dropdown */
+.dropdown-content a {
+    padding: 12px 16px;
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+/* Estilo dos links do dropdown quando o mouse passa por cima */
+.dropdown-content a:hover {
+    background-color: #B42DF4;
+    border-radius: 10px;
+}
+
+/* Exibir o dropdown quando o mouse passa sobre a imagem */
+.dropdown:hover .dropdown-content {
+    opacity: 1; /* Torna o dropdown visível */
+    transform: translateY(0); 
 }

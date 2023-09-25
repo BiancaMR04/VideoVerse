@@ -45,19 +45,22 @@
     </div>
 
     <div class="btn">
+        <a href="/">
+            <button class="button2" style="margin-right: 7px;" type="button">Entrar como visitante</button>
+        </a>
         <button class="button2">Cadastre-se</button>
     </div>
-    <div style="text-align: center; margin-top: -0.4em;">
-        <a style="color: white; font-size: 13px;">Já tem uma conta?</a>
-        <a href="/login" style="text-decoration: underline; color: white; font-size: 13px;">Faça login</a>
+    <div style="font-family: 'Questrial', sans-serif; color: white; font-size: 13px; text-align: center; margin-top: -0.4em;">
+        <a>Já tem uma conta?</a>
+        <a href="/login" style="color: white; text-decoration: underline;">Faça login</a>
     </div>
 </form>
 <!-- End: Login Form Basic -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/resources/js/script.min.js?h=35a745003519d0480832903c736bc4ec"></script>
-<img src="assets/img/Polygon1.png" alt="Triângulo" class="triangle-image">
-<img src="assets/img/Polygon2.png" alt="Triângulo" class="triangle-image2">
-<img src="assets/img/Vídeo.png" alt="Logo" class="logo">
+<img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Polygon1.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvbHlnb24xLnBuZyIsImlhdCI6MTY5NTIzNzM0NiwiZXhwIjoxNzI2NzczMzQ2fQ.iEm9n0CxhCo5XZMxVVLO82oW9eTrNzyExYu4jMgucZQ&t=2023-09-20T19%3A15%3A46.147Z" alt="Triângulo" class="triangle-image">
+<img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Polygon2.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvbHlnb24yLnBuZyIsImlhdCI6MTY5NTIzNzM5MCwiZXhwIjoxNzI2NzczMzkwfQ.bPyOQtPZclreS8rB54xgi16u0UJbU3cuglOJSFiTols&t=2023-09-20T19%3A16%3A30.076Z" alt="Triângulo" class="triangle-image2">
+<img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Video.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1ZpZGVvLnBuZyIsImlhdCI6MTY5NTIzNzE5MiwiZXhwIjoxNzI2NzczMTkyfQ.eNEc9UbyE-R8FvUIEFluv1idyFtPoZb0dAxgoVPy9zs&t=2023-09-20T19%3A13%3A12.647Z" alt="Logo" class="logo">
 </body>
 </html>
