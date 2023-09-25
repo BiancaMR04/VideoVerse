@@ -3,57 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Supabase\SupabaseClient;
-use Illuminate\Support\Facades\DB;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth; // Adicione esta linha
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
 
-
-
-class LoginController extends Controller{
-
-    public function view(){
+class LoginController extends Controller
+{
+    public function view()
+    {
         return view('login');
     }
 
-    public function login(Request $request){
-        $email = $request->input('email');
-        $senha = $request->input('senha');
+    public function login(LoginRequest $request)
+    {
+        $credentials = $request->only('email', 'senha');
 
-        $msg = '';
-
-        if(empty($email) || empty($senha)){
-            $msg = 'Todos os campos devem ser preenchidos!';
-            return view('login_erro', ['msg' => $msg]);
-        }
-
-        try{
-            // Valida o email recebido
-            $request->validate([
-                'email' => 'required|email',
-            ]);
-
-            $user = User::where('email', $email)->first();
-
-            if (!$user) {
-                $msg = 'E-mail não cadastrado!';
-                return view('login_erro', ['msg' => $msg]);
-            }
-
-            $senhaCorreta = $user->senha; 
-
-            if($senhaCorreta != $senha){
-                $msg = 'Senha incorreta!';
-                return view('login_erro', ['msg' => $msg]);
+        if (Auth::attempt($credentials)) {
+            // Autenticação bem-sucedida, redirecione para a página apropriada
+            if (Auth::user()->canal) {
+                return redirect()->route('inicio_logado');
+            } else {
+                return redirect()->route('inicio_logado_SC');
             }
         }
-        catch(\Exception $e){
-            if($e->getMessage() == 'The email field must be a valid email address.'){
-                $msg = 'E-mail inválido!';
-                return view('login_erro', ['msg' => $msg]);
-            }
-            $msg = 'Erro ao processar login: ' . $e->getMessage();
-            return view('login_erro', ['msg' => $msg]);
-        }
+
+        // Autenticação falhou, redirecione de volta com uma mensagem de erro
+        return redirect()->route('login')->with('error', 'Credenciais inválidas.');
     }
 }

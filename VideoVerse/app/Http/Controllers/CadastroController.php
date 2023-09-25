@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
 
-require ('C:\Users\maria\OneDrive\Área de Trabalho\TrabalhoRP\VideoVerse\VideoVerse\vendor\autoload.php');
+
+require __DIR__ . '/../../../vendor/autoload.php';
 
 class CadastroController extends Controller
 {
@@ -53,9 +54,9 @@ class CadastroController extends Controller
     
             // Salve o usuário no banco de dados
             $user->save();
-    
-            // Redirecione para uma página de sucesso ou faça algo mais
-            return redirect()->route('home');
+            
+            // Sucesso!
+            return redirect()->route('inicio');
         } catch (\Exception $e) {
             // Em caso de erro, você pode redirecionar de volta para o formulário de cadastro com uma mensagem de erro
             $msg = 'Erro ao processar cadastro: ' . $e->getMessage();
