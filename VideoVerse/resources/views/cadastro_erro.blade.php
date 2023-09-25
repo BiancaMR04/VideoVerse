@@ -1,102 +1,14 @@
 <!DOCTYPE html>
 <html data-bs-theme="light" lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-<title>Tela de Cadastro</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-<link rel="stylesheet" href="/resources/css/styles.min.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Tela de Cadastro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="/resources/css/styles.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/cadastro_erro.css') }}">
 </head>
-<style>
-.form {
-max-width: 800px;
-margin: 0 auto;
-display: flex;
-flex-direction: column;
-gap: 15px;
-padding-left: 4em;
-padding-right: 4em;
-padding-bottom: 4em;
-background-color: #171717;
-border-radius: 25px;
-transition: .4s ease-in-out;
-}
-
-.form:hover {
-transform: scale(1.05);
-border: 1px solid red;
-}
-
-#heading {
-text-align: center;
-margin: 2em;
-color: #B42DF4;
-font-size: 1.7em;
-}
-
-.field {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 0.5em;
-border-radius: 25px;
-padding: 1em;
-border: none;
-outline: none;
-color: white;
-background-color: #171717;
-box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-}
-
-.input-icon {
-height: 1.3em;
-width: 1.3em;
-fill: white;
-}
-
-.input-field {
-background: none;
-border: none;
-outline: none;
-width: 100%;
-color: #d3d3d3;
-}
-
-.form .btn {
-display: flex;
-justify-content: center;
-flex-direction: row;
-margin-top: 2.5em;
-}
-
-.button2 {
-padding: 0.5em;
-padding-left: 2.3em;
-padding-right: 2.3em;
-border-radius: 5px;
-width: 250px;
-height: 50px;
-border: none;
-outline: none;
-transition: .4s ease-in-out;
-background-color: #252525;
-color: white;
-}
-
-.button2:hover {
-background-color: #B42DF4;
-color: white;
-}
-
-.logo {
-    display: block;
-    margin-left: 500px;
-    margin-top: -50px; 
-}
-
-
-</style>
 
 <body style="color: rgb(43,48,52); background: #1A1818; height: 100vh; display: flex; justify-content: center; align-items: center;">
 <!-- Start: Login Form Basic -->
@@ -133,16 +45,22 @@ color: white;
     </div>
 
     <div class="btn">
+        <a href="/">
+            <button class="button2" style="margin-right: 7px;" type="button">Entrar como visitante</button>
+        </a>
         <button class="button2">Cadastre-se</button>
     </div>
-    <div style="text-align: center; margin-top: -0.4em;">
-        <a style="color: white; font-size: 13px;">Já tem uma conta?</a>
-        <a href="/login" style="text-decoration: underline; color: white; font-size: 13px;">Faça login</a>
+    <div style="font-family: 'Questrial', sans-serif; color: white; font-size: 13px; text-align: center; margin-top: -0.4em;">
+        <a>Já tem uma conta?</a>
+        <a href="/login" style="color: white; text-decoration: underline;">Faça login</a>
     </div>
 </form>
 <!-- End: Login Form Basic -->
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/resources/js/script.min.js?h=35a745003519d0480832903c736bc4ec"></script>
+<img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Polygon1.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvbHlnb24xLnBuZyIsImlhdCI6MTY5NTIzNzM0NiwiZXhwIjoxNzI2NzczMzQ2fQ.iEm9n0CxhCo5XZMxVVLO82oW9eTrNzyExYu4jMgucZQ&t=2023-09-20T19%3A15%3A46.147Z" alt="Triângulo" class="triangle-image">
+<img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Polygon2.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvbHlnb24yLnBuZyIsImlhdCI6MTY5NTIzNzM5MCwiZXhwIjoxNzI2NzczMzkwfQ.bPyOQtPZclreS8rB54xgi16u0UJbU3cuglOJSFiTols&t=2023-09-20T19%3A16%3A30.076Z" alt="Triângulo" class="triangle-image2">
+<img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Video.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1ZpZGVvLnBuZyIsImlhdCI6MTY5NTIzNzE5MiwiZXhwIjoxNzI2NzczMTkyfQ.eNEc9UbyE-R8FvUIEFluv1idyFtPoZb0dAxgoVPy9zs&t=2023-09-20T19%3A13%3A12.647Z" alt="Logo" class="logo">
 </body>
 </html>

@@ -20,12 +20,17 @@ use App\Http\Controllers\CadastroCanalController;
 */
 Route::view('/', 'index')->name('home');
 
+Route::view('/', 'home')->name('home');
+
 Route::get('/login', 'LoginController@view')->name('login');
 Route::post('/login', 'LoginController@login')-> name('login');
+
+Route::view('/index', 'index');
 
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
+
 
 //rota para o cadastro de canal é /cadastro-canal
 Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
@@ -34,7 +39,9 @@ Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('
 // Rota para a página de início após o login ou cadastro
 
 
+Route::view('/view_canal', 'view_canal')->name('view_canal');
 
+//Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
 
 Route::get('/test-database', function () {
     try {

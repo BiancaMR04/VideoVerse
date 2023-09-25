@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="/resources/css/styles.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
 </head>
 <style>
     .form {

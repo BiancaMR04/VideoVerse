@@ -13,21 +13,49 @@ class LoginController extends Controller
     {
         return view('login');
     }
+    public function login(Request $request){
+        $email = $request->input('email');
+        $senha = $request->input('senha');
 
-    public function login(LoginRequest $request)
-    {
-        $credentials = $request->only('email', 'senha');
+        $msg = '';
 
-        if (Auth::attempt($credentials)) {
-            // Autenticação bem-sucedida, redirecione para a página apropriada
-            if (Auth::user()->canal) {
-                return redirect()->route('inicio_logado');
-            } else {
-                return redirect()->route('inicio_logado_SC');
-            }
+        if(empty($email) || empty($senha)){
+            $msg = 'Todos os campos devem ser preenchidos!';
+            return view('login_erro', ['msg' => $msg]);
         }
 
-        // Autenticação falhou, redirecione de volta com uma mensagem de erro
-        return redirect()->route('login')->with('error', 'Credenciais inválidas.');
+        try {
+
+            $request->validate([
+                'email' => 'required|email',
+            ]);
+            
+            //Encontra o usuário com o e-mail inserido
+
+            $user = User::where('email', $email)->first();
+
+            if (!$user) {
+                $msg = 'E-mail não cadastrado!';
+                return view('login_erro', ['msg' => $msg]);
+            }
+
+
+            $senhaCorreta = $user->senha;
+
+
+            if($senhaCorreta != $senha){
+                $msg = 'Senha incorreta!';
+                return view('login_erro', ['msg' => $msg]);
+            }else{
+                return redirect()->route('home');
+            }
+        } catch(\Exception $e){
+            if($e->getMessage() == 'The email field must be a valid email address.'){
+                $msg = 'E-mail inválido!';
+                return view('login_erro', ['msg' => $msg]);
+            }
+            $msg = 'Erro ao processar login: ' . $e->getMessage();
+            return view('login_erro', ['msg' => $msg]);
+        }
     }
 }
