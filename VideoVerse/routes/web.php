@@ -31,7 +31,13 @@ Route::view('/index', 'index');
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 
-Route::get('/meu_canal', 'MeuCanalController@view')->name('meu_canal');
+
+//rota para o cadastro de canal é /cadastro-canal
+Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
+Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
+
+// Rota para a página de início após o login ou cadastro
+
 
 Route::view('/view_canal', 'view_canal')->name('view_canal');
 
@@ -45,4 +51,15 @@ Route::get('/test-database', function () {
         return "Erro ao conectar ao banco de dados: " . $e->getMessage();
     }
 })->name('test-database'); // Nomeie a rota como 'test-database'
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        if (auth()->user()->canal) {
+            return view('inicio_logado');
+        } else {
+            return view('inicio_logado_SC');
+        }
+    })->name('dashboard');
+});
+
 
