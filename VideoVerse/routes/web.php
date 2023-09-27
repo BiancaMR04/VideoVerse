@@ -18,14 +18,11 @@ use App\Http\Controllers\CadastroCanalController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/', 'index')->name('home');
-
 Route::view('/', 'home')->name('home');
+Route::view('/home-visitor', 'home_visitante')->name('home-visitor');
 
 Route::get('/login', 'LoginController@view')->name('login');
 Route::post('/login', 'LoginController@login')-> name('login');
-
-Route::view('/index', 'index');
 
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');

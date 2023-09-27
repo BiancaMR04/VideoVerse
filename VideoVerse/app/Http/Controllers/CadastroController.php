@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
 
-require ('C:\Users\maria\OneDrive\Área de Trabalho\TrabalhoRP\VideoVerse\VideoVerse\vendor\autoload.php');
+require ('/home/eduardo/VideoVerse/VideoVerse/VideoVerse/vendor/autoload.php');
 
 class CadastroController extends Controller
 {
@@ -31,7 +31,7 @@ class CadastroController extends Controller
 
         if(empty($nome) || empty($email) || empty($senha) || empty($data_nascimento)){
             $msg = 'Todos os campos devem ser preenchidos!';
-            return view('cadastro_erro', ['msg' => $msg]);
+            return view('cadastro', ['msg' => $msg]);
         }
     
         $emailInserido = $request->input('email');
@@ -39,7 +39,7 @@ class CadastroController extends Controller
 
         if (!empty($resultado)) {
             $msg = 'Esse e-mail já está cadastrado!';
-            return view('cadastro_erro', ['msg' => $msg]);
+            return view('cadastro', ['msg' => $msg]);
         }
 
 
@@ -67,14 +67,14 @@ class CadastroController extends Controller
         } catch (\Exception $e) {
             if($e->getMessage() == 'The email field must be a valid email address.'){
                 $msg = 'E-mail inválido!';
-                return view('cadastro_erro', ['msg' => $msg]);
+                return view('cadastro', ['msg' => $msg]);
             }
             if($e->getMessage() == 'The senha field must be at least 6 characters.'){
                 $msg = 'A senha deve ter pelo menos 6 caracteres!';
-                return view('cadastro_erro', ['msg' => $msg]);
+                return view('cadastro', ['msg' => $msg]);
             }
             $msg = 'Erro ao processar cadastro: ' . $e->getMessage();
-            return view('cadastro_erro', ['msg' => $msg]);
+            return view('cadastro', ['msg' => $msg]);
         }
     }
 }

@@ -12,7 +12,7 @@
 
 <body style="color: rgb(43,48,52); background: #1A1818; height: 100vh; display: flex; justify-content: center; align-items: center;">
 <!-- Start: Login Form Basic -->
-<form class="form" method="post" action="/cadastro">
+<form class="form @if(isset($msg) && !empty($msg)) has-error @endif" method="post" action="/cadastro">
     @csrf       
     <p id="heading">Cadastro</p>
     <div class="field">
@@ -40,8 +40,14 @@
         <input placeholder="Data de Nascimento" class="input-field" type="date" name="data_nascimento">
     </div>
 
+    <div class="alerta">
+        @if(isset($msg) && !empty($msg))
+            <p>{{ $msg }}</p>
+        @endif
+    </div>
+
     <div class="btn">
-        <a href="/">
+        <a href="/home-visitor">
             <button class="button2" style="margin-right: 7px;" type="button">Entrar como visitante</button>
         </a>
         <button class="button2" style="margin-left: 7px;" type="submit" formaction="/cadastro">Cadastre-se</button>
