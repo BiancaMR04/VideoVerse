@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
@@ -18,9 +19,9 @@ use App\Http\Controllers\CadastroCanalController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/', 'index')->name('home');
+Route::view('/', 'auth/login')->name('login');
 
-Route::view('/', 'home')->name('home');
+//Route::view('/', 'home')->name('home');
 
 Route::get('/login', 'LoginController@view')->name('login');
 Route::post('/login', 'LoginController@login')-> name('login');
@@ -62,4 +63,9 @@ Route::middleware(['auth'])->group(function () {
     })->name('dashboard');
 });
 
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
