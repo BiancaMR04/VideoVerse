@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroCanalController;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -18,7 +19,7 @@ use App\Http\Controllers\CadastroCanalController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/', 'home')->name('home');
+Route::view('/', 'auth/login')->name('login');
 Route::view('/home-visitor', 'home_visitante')->name('home-visitor');
 
 Route::get('/login', 'LoginController@view')->name('login');
@@ -32,14 +33,11 @@ Route::get('/meu_canal', 'MeuCanalController@view')->name('meu_canal');
 
 Route::view('/view_canal', 'view_canal')->name('view_canal');
 
-//Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
+Route::view('/upload_video', 'upload_video')->name('upload_video');
+Auth::routes();
 
-Route::get('/test-database', function () {
-    try {
-        $results = DB::select('SELECT * FROM usuarios');
-        return $results;
-    } catch (\Exception $e) {
-        return "Erro ao conectar ao banco de dados: " . $e->getMessage();
-    }
-})->name('test-database'); // Nomeie a rota como 'test-database'
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

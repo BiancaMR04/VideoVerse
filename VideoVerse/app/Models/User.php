@@ -35,7 +35,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'usuarios';
+    protected $table = 'users';
 
     /**
 
@@ -47,6 +47,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'date_of_birth', 
     ];
 
     /**
