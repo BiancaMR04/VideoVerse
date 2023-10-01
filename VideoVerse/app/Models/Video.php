@@ -28,4 +28,14 @@ class Video extends Model
     {
         return $this->belongsTo(Canal::class); 
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
+    public function likes()
+{
+    return $this->hasMany(Favorito::class);
+}
 }

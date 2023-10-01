@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->text('descricao');
             $table->unsignedBigInteger('canal_id');
+            $table->integer('duracao')->default(0);
             $table->foreign('canal_id')->references('id')->on('canal')->onDelete('cascade');
         });
     }
