@@ -5,21 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Videos extends Model
+class Video extends Model
 {
-    protected $table = 'videos'; 
+    use HasFactory;
+
+    /**
+     * The name of the table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'videos';
 
     protected $fillable = [
-        'titulo',
-        'descricao',
-        'categorias',
-        'id_usuario',
-        'data',
-        'caminho',
+        'nome',
+        'caminho_video',
         'caminho_imagem',
-        'visualizacao',
-        
+        'data_postagem',
+        'canal_id',
     ];
 
-    public $timestamps = false;
+    public function canal()
+    {
+        return $this->belongsTo(Canal::class); 
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
+    public function likes()
+{
+    return $this->hasMany(Favorito::class);
+}
 }

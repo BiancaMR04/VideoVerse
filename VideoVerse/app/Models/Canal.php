@@ -24,4 +24,9 @@ class Canal extends Model
     ];
 
     public $timestamps = false;
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class); 
+    }
 }
