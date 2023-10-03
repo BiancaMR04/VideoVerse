@@ -1,66 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Inicial</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
-
-    <style>
-        body {
-            font-family: 'Questrial';
-           
-        }
-
-        a{
-            text-decoration: none;
-        }
-        h1{
-            color: white
-        }
-
-        .video-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 33%);
-    grid-gap: 20px;
-    grid-column-gap: 10px
-    grid-row-gap: 10px;
-    gap:10px;
-    margin-top: 100px;
-    margin-left: 250px; /* Ajuste a margem esquerda para que a grid comece à direita da sidebar */
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Página Inicial</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">  
+<style>
+body {
+    font-family: 'Questrial';
+    background: #1A1818;
+}
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-
-
-
-        .video {
-    width: 370px; /* Largura fixa para todos os vídeos */
-    margin-right: 5px; /* Reduz a margem direita entre as colunas */
-
-    margin: 10px; /* Espaçamento entre os vídeos */
+.video-container video {
+    width: 1000px;
+    height: 600px;
 }
 
-.video-thumbnail {
-    width: 100%; /* A imagem preencherá todo o espaço disponível na div */
-    height: auto; /* A altura se ajustará automaticamente para manter a proporção */
-    border-radius: 5%;
+.video-name {
+    margin-top: 20px;
+    font-size: 40px;
+    color: white;
 }
 
-.video-title {
-    font-size: 20px; /* Tamanho da fonte para o título */
-    margin: 5px 0; /* Espaçamento vertical para o título */
-    color: #fff; /* Cor do texto do título */
+.video-data {
+    margin-top: 20px;
+    font-size: 18px;
+    color: white;
 }
 
-.video-info {
-    font-size: 14px; /* Tamanho da fonte para as informações */
-    margin: 3px 0; /* Espaçamento vertical para as informações */
-    color: #999; /* Cor do texto das informações */
-}
+</style>
 
-        </style>
 </head>
 <body style="background: #1A1818;">
     <div class="col-xl-8">
@@ -68,10 +46,17 @@
         <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
     </div>
 
-    <div class="btn">
-        <button class="button" id="btn_entrar">Entrar</button>
-        <button class="button" id="btn_cadastrar">Cadastre-se</button>
+    <div class="dropdown">
+        <div class="profile-image-container">
+            <img id="profile-image" src="https://img.quizur.com/f/img648ca358045449.79012472.jpg?lastEdited=1686938471" alt="Imagem de perfil">
+            <div class="dropdown-content" id="myDropdown">
+                <a href="#">Meu perfil</a>
+                <a href="/meu_canal">Meu canal</a>
+                <a href="/login">Sair</a>
+            </div>
+        </div>
     </div>
+
 
     <div class="sidebar">
         <a href="/">
@@ -131,24 +116,32 @@
             </div>
             <span class="icon-label">Configurações</span>
         </div>
+        <a href="/login" class="icon-container">
+            <div class="icon">
+                <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Sair-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1NhaXItaWNvbi5wbmciLCJpYXQiOjE2OTUyNDYxMDksImV4cCI6MTcyNjc4MjEwOX0.jPXbmqw3cRts6dJxL5ZXqYYesIB0tNZc9KzlZtwB1k8&t=2023-09-20T21%3A41%3A50.112Z" width="32" height="28" style="width: 33px;height: 33px; margin-left: 3px;">
+            </div>
+            <span class="icon-label">Sair</span>
+        </a>
     </div>
-    <div class="content">
-        <div class="video-grid">
-            @foreach ($videos as $video)
-                <div class="video">
-                    <a href="{{ route('video.show', ['id' => $video->id]) }}">
-                        <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
-                        <h2 class="video-title">{{ $video->titulo }}</h2>
-                        <p class="video-info">{{ $video->canal->nome }}</p>
-                        <p class="video-info">{{ $video->visualizacao }} visualizações</p>
-                        <p class="video-info">{{ $video->data }}</p>
-                    </a>
-                </div>
-            @endforeach
-        </div>
-    </div>
+<div class="video-container" style="color:white">
     
+    <?php
+        $videoUrl = asset($video->caminho);
+    ?>
+    <!-- Elemento de vídeo -->
+    <video controls autoplay>
+        <source src="{{ $videoUrl }}" type="video/mp4">
+        <!-- Adicione mais sources se desejar oferecer suporte a outros formatos de vídeo -->
+        Seu navegador não suporta o elemento de vídeo.
+    </video>
     
-    <script src="js/home.js"></script>
+    <h1>{{ $video->titulo }}</h1>
+    <p>{{ $video->canal->nome }}</p>
+    <p>{{ $video->visualizacao }} visualizações</p>
+    <p>Data de publicação: {{ $video->data }}</p>
+
+</div>
+
+
 </body>
 </html>

@@ -1,10 +1,41 @@
 <?php
 
+use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroCanalController;
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+//Route::view('/', 'auth/login')->name('login');
+
+Route::get('/', 'VideoController@index')->name('home');
+
+//Route::view('/', 'home')->name('home');
+Route::get('/videos/{id}', function ($id) {
+    $video = Video::find($id);
+    return view('view_video', compact('video'));
+})->name('video.show');
+
+
+Route::get('/login', 'LoginController@view')->name('login');
+Route::post('/login', 'LoginController@login')-> name('login');
+
+Route::view('/index', 'index');
+
+Route::view('/socorro', 'view_video');
 
 Route::view('/', 'auth.login')->name('login'); // Corrigi o nome da view para corresponder ao caminho padrão do Laravel
 
