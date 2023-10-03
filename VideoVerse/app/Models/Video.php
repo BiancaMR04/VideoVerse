@@ -18,7 +18,7 @@ class Video extends Model
 
     protected $fillable = [
         'nome',
-        'caminho_video',
+        'caminho',
         'caminho_imagem',
         'data_postagem',
         'canal_id',
