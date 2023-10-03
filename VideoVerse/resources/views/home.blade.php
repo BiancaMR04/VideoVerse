@@ -11,10 +11,10 @@
 <body style="background: #1A1818;">
     <div class="col-xl-8">
         <i class="fas fa-search search-icon"></i>
-        <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
+        <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px; border: 1.017px solid rgba(255, 255, 255, 0.10);">
     </div>
-
     <div class="dropdown">
+<<<<<<< Updated upstream
         <div class="profile-image-container">
             <img id="profile-image" src="https://img.quizur.com/f/img648ca358045449.79012472.jpg?lastEdited=1686938471" alt="Imagem de perfil">
             <div class="dropdown-content" id="myDropdown">
@@ -22,9 +22,21 @@
                 <a href="/meu_canal">Meu canal</a>
                 <a href="/">Sair</a>
             </div>
+=======
+    <div class="profile-image-container">
+    
+        <div class="dropdown-content" id="myDropdown">
+            @auth
+                <a href="{{ route('criar_canal') }}">Meu canal</a>
+                <a href="{{ route('logout') }}">Sair</a>
+            @else
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('cadastro') }}">Cadastro</a>
+            @endauth
+>>>>>>> Stashed changes
         </div>
     </div>
-
+</div>
 
     <div class="sidebar">
         <a href="/home">

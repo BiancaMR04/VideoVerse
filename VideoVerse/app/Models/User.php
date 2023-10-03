@@ -76,4 +76,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comentario::class);
     }
+
+
+    public function canais()
+    {
+        return $this->hasMany(Canal::class);
+    }
+    
+
 }
