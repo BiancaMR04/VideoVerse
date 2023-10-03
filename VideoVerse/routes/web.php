@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -19,14 +20,23 @@ use App\Http\Controllers\CadastroCanalController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/', 'auth/login')->name('login');
+//Route::view('/', 'auth/login')->name('login');
+
+Route::get('/', 'VideoController@index')->name('home');
 
 //Route::view('/', 'home')->name('home');
+Route::get('/videos/{id}', function ($id) {
+    $video = Video::find($id);
+    return view('view_video', compact('video'));
+})->name('video.show');
+
 
 Route::get('/login', 'LoginController@view')->name('login');
 Route::post('/login', 'LoginController@login')-> name('login');
 
 Route::view('/index', 'index');
+
+Route::view('/socorro', 'view_video');
 
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');

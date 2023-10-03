@@ -15,13 +15,9 @@ class VideoController extends Controller
     }
 
     public function show($id)
-    {
+{
     $video = Video::find($id);
+    return view('view_video', $video);
+}
 
-    if (!$video) {
-        abort(404); 
-    }
-
-    return view('view_video', compact('video'));
-    }
 }

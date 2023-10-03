@@ -7,6 +7,60 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
+
+    <style>
+        body {
+            font-family: 'Questrial';
+           
+        }
+
+        a{
+            text-decoration: none;
+        }
+        h1{
+            color: white
+        }
+
+        .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-gap: 20px;
+    grid-column-gap: 10px
+    grid-row-gap: 10px;
+    gap:10px;
+    margin-top: 100px;
+    margin-left: 250px; /* Ajuste a margem esquerda para que a grid comece à direita da sidebar */
+}
+
+
+
+
+        .video {
+    width: 370px; /* Largura fixa para todos os vídeos */
+    margin-right: 5px; /* Reduz a margem direita entre as colunas */
+
+    margin: 10px; /* Espaçamento entre os vídeos */
+}
+
+.video-thumbnail {
+    width: 100%; /* A imagem preencherá todo o espaço disponível na div */
+    height: auto; /* A altura se ajustará automaticamente para manter a proporção */
+    border-radius: 5%;
+}
+
+.video-title {
+    font-size: 20px; /* Tamanho da fonte para o título */
+    margin: 5px 0; /* Espaçamento vertical para o título */
+    color: #fff; /* Cor do texto do título */
+}
+
+.video-info {
+    font-size: 14px; /* Tamanho da fonte para as informações */
+    margin: 3px 0; /* Espaçamento vertical para as informações */
+    color: #999; /* Cor do texto das informações */
+}
+
+        </style>
 </head>
 <body style="background: #1A1818;">
     <div class="col-xl-8">
@@ -45,7 +99,7 @@
             <div class="icon">
                 <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Podcasts-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvZGNhc3RzLWljb24ucG5nIiwiaWF0IjoxNjk1MjM3NzA5LCJleHAiOjE3MjY3NzM3MDl9.z4tWErm2AAq-c2kGULfJc-QPzRFvOjcjPUPeK3Y6Cqo&t=2023-09-20T19%3A21%3A48.953Z" width="32" height="28" style="width: 36px;height: 36px;">
             </div>
-            <span class="icon-label">Pocasts</span>
+            <span class="icon-label">Podcasts</span>
         </div>
         <div class="icon-container">
             <div class="icon">
@@ -79,8 +133,22 @@
         </div>
     </div>
     <div class="content">
-        <!-- Seu conteúdo aqui -->
+        <div class="video-grid">
+            @foreach ($videos as $video)
+                <div class="video">
+                    <a href="{{ route('video.show', ['id' => $video->id]) }}">
+                        <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
+                        <h2 class="video-title">{{ $video->titulo }}</h2>
+                        <p class="video-info">{{ $video->canal->nome }}</p>
+                        <p class="video-info">{{ $video->visualizacao }} visualizações</p>
+                        <p class="video-info">{{ $video->data }}</p>
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </div>
+    
+    
     <script src="js/home.js"></script>
 </body>
 </html>
