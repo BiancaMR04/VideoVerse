@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
@@ -29,7 +30,13 @@ Route::post('/login', 'LoginController@login')-> name('login');
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 
-Route::get('/meu_canal', 'MeuCanalController@view')->name('meu_canal');
+
+//rota para o cadastro de canal é /cadastro-canal
+Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
+Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
+
+// Rota para a página de início após o login ou cadastro
+
 
 Route::view('/view_canal', 'view_canal')->name('view_canal');
 

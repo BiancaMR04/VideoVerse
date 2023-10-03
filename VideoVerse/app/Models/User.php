@@ -45,6 +45,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
+        'date_of_birth',
         'email',
         'password',
         'date_of_birth', 
@@ -69,4 +71,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comentario::class);
+    }
 }

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
 
-require ('/home/eduardo/VideoVerse/VideoVerse/VideoVerse/vendor/autoload.php');
+require __DIR__ . '/../../../vendor/autoload.php';
 
 class CadastroController extends Controller
 {
@@ -63,7 +63,8 @@ class CadastroController extends Controller
             $user->save();
             
             // Sucesso!
-            return redirect()->route('home');
+            return redirect()->route('inicio');
+
         } catch (\Exception $e) {
             if($e->getMessage() == 'The email field must be a valid email address.'){
                 $msg = 'E-mail inválido!';

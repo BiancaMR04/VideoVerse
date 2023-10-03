@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/register.css') }}">
 </head>
 <body style="color: rgb(43,48,52); background: #1A1818;">
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -20,7 +21,6 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="campo">
                             <label for="email" class="field">{{ __('Email') }}</label>
 
@@ -63,6 +63,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
+
                                 <button type="submit" class="button">Login</button>
                             </div>
 
@@ -78,6 +79,7 @@
         </div>
     </div>
 </div>
+
 
 <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Polygon1.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvbHlnb24xLnBuZyIsImlhdCI6MTY5NTIzNzM0NiwiZXhwIjoxNzI2NzczMzQ2fQ.iEm9n0CxhCo5XZMxVVLO82oW9eTrNzyExYu4jMgucZQ&t=2023-09-20T19%3A15%3A46.147Z" alt="Triângulo" class="triangle-image">
 <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Polygon2.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvbHlnb24yLnBuZyIsImlhdCI6MTY5NTIzNzM5MCwiZXhwIjoxNzI2NzczMzkwfQ.bPyOQtPZclreS8rB54xgi16u0UJbU3cuglOJSFiTols&t=2023-09-20T19%3A16%3A30.076Z" alt="Triângulo" class="triangle-image2">

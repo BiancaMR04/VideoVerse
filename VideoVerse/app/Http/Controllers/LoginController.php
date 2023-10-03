@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Supabase\SupabaseClient;
-use Illuminate\Support\Facades\DB;
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Auth; // Adicione esta linha
+use App\Http\Requests\LoginRequest;
 use App\Models\User;
 
-
-
-class LoginController extends Controller{
-
-    public function view(){
+class LoginController extends Controller
+{
+    public function view()
+    {
         return view('login');
     }
-
     public function login(Request $request){
         $email = $request->input('email');
         $senha = $request->input('senha');
