@@ -68,8 +68,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-<<<<<<< Updated upstream
-=======
+
 
     public function comments()
     {
@@ -82,5 +81,4 @@ class User extends Authenticatable
     }
     
 
->>>>>>> Stashed changes
 }

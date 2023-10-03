@@ -59,6 +59,4 @@ public function paginaInicial()
     return view('home', ['profileImageName' => $profileImageName]);
 }
 
-
-
 }

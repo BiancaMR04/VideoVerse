@@ -24,8 +24,6 @@ class Canal extends Model
     ];
 
     public $timestamps = false;
-<<<<<<< Updated upstream
-=======
 
     public function videos()
     {
@@ -36,5 +34,4 @@ class Canal extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
->>>>>>> Stashed changes
 }
