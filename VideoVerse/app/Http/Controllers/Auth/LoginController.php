@@ -20,15 +20,17 @@ class LoginController extends Controller
     }
 
 
-    protected function authenticated(Request $request, $user)
+    protected function authenticated($request, $user)
     {
         // Verificar se o usuário tem um canal associado ao perfil
         $canal = Canal::where('user_id', $user->id)->first();
 
         if ($canal) {
+            // Se o usuário tiver um canal, redirecione para a rota nomeada 'meu-canal'
             return redirect()->route('meu-canal');
         } else {
-            return redirect()->route('criar_canal');
+            // Se o usuário não tiver um canal, redirecione para a rota nomeada 'cadastro-canal'
+            return redirect()->route('cadastro-canal');
         }
     }
 
