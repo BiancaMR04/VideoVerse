@@ -60,7 +60,7 @@ class VideoController extends Controller
 
         if ($video->save()) {
             printf("Vídeo salvo com sucesso!");
-            return redirect()->route('videos.show', $video->id);
+            return redirect()->route('videos.upload', $video->id);
 
         } else { 
             printf("Erro ao salvar o vídeo!");
