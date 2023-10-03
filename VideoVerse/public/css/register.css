@@ -1,6 +1,23 @@
-.form {
-    max-width: 800px;
-    margin: 3em auto 0 auto;
+* {
+    font-family: 'Questrial', sans-serif;
+}
+
+.body{
+    background-color: #1a1a1a;
+}
+
+.card-header {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2.5em;
+    color: #B42DF4;
+    font-size: 25px;
+}
+
+.card {
+    max-width: 600px;
+    margin: -1em auto 0 auto;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -11,56 +28,31 @@
     border-radius: 25px;
     transition: .4s ease-in-out;
 }
-    
-.form:hover {
+
+.card:hover {
     transform: scale(1.05);
-    border: 1px solid red;
+    border: 1px solid #B42DF4;
 }
-    
-#heading {
-    text-align: center;
-    margin: 2em;
-    color: #B42DF4;
-    font-size: 1.7em;
-}
-    
-.field {
+
+.campo {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: right;
+    margin-right: 20px;
+    margin-left: -250px;
     gap: 0.5em;
     border-radius: 25px;
-    padding: 1em;
+    padding: 0.8em;
     border: none;
     outline: none;
     color: white;
-    background-color: #171717;
-    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
-    
-.input-icon {
-    height: 1.3em;
-    width: 1.3em;
-    fill: white;
-    }
-    
-.input-field {
-    background: none;
-    border: none;
-    font-family: 'Questrial', sans-serif;
-    outline: none;
-    width: 100%;
-    color: #d3d3d3;
+
+.field{
+    color: white;
 }
-    
-.form .btn {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    margin-top: 1.5em;
-}
-    
-.button2 {
+
+.button {
     padding: 0.5em;
     padding-left: 2.3em;
     padding-right: 2.3em;
@@ -73,13 +65,16 @@
     transition: .4s ease-in-out;
     background-color: #252525;
     color: white;
-}
-    
-.button2:hover {
+    margin-top: 25px;
+    margin-left: -20px;
+    }
+
+.button:hover {
     background-color: #B42DF4;
     color: white;
 }
-    
+
+
 .triangle-image {
     position: fixed; 
     top: 0; 
@@ -95,9 +90,8 @@
 }
 
 .logo {
-    position: fixed; 
     top: 0;
-    left: 500;
+    margin-left: 5000;
     z-index: -1; 
 }
 

@@ -3,7 +3,6 @@
 use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroCanalController;
@@ -38,6 +37,17 @@ Route::view('/index', 'index');
 
 Route::view('/socorro', 'view_video');
 
+Route::view('/', 'auth.login')->name('login'); // Corrigi o nome da view para corresponder ao caminho padrão do Laravel
+
+Route::view('/home-visitor', 'home_visitante')->name('home-visitor');
+
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login'); // Alterado para usar o método padrão do Laravel
+Route::post('/login', 'Auth\LoginController@login')->name('login');
+
+Route::post('/cadastro', 'CadastroController@cadastro')->name('cadastro');
+Route::get('/cadastro', 'CadastroController@view')->name('cadastro');
+
+
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
@@ -47,35 +57,10 @@ Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
 Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
 
-// Rota para a página de início após o login ou cadastro
-
-
+Route::get('/home', [HomeController::class, 'paginaInicial'])->name('pagina-inicial');
 Route::view('/view_canal', 'view_canal')->name('view_canal');
+Route::view('/upload_video', 'upload_video')->name('upload_video');
 
-//Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
-
-Route::get('/test-database', function () {
-    try {
-        $results = DB::select('SELECT * FROM usuarios');
-        return $results;
-    } catch (\Exception $e) {
-        return "Erro ao conectar ao banco de dados: " . $e->getMessage();
-    }
-})->name('test-database'); // Nomeie a rota como 'test-database'
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        if (auth()->user()->canal) {
-            return view('inicio_logado');
-        } else {
-            return view('inicio_logado_SC');
-        }
-    })->name('dashboard');
-});
-
-
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+Route::get('/canal', 'HomeController@authenticated' )->name('meu-canal');
+//rota par criar canal
+Route::post('/canal', 'HomeController@authenticated' )->name('criar_canal');

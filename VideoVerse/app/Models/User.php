@@ -49,6 +49,7 @@ class User extends Authenticatable
         'date_of_birth',
         'email',
         'password',
+        'date_of_birth', 
     ];
 
     /**
@@ -75,4 +76,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comentario::class);
     }
+
+
+    public function canais()
+    {
+        return $this->hasMany(Canal::class);
+    }
+    
+
 }

@@ -21,7 +21,7 @@ class LoginController extends Controller
 
         if(empty($email) || empty($senha)){
             $msg = 'Todos os campos devem ser preenchidos!';
-            return view('login_erro', ['msg' => $msg]);
+            return view('login', ['msg' => $msg]);
         }
 
         try {
@@ -36,7 +36,7 @@ class LoginController extends Controller
 
             if (!$user) {
                 $msg = 'E-mail não cadastrado!';
-                return view('login_erro', ['msg' => $msg]);
+                return view('login', ['msg' => $msg]);
             }
 
 
@@ -45,17 +45,17 @@ class LoginController extends Controller
 
             if($senhaCorreta != $senha){
                 $msg = 'Senha incorreta!';
-                return view('login_erro', ['msg' => $msg]);
+                return view('login', ['msg' => $msg]);
             }else{
                 return redirect()->route('home');
             }
         } catch(\Exception $e){
             if($e->getMessage() == 'The email field must be a valid email address.'){
                 $msg = 'E-mail inválido!';
-                return view('login_erro', ['msg' => $msg]);
+                return view('login', ['msg' => $msg]);
             }
             $msg = 'Erro ao processar login: ' . $e->getMessage();
-            return view('login_erro', ['msg' => $msg]);
+            return view('login', ['msg' => $msg]);
         }
     }
 }
