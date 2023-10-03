@@ -64,7 +64,3 @@ Route::view('/upload_video', 'upload_video')->name('upload_video');
 Route::get('/canal', 'HomeController@authenticated' )->name('meu-canal');
 //rota par criar canal
 Route::post('/canal', 'HomeController@authenticated' )->name('criar_canal');
-
-Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-
-Route::get('/cadastro-canal', [HomeController::class, 'authenticated'])->name('cadastro-canal');
