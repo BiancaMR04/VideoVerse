@@ -61,7 +61,6 @@
 }
 
         </style>
-
 </head>
 <body style="background: #1A1818;">
     <div class="col-xl-8">
@@ -69,29 +68,29 @@
         <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px; border: 1.017px solid rgba(255, 255, 255, 0.10);">
     </div>
     <div class="dropdown">
-
-        <!-- <div class="profile-image-container">
+<<<<<<< Updated upstream
+        <div class="profile-image-container">
             <img id="profile-image" src="https://img.quizur.com/f/img648ca358045449.79012472.jpg?lastEdited=1686938471" alt="Imagem de perfil">
             <div class="dropdown-content" id="myDropdown">
                 <a href="#">Meu perfil</a>
                 <a href="/meu_canal">Meu canal</a>
                 <a href="/">Sair</a>
-            </div> -->
-
-            <div class="dropdown">
-            <div class="profile-image-container">
-                <div class="dropdown-content" id="myDropdown">
-                    @auth
-                        <a href="{{ route('criar_canal') }}">Meu canal</a>
-                        <a href=
-                        <a href="{{ route('logout') }}">Sair</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('cadastro') }}">Cadastro</a>
-                    @endauth
-                </div>
             </div>
+=======
+    <div class="profile-image-container">
+    
+        <div class="dropdown-content" id="myDropdown">
+            @auth
+                <a href="{{ route('criar_canal') }}">Meu canal</a>
+                <a href="{{ route('logout') }}">Sair</a>
+            @else
+                <a href="{{ route('login') }}">Login</a>
+                <a href="{{ route('cadastro') }}">Cadastro</a>
+            @endauth
+>>>>>>> Stashed changes
         </div>
+    </div>
+</div>
 
     <div class="sidebar">
         <a href="/home">
@@ -174,19 +173,4 @@
         </div>
     </div>
 </body>
-<script>
-        var meuCanalRoute = "{{ route('meu-canal') }}";
-
-        // Aguarde o documento estar pronto
-        $(document).ready(function() {
-            // Quando o link "Meu Canal" for clicado
-            $('#myDropdown a[href="' + meuCanalRoute + '"]').click(function(e) {
-                // Impedir o comportamento padrão do link
-                e.preventDefault();
-
-                // Redirecionar para a rota 'meu-canal'
-                window.location.href = meuCanalRoute;
-            });
-        });
-    </script>
 </html>
