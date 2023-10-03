@@ -20,14 +20,14 @@
             <div class="dropdown-content" id="myDropdown">
                 <a href="#">Meu perfil</a>
                 <a href="/meu_canal">Meu canal</a>
-                <a href="/login">Sair</a>
+                <a href="/">Sair</a>
             </div>
         </div>
     </div>
 
 
     <div class="sidebar">
-        <a href="/">
+        <a href="/home">
             <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Video.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1ZpZGVvLnBuZyIsImlhdCI6MTY5NTIzNzE5MiwiZXhwIjoxNzI2NzczMTkyfQ.eNEc9UbyE-R8FvUIEFluv1idyFtPoZb0dAxgoVPy9zs&t=2023-09-20T19%3A13%3A12.647Z" alt="Logo" class="image">
         </a>
         <div class="icon-container" style="margin-top: 130px;">

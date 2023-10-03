@@ -1,3 +1,7 @@
+* {
+    font-family: 'Questrial', sans-serif;
+}
+
 .form {
     max-width: 800px;
     margin: 0 auto;
@@ -16,6 +20,10 @@
 .form:hover {
     transform: scale(1.05);
     border: 1px solid #b24Df4;
+}
+
+.has-error:hover {
+    border-color: red; /* Cor da borda quando há um erro */
 }
 
 #heading {
@@ -65,8 +73,8 @@
     padding-left: 2.3em;
     padding-right: 2.3em;
     border-radius: 5px;
-    width: 250px;
-    height: 50px;
+    width: 170px;
+    height: 60px;
     border: none;
     outline: none;
     transition: .4s ease-in-out;
@@ -77,4 +85,37 @@
 .button1:hover {
     background-color: #b24Df4;
     color: white;
+}
+
+.alerta {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color: red; 
+    font-size: 14px
+}
+
+.triangle-image {
+    position: fixed; 
+    top: 0; 
+    right: 0; 
+    z-index: -1; 
+}
+
+.triangle-image2 {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: -1; 
+}
+
+.logo {
+    position: fixed; 
+    top: 0;
+    left: 500;
+    z-index: -1; 
+}
+
+.logo img {
+    max-width: 75%; 
 }
