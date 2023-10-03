@@ -35,7 +35,7 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $table = 'usuarios';
+    protected $table = 'users';
 
     /**
 
@@ -45,8 +45,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
+        'date_of_birth',
         'email',
         'password',
+        'date_of_birth', 
     ];
 
     /**
@@ -69,11 +72,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
     public function comments()
     {
         return $this->hasMany(Comentario::class);
     }
+
 
     public function canais()
     {

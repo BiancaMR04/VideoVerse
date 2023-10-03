@@ -1,3 +1,7 @@
+* {
+    font-family: 'Questrial', sans-serif;
+}
+
 .form {
     max-width: 800px;
     margin: 2em auto 0 auto;
@@ -15,6 +19,10 @@
 .form:hover {
     transform: scale(1.05);
     border: 1px solid #B42DF4;
+}
+
+.has-error:hover {
+    border-color: red; /* Cor da borda quando há um erro */
 }
 
 #heading {
@@ -78,6 +86,14 @@
 .button2:hover {
     background-color: #B42DF4;
     color: white;
+}
+
+.alerta {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    color: red; 
+    font-size: 14px
 }
 
 .triangle-image {
