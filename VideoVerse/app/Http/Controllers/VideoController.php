@@ -50,14 +50,13 @@ class VideoController extends Controller
         $video->video = $caminho . $titulo;
         $video->miniatura = $caminho_imagem;
 
-        // Remova a atribuição fictícia dos campos 'usuário' e 'visualizações'
-
+        // Salva a imagem e o vídeo no diretório de armazenamento
         $arquivo_imagem->move(public_path() . $caminho_imagem, );
         $arquivo_video->move(public_path() . $caminho, $titulo);
 
-        // Obtenha as categorias selecionadas a partir da solicitação e armazene-as no banco de dados
+        // Salva o vídeo no banco de dados
         $categorias = $request->input('categorias');
-        $video->categorias = implode(', ', $categorias); // Armazene as categorias como uma string separada por vírgulas
+        $video->categorias = implode(', ', $categorias); // Armazena as categorias como uma string separada por vírgulas
 
         if ($video->save()) {
             printf("Vídeo salvo com sucesso!");
