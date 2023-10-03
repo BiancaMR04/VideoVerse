@@ -17,11 +17,12 @@ class Video extends Model
     protected $table = 'videos';
 
     protected $fillable = [
-        'nome',
+        'titulo',
         'caminho_video',
         'caminho_imagem',
         'data_postagem',
         'canal_id',
+        'categoria'
     ];
 
     public function canal()
@@ -38,4 +39,10 @@ class Video extends Model
 {
     return $this->hasMany(Favorito::class);
 }
+
+public function setCategoriasAttribute($value)
+{
+    $this->attributes['categoria'] = ucwords($value);
+}
+
 }

@@ -19,9 +19,9 @@ use App\Http\Controllers\CadastroCanalController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/', 'auth/login')->name('login');
+//Route::view('/', 'auth/login')->name('login');
 
-//Route::view('/', 'home')->name('home');
+Route::view('/', 'carregar_video')->name('home');
 
 Route::get('/login', 'LoginController@view')->name('login');
 Route::post('/login', 'LoginController@login')-> name('login');
@@ -38,6 +38,8 @@ Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-ca
 Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
 
 // Rota para a página de início após o login ou cadastro
+//Route::get('/videos.upload', 'VideoController@view')->name('videos.upload');
+Route::post('/videos.upload', 'VideoController@upload')->name('videos.upload');
 
 
 Route::view('/view_canal', 'view_canal')->name('view_canal');
