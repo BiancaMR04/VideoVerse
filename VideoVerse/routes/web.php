@@ -1,12 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
+<<<<<<< Updated upstream
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroCanalController;
+=======
+use Illuminate\Support\Facades\Auth; // Adicionei o ponto e vírgula aqui
+>>>>>>> Stashed changes
 
+Route::view('/', 'auth.login')->name('login'); // Corrigi o nome da view para corresponder ao caminho padrão do Laravel
 
+<<<<<<< Updated upstream
 
 /*
 |--------------------------------------------------------------------------
@@ -21,25 +26,28 @@ use App\Http\Controllers\CadastroCanalController;
 Route::view('/', 'index')->name('home');
 
 Route::view('/', 'home')->name('home');
+=======
+Route::view('/home-visitor', 'home_visitante')->name('home-visitor');
+>>>>>>> Stashed changes
 
-Route::get('/login', 'LoginController@view')->name('login');
-Route::post('/login', 'LoginController@login')-> name('login');
+Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login'); // Alterado para usar o método padrão do Laravel
+Route::post('/login', 'Auth\LoginController@login')->name('login');
 
+<<<<<<< Updated upstream
 Route::view('/index', 'index');
 
+=======
+Route::post('/cadastro', 'CadastroController@cadastro')->name('cadastro');
+Route::get('/cadastro', 'CadastroController@view')->name('cadastro');
+>>>>>>> Stashed changes
 
-Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
-Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
-
-
-//rota para o cadastro de canal é /cadastro-canal
-Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
+// Rota para o cadastro de canal é /cadastro-canal
+Route::get('/cadastro-canal', [HomeController::class, 'cadastroCanal'])->name('cadastro-canal');
 Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
 
-// Rota para a página de início após o login ou cadastro
-
-
+Route::get('/home', [HomeController::class, 'paginaInicial'])->name('pagina-inicial');
 Route::view('/view_canal', 'view_canal')->name('view_canal');
+<<<<<<< Updated upstream
 
 //Route::view('/cadastro/erro', 'cadastro_erro')->name('cadastro-erro');
 
@@ -61,5 +69,14 @@ Route::middleware(['auth'])->group(function () {
         }
     })->name('dashboard');
 });
+=======
+Route::view('/upload_video', 'upload_video')->name('upload_video');
+>>>>>>> Stashed changes
 
 
+<<<<<<< Updated upstream
+=======
+Route::get('/canal', 'HomeController@authenticated' )->name('meu-canal');
+//rota par criar canal
+Route::post('/canal', 'HomeController@authenticated' )->name('criar_canal');
+>>>>>>> Stashed changes

@@ -68,4 +68,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+<<<<<<< Updated upstream
+=======
+
+    public function comments()
+    {
+        return $this->hasMany(Comentario::class);
+    }
+
+    public function canais()
+    {
+        return $this->hasMany(Canal::class);
+    }
+    
+
+>>>>>>> Stashed changes
 }
