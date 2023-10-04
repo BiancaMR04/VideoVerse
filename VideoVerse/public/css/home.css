@@ -173,3 +173,53 @@ body {
     opacity: 1; /* Torna o dropdown visível */
     transform: translateY(0); 
 }
+
+body {
+    font-family: 'Questrial';
+}
+
+a{
+    text-decoration: none;
+}
+
+h1{
+    color: white
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    grid-gap: 20px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    gap:10px;
+    margin-top: 100px;
+    margin-left: 250px; /* Ajuste a margem esquerda para que a grid comece à direita da sidebar */
+}
+
+.video {
+    width: 370px; /* Largura fixa para todos os vídeos */
+    margin-right: 5px; /* Reduz a margem direita entre as colunas */
+
+    margin: 10px; /* Espaçamento entre os vídeos */
+}
+
+.video-thumbnail {
+    width: 100%; /* A imagem preencherá todo o espaço disponível na div */
+    height: auto; /* A altura se ajustará automaticamente para manter a proporção */
+    border-radius: 5%;
+}
+
+.video-title {
+    font-size: 20px; /* Tamanho da fonte para o título */
+    margin: 5px 0; /* Espaçamento vertical para o título */
+    color: #fff; /* Cor do texto do título */
+}
+
+.video-info {
+    font-size: 14px; /* Tamanho da fonte para as informações */
+    margin: 3px 0; /* Espaçamento vertical para as informações */
+    color: #999; /* Cor do texto das informações */
+}
+
+        

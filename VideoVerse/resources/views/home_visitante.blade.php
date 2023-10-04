@@ -15,7 +15,7 @@
     </div>
 
     <div class="btn">
-        <button class="button" id="btn_entrar">Entrar</button>
+        <button href="/login" class="button" id="btn_entrar">Entrar</button>
         <button class="button" id="btn_cadastrar">Cadastre-se</button>
     </div>
 
@@ -79,7 +79,19 @@
         </div>
     </div>
     <div class="content">
-        <!-- Seu conteúdo aqui -->
+        <div class="video-grid">
+            @foreach ($videos as $video)
+                <div class="video">
+                    <a href="{{ route('video.show', ['id' => $video->id]) }}">
+                        <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
+                        <h2 class="video-title">{{ $video->titulo }}</h2>
+                        <p class="video-info">{{ $video->canal->nome }}</p>
+                        <p class="video-info">{{ $video->visualizacao }} visualizações</p>
+                        <p class="video-info">{{ $video->data }}</p>
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </div>
     <script src="js/home.js"></script>
 </body>

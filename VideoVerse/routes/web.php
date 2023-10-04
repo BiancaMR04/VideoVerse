@@ -1,12 +1,12 @@
 <?php
 
+use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroCanalController;
-use Illuminate\Support\Facades\Auth;
 
 
 
@@ -20,12 +20,11 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::view('/', 'auth/login')->name('login');
+Route::get('/', 'VideoController@index')->name('home');
+Route::get('/home', 'VideoController@index2')->name('home');
 Route::view('/home-visitor', 'home_visitante')->name('home-visitor');
 
-Route::get('/login', 'LoginController@view')->name('login');
-Route::post('/login', 'LoginController@login')-> name('login');
-
+Route::view('/login', 'login')->name('login');
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
@@ -37,14 +36,16 @@ Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('
 
 // Rota para a página de início após o login ou cadastro
 
+Route::get('/criar_canal', 'CadastroCanalController@view')->name('criar_canal');
 
 Route::view('/view_canal', 'view_canal')->name('view_canal');
 
 Route::view('/upload_video', 'upload_video')->name('upload_video');
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/videos/{id}', function ($id) {
+    $video = Video::find($id);
+    return view('view_video', compact('video'));
+})->name('video.show');

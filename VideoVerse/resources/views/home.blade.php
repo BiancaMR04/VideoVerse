@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+
+@section('content')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,18 +14,6 @@
         <i class="fas fa-search search-icon"></i>
         <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
     </div>
-
-    <div class="dropdown">
-        <div class="profile-image-container">
-            <img id="profile-image" src="https://img.quizur.com/f/img648ca358045449.79012472.jpg?lastEdited=1686938471" alt="Imagem de perfil">
-            <div class="dropdown-content" id="myDropdown">
-                <a href="#">Meu perfil</a>
-                <a href="/meu_canal">Meu canal</a>
-                <a href="/">Sair</a>
-            </div>
-        </div>
-    </div>
-
 
     <div class="sidebar">
         <a href="/home">
@@ -92,7 +81,19 @@
         </a>
     </div>
     <div class="content">
-        <!-- Seu conteúdo aqui -->
+        <div class="video-grid">
+            @foreach ($videos as $video)
+                <div class="video">
+                    <a href="{{ route('video.show', ['id' => $video->id]) }}">
+                        <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
+                        <h2 class="video-title">{{ $video->titulo }}</h2>
+                        <p class="video-info">{{ $video->canal->nome }}</p>
+                        <p class="video-info">{{ $video->visualizacao }} visualizações</p>
+                        <p class="video-info">{{ $video->data }}</p>
+                    </a>
+                </div>
+            @endforeach
+        </div>
     </div>
 </body>
-</html>
+@endsection

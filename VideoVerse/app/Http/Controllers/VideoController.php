@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Video;
@@ -14,14 +13,17 @@ class VideoController extends Controller
         return view('home_visitante', ['videos' => $videos]);
     }
 
-    public function show($id)
+    public function index2()
     {
+        $videos = Video::all();
+
+        return view('home', ['videos' => $videos]);
+    }
+
+    public function show($id)
+{
     $video = Video::find($id);
+    return view('view_video', $video);
+}
 
-    if (!$video) {
-        abort(404); 
-    }
-
-    return view('view_video', compact('video'));
-    }
 }
