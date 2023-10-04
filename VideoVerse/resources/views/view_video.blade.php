@@ -13,6 +13,7 @@ body {
     background: #1A1818;
 }
 .video-container {
+    margin-top: 50px;  
     display: flex;
     flex-direction: column;
     align-items: center;
