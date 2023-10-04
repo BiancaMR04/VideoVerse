@@ -17,10 +17,10 @@ class Canal extends Model
         'data_de_cadastro',
         'categorias',
         'inscritos',
-        'imagem_foto',
+        'imagem_perfil',
         'imagem_fundo',
         'ativo',
-        
+        'user_id',
     ];
 
     public $timestamps = false;
@@ -28,5 +28,9 @@ class Canal extends Model
     public function videos()
     {
         return $this->hasMany(Video::class); 
+    }
+public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

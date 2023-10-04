@@ -13,14 +13,15 @@ class CadastroCanalController extends Controller
     {
         return view('criar_canal');
     }
+
     public function cadastrarCanal(Request $request)
 {
     // Verifica se o formulário foi enviado
-    if ($request->hasFile('perfil') && $request->hasFile('foto_fundo')) {
-        // Verifica se não ocorreram erros durante o upload das imagens de perfil e de fundo
-        if ($request->file('perfil')->isValid() && $request->file('foto_fundo')->isValid()) {
+    if ($request->hasFile('foto_perfil') && $request->hasFile('foto_fundo')) {
+        // Verifica se os arquivos são válidos
+        if ($request->file('foto_perfil')->isValid() && $request->file('foto_fundo')->isValid()) {
             // Obtém os nomes dos arquivos das imagens de perfil e de fundo
-            $nomeArquivoPerfil = $request->file('perfil')->getClientOriginalName();
+            $nomeArquivoPerfil = $request->file('foto_perfil')->getClientOriginalName();
             $nomeArquivoFundo = $request->file('foto_fundo')->getClientOriginalName();
 
             // Move as imagens para a pasta de uploads
@@ -28,22 +29,22 @@ class CadastroCanalController extends Controller
             $caminhoDestinoFundo = public_path('uploads') . '/' . $nomeArquivoFundo;
 
             if (
-                $request->file('perfil')->move(public_path('uploads'), $nomeArquivoPerfil) &&
+                $request->file('foto_perfil')->move(public_path('uploads'), $nomeArquivoPerfil) &&
                 $request->file('foto_fundo')->move(public_path('uploads'), $nomeArquivoFundo)
             ) {
-                // Verificar se os arquivos estão sendo enviados corretamente
-                echo 'Arquivo de perfil enviado!';
-                echo 'Arquivo de fundo enviado!';
-
+                // Redimensiona a imagem de perfil
                 $imagemPerfil = Image::make($caminhoDestinoPerfil);
                 $imagemPerfil->resize(100, 100);
                 $imagemPerfil->save($caminhoDestinoPerfil);
 
+                    // Redimensiona a imagem de fundo
+                    $imagemFundo = Image::make($caminhoDestinoFundo);
+                    $imagemFundo->resize(700, 150);
+                    $imagemFundo->save($caminhoDestinoFundo);
+
                 $nomeCanal = $request->input('nome_canal');
                 $descricao = $request->input('descricao');
                 $dataCadastro = now();
-
-                $msg = '';
 
                 if (empty($nomeCanal) || empty($descricao)) {
                     $msg = 'Todos os campos devem ser preenchidos!';
@@ -51,8 +52,9 @@ class CadastroCanalController extends Controller
                 }
 
                 try {
-                    // criando uma instância de canal e preenchendo com os dados do formulário
+                    // Criando uma instância de canal e preenchendo com os dados do formulário
                     $canal = new Canal();
+$canal->user_id = auth()->id();
                     $canal->nome = $nomeCanal;
                     $canal->descricao = $descricao;
                     $canal->imagem_perfil = $nomeArquivoPerfil;
@@ -65,8 +67,8 @@ class CadastroCanalController extends Controller
                     // Salva o canal no banco de dados
                     $canal->save();
 
-                    // redirecionando para a home
-                    return redirect()->route('home');
+                    // Redireciona para a home
+                    return redirect()->route('home')->with('success', 'Canal criado com sucesso!');
                 } catch (\Exception $e) {
                     // Em caso de erro, volta para o formulário de cadastro com uma mensagem de erro
                     $msg = 'Erro ao processar cadastro do canal: ' . $e->getMessage();
@@ -76,7 +78,7 @@ class CadastroCanalController extends Controller
                 $msg = "Ocorreu um erro ao fazer o upload das imagens.";
             }
         } else {
-            $msg = "Erro no upload das imagens.";
+            $msg = "Arquivos de imagem inválidos.";
         }
     } else {
         $msg = "Nenhum arquivo de imagem enviado.";
@@ -84,5 +86,4 @@ class CadastroCanalController extends Controller
 
     return view('criar_canal', ['msg' => $msg]);
 }
-
 }

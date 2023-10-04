@@ -178,8 +178,8 @@
                                                                 <img id="preview_fundo" style="width: 700px; height: 150px; border: 2px solid black; border-radius: 10px; margin-top: -10px;" src="{{ asset('images.jpeg') }}">
                                                                 <p style="color: #767676; width: 152.281px; height: 11px; margin-top: -5px; line-height: normal; font-size: 14px; margin-right: -5px;">Alterar foto de fundo</p>
                                                             </label>
-                                                            <input type="file" name="perfil" id="foto" accept="image/*" style="display: none;">
-                                                            <label for="foto" style="cursor: pointer;">
+                                                            <input type="file" name="foto_perfil" id="foto_perfil" accept="image/*" style="display: none;">
+                                                            <label for="foto_perfil" style="cursor: pointer;">
                                                                 <img id="preview" style="border: 2px solid black; border-radius: 50px; width: 100px; height: 100px; margin-top: -50px;" src="{{ asset('profile.jpg') }}">
                                                                 <p style="line-height: normal; font-size: 14px; color: #767676; width: 139.875px; min-width: 143px; height: 103px; margin-bottom: -250px; margin-right: 0rem;">Alterar foto de perfil</p>
                                                             </label>
@@ -232,7 +232,7 @@
             </script>
                         <script>
         // Obtém o elemento de entrada de arquivo e a imagem de pré-visualização
-        var inputFoto = document.getElementById('foto');
+        var inputFoto = document.getElementById('foto_perfil');
         var preview = document.getElementById('preview');
 
         // Define um ouvinte de evento para o campo de arquivo

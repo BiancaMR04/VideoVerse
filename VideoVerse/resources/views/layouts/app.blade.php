@@ -52,9 +52,18 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    @if($temCanal)
+                                    <a class="dropdown-item" href="{{ route('meu-canal') }}">
+                                        {{ __('Meu Canal') }}
+                                    </a>
+                                @else
+                                    <a class="dropdown-item" href="{{ route('criar-canal') }}">
+                                        {{ __('Criar Canal') }}
+                                    </a>
+                                @endif
+
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Sair') }}
                                     </a>
                                     <a class="dropdown-item" href="criar_canal">
@@ -66,6 +75,7 @@
                                     </form>
                                 </div>
                             </li>
+
                         @endguest
                     </ul>
                 </div>
