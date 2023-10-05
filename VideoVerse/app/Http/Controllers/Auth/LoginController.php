@@ -20,17 +20,8 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-
-    protected function authenticated(Request $request, $user)
+    public function index()
     {
-        // Verificar se o usuário tem um canal associado ao perfil
-        $canal = Canal::where('user_id', $user->id)->first();
-
-        if ($canal) {
-            return redirect()->route('meu-canal');
-        } else {
-            return redirect()->route('criar_canal');
-    }
-    }
-
+        $temCanal = Canal::where('user_id', auth()->id())->exists();
+}
 }
