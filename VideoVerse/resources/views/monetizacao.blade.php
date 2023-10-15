@@ -1,34 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Página Inicial</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/view_video.css') }}">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">  
+@extends('layouts.app')
+
+@section('content')
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
 </head>
 <body style="background: #1A1818;">
     <div class="col-xl-8">
         <i class="fas fa-search search-icon"></i>
         <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
-    </div>
 
-    <div class="dropdown">
-        <div class="profile-image-container">
-            <img id="profile-image" src="https://img.quizur.com/f/img648ca358045449.79012472.jpg?lastEdited=1686938471" alt="Imagem de perfil">
-            <div class="dropdown-content" id="myDropdown">
-                <a href="#">Meu perfil</a>
-                <a href="/meu_canal">Meu canal</a>
-                <a href="/login">Sair</a>
-            </div>
-        </div>
     </div>
-
+@section('content')
+    @extends('layouts.app')
 
     <div class="sidebar">
-        <a href="/">
+        <a href="/home">
             <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Video.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1ZpZGVvLnBuZyIsImlhdCI6MTY5NTIzNzE5MiwiZXhwIjoxNzI2NzczMTkyfQ.eNEc9UbyE-R8FvUIEFluv1idyFtPoZb0dAxgoVPy9zs&t=2023-09-20T19%3A13%3A12.647Z" alt="Logo" class="image">
         </a>
         <div class="icon-container" style="margin-top: 130px;">
@@ -53,7 +44,7 @@
             <div class="icon">
                 <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Podcasts-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvZGNhc3RzLWljb24ucG5nIiwiaWF0IjoxNjk1MjM3NzA5LCJleHAiOjE3MjY3NzM3MDl9.z4tWErm2AAq-c2kGULfJc-QPzRFvOjcjPUPeK3Y6Cqo&t=2023-09-20T19%3A21%3A48.953Z" width="32" height="28" style="width: 36px;height: 36px;">
             </div>
-            <span class="icon-label">Podcasts</span>
+            <span class="icon-label">Pocasts</span>
         </div>
         <div class="icon-container">
             <div class="icon">
@@ -92,21 +83,44 @@
             <span class="icon-label">Sair</span>
         </a>
     </div>
-<div class="video-container" style="color:white">
-    
-    <!-- Elemento de vídeo -->
-    <video controls autoplay>
-        <source src="{{ $video->caminho }}" type="video/mp4">
-        Seu navegador não suporta o elemento de vídeo.
-    </video>
-    
-    <h1>{{ $video->titulo }}</h1>
-    <p>{{ $video->canal->nome }}</p>
-    <p>{{ $video->visualizacao }} visualizações</p>
-    <p>Data de publicação: {{ $video->data }}</p>
+    <div class="content">
+        <div class="video-grid">
+            @foreach ($videos as $video)
+                <div class="video">
+                    <a href="{{ route('video.show', ['id' => $video->id]) }}">
+                        <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
+                        <h2 class="video-title">{{ $video->titulo }}</h2>
+                        <p class="video-info">{{ $video->canal->nome }}</p>
+                        <p class="video-info">{{ $video->visualizacao }} visualizações</p>
+                        <p class="video-info">{{ $video->data }}</p>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
 
-</div>
+    <div class="form">
+        <h1>Informações Bancárias</h1>
+        <form method="post" action="/salvar-informacoes-bancarias">
+            @csrf
 
+            <div class="form-group">
+                <label for="banco">Banco:</label>
+                <input type="text" id="banco" name="banco" class="form-control" required>
+            </div>
 
+            <div class="form-group">
+                <label for="agencia">Agência:</label>
+                <input type="text" id="agencia" name="agencia" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="conta">Conta:</label>
+                <input type="text" id="conta" name="conta" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar Informações Bancárias</button>
+        </form>
+    </div>
 </body>
-</html>
+@endsection

@@ -4,79 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Página Inicial</title>
-    <style> 
-
-    body {
-    overflow: hidden;
-}
-
-        /* Estilo da imagem de perfil */
-        #profile-image {
-            width: 55px;
-            height: 55px;
-            margin-top: 1rem;
-            margin-left: 22rem;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 2; /* Definir um valor maior de z-index */
-            position: relative; /* Definir a posição como relativa */
-        }
-
-        /* Resto do seu estilo CSS */
-   
-        /* Estilo do dropdown */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-            
-        }
-
-        /* Estilo da imagem de perfil */
-        #profile-image {
-            width: 55px;
-            height: 55px;
-            margin-top: 1rem;
-            margin-left: 22rem;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        /* Estilo do conteúdo do dropdown */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #323232;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            border-radius: 10px;
-            z-index: 1;
-            margin-top: 2px;
-            margin-left: 15rem;
-        }
-
-        /* Estilo dos links do dropdown */
-        .dropdown-content a {
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-
-        /* Estilo dos links do dropdown quando o mouse passa por cima */
-        .dropdown-content a:hover {
-            background-color: #4e4e4e;
-            border-radius: 10px;
-        }
-
-        /* Exibir o dropdown quando o mouse passa sobre a imagem */
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        
-
-
-
-    </style>
     <link rel="stylesheet" href="VideoVerse/resources/css/styles.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/criar_canal.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>

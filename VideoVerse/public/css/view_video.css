@@ -1,0 +1,29 @@
+
+body {
+    font-family: 'Questrial';
+    background: #1A1818;
+}
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.video-container video {
+    width: 1000px;
+    height: 600px;
+}
+
+.video-name {
+    margin-top: 20px;
+    font-size: 40px;
+    color: white;
+}
+
+.video-data {
+    margin-top: 20px;
+    font-size: 18px;
+    color: white;
+}

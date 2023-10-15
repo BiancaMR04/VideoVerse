@@ -29,6 +29,9 @@ Route::view('/login', 'login')->name('login');
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
 
+//rotas para monetizacao
+Route::get('/monetizacao', 'MonetizacaoController@view')->name('monetizacao');
+Route::post('/monetizacao', 'MonetizacaoController@cadastro')->name('monetizacao');
 
 //rota para o cadastro de canal é /cadastro-canal
 Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-canal');
