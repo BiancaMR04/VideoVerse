@@ -53,7 +53,7 @@ Route::get('/videos/{id}', function ($id) {
     return view('view_video', compact('video'));
 })->name('video.show');
 
-Route::get('/meu-canal', [HomeController::class, 'meuCanal'])->name('meu-canal')->middleware('auth');
+Route::get('/meu-canal', 'MeuCanalController@view')->name('meu-canal')->middleware('auth');
 Route::get('/criar-canal', [HomeController::class, 'criarCanal'])->name('criar-canal')->middleware('auth');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
