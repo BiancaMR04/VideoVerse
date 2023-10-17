@@ -1,8 +1,4 @@
 
-    body {
-        overflow: hidden;
-    }
-
     /* Estilo da imagem de perfil */
     #profile-image {
         width: 55px;
@@ -37,7 +33,7 @@
     /* Estilo do conteúdo do dropdown */
     .dropdown-content {
         display: none;
-        position: absolute;
+        position: relative;
         background-color: #323232;
         min-width: 160px;
         box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);

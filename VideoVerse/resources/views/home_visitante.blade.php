@@ -16,7 +16,7 @@
 
     <div class="btn">
         <button href="/login" class="button" id="btn_entrar">Entrar</button>
-        <button class="button" id="btn_cadastrar">Cadastre-se</button>
+        <button href="/register" class="button" id="btn_cadastrar">Cadastre-se</button>
     </div>
 
     <div class="sidebar">

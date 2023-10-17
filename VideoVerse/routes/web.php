@@ -41,7 +41,7 @@ Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('
 
 Route::get('/criar_canal', 'CadastroCanalController@view')->name('criar_canal');
 
-Route::view('/view_canal', 'view_canal')->name('view_canal');
+Route::view('/canal', 'HomeController@meuCanal')->name('canal');
 
 Route::view('/upload_video', 'upload_video')->name('upload_video');
 Auth::routes();

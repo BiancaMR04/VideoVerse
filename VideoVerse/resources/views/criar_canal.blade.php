@@ -71,7 +71,7 @@
                                 <div class="container position-relative">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-md-6 col-xl-4" style="width: 390.5px;max-width: none;">
-                                            <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0); margin-top: -250px;">
+                                            <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0); margin-top: 20px;">
                                                 <div class="card-body text-center border rounded d-flex float-none flex-column align-items-center" style="width: 769px; min-width: 0px; padding: 0px; margin-left: -11rem; margin-right: 0rem; border-radius: 15px; background: #323232; position: relative;">
                                                     <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
                                                     dd($request->all());

@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
 use App\Models\Canal;
+use App\Models\Video;
 
 class CadastroCanalController extends Controller
 {
     public function view()
     {
-        return view('criar_canal');
+        $temCanal = Canal::where('user_id', auth()->id())->exists();
+        return view('criar_canal', compact('temCanal'));
     }
 
     public function cadastrarCanal(Request $request)
@@ -74,7 +76,9 @@ class CadastroCanalController extends Controller
                     $canal->save();
 
                     // Redireciona para a home
-                    return redirect()->route('home')->with('success', 'Canal criado com sucesso!');
+                    $temCanal = Canal::where('user_id', auth()->id())->exists();
+                    $videos = Video::all();
+                    return view('home', compact('temCanal', 'videos'));
                 } catch (\Exception $e) {
                     // Em caso de erro, volta para o formulário de cadastro com uma mensagem de erro
                     $msg = 'Erro ao processar cadastro do canal: ' . $e->getMessage();
