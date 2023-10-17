@@ -10,28 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body style="background: #1A1818;">
-    <header class="p-sm-5 p-4" style="margin: -26px;margin-top: -38px;margin-left: 0px;margin-right: 0px;">
-        <div class="row">
-                <div class="col-xl-2">
-                    <img src="{{ asset('Video.png') }}" alt="Logo" width="120" height="130" style="height:100px;width:130px;">
-                </div>
-                <div class="col-xl-7 offset-xl-0">
-                    <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder="Pesquisar..." autocomplete="on" style="border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 600px;color: rgb(255,255,255);height: 30px;margin-left: 180px;margin-top: 1rem;">
-                </div>
-                <div class="col">
-                    <div>
-                    <div class="dropdown">
-                            <img id="profile-image" src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*g09N-jl7JtVjVZGcd-vL2g.jpeg" alt="Imagem de perfil">
-                            <div class="dropdown-content" id="myDropdown">
-                                <a href="#">Acessar meu perfil</a>
-                                <a href="#">Configurações</a>
-                                <a href="#">Meu canal</a>
-                                <a href="#">Sair</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@section('content')
+@extends('layouts.upbar')
             <div class="row">
                 <div class="col-xl-2 offset-xl-0">
                     <nav class="navbar navbar-light navbar-expand-md">
@@ -82,7 +62,7 @@
                     </nav>
                 </div>
                 <div class="col-xl-9 offset-xl-0" style="color: rgb(33, 37, 41);border-color: rgb(33,37,41);">
-                    <h1 class="text-center-horizontal" style="color: rgba(255, 255, 255, 0.91); font-family: 'Anek Bangla', sans-serif; text-shadow: 3px 3px 7px rgb(0, 0, 0); margin-right: -15rem;">Crie seu canal</h1>
+                    <h1 class="text-center-horizontal" style="color: rgba(255, 255, 255, 0.91); font-family: 'Anek Bangla', sans-serif; text-shadow: 3px 3px 7px rgb(0, 0, 0); margin-left: 300px;">Crie seu canal</h1>
                     <!-- Start: Contact Form Basic -->
                     <section class="position-relative py-4 py-xl-5">
                         <div class="container position-relative">
@@ -91,7 +71,7 @@
                                 <div class="container position-relative">
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-md-6 col-xl-4" style="width: 390.5px;max-width: none;">
-                                            <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0);">
+                                            <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0); margin-top: -250px;">
                                                 <div class="card-body text-center border rounded d-flex float-none flex-column align-items-center" style="width: 769px; min-width: 0px; padding: 0px; margin-left: -11rem; margin-right: 0rem; border-radius: 15px; background: #323232; position: relative;">
                                                     <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
                                                     dd($request->all());
@@ -123,9 +103,24 @@
                                                             <label for="descricao" class="form-label">Descrição do Canal</label>
                                                             <textarea class="form-control" id="descricao" name="descricao" required></textarea>
                                                         </div>
+                                                        <div class="mb-3">
+                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Conta</p>
+                                                            <label for="conta" class="form-label">Conta</label>
+                                                            <input type="text" class="form-control" id="conta" name="conta" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Banco</p>
+                                                            <label for="banco" class="form-label">Banco</label>
+                                                            <input type="text" class="form-control" id="banco" name="banco" required>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Agência</p>
+                                                            <label for="agencia" class="form-label">Agência</label>
+                                                            <input type="text" class="form-control" id="agencia" name="agencia" required>
+                                                        </div>
                                                         <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
                                                         <div class="mb-3">
-                                                            <button type="submit" class="btn btn-primary">Criar Canal</button>
+                                                            <button type="submit" class="btn btn-primary">Próximo</button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -139,9 +134,9 @@
                     </section>
                     <!-- End: Contact Form Basic -->
                 </div>
-
                 </div>
-            </header>
+                
+            @endsection
             <script>
                 // Função para fechar o dropdown quando o usuário clicar fora dele
                 window.onclick = function(event) {

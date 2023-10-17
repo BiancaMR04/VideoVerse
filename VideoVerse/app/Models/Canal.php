@@ -21,6 +21,9 @@ class Canal extends Model
         'imagem_fundo',
         'ativo',
         'user_id',
+        'banco',
+        'conta',
+        'agencia',
     ];
 
     public $timestamps = false;

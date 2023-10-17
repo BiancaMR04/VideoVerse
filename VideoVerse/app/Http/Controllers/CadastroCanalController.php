@@ -44,6 +44,9 @@ class CadastroCanalController extends Controller
 
                 $nomeCanal = $request->input('nome_canal');
                 $descricao = $request->input('descricao');
+                $banco = $request->input('banco');
+                $conta = $request->input('conta');
+                $agencia = $request->input('agencia');
                 $dataCadastro = now();
 
                 if (empty($nomeCanal) || empty($descricao)) {
@@ -54,7 +57,7 @@ class CadastroCanalController extends Controller
                 try {
                     // Criando uma instância de canal e preenchendo com os dados do formulário
                     $canal = new Canal();
-$canal->user_id = auth()->id();
+                    $canal->user_id = auth()->id();
                     $canal->nome = $nomeCanal;
                     $canal->descricao = $descricao;
                     $canal->imagem_perfil = $nomeArquivoPerfil;
@@ -63,6 +66,9 @@ $canal->user_id = auth()->id();
                     $canal->ativo = true;
                     $canal->categorias = '[]';
                     $canal->inscritos = 0;
+                    $canal->banco = $banco;
+                    $canal->conta = $conta;
+                    $canal->agencia = $agencia;
 
                     // Salva o canal no banco de dados
                     $canal->save();
