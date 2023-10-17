@@ -1,6 +1,11 @@
 .formulario{
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
-    margin-left:200px;
+    margin-left:500px;
+}
+
+.view{
+    flex-direction: column;
+    align-items: center;
+    
 }
