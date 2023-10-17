@@ -94,7 +94,7 @@
     </div>
     <div class="perfil">
     @isset($canal)
-        <h1 class="title">{{ $canal->nome }}</h1>
+        <h1 class="title">Meu Canal</h1>
             <div class="cover-photo" style="background-image: url('/uploads/{{ $canal->imagem_fundo }}');">
                 <div class="btn">
                     <button class="editar-canal-button">
