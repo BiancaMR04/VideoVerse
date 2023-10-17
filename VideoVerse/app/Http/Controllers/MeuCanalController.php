@@ -9,12 +9,17 @@ use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
 
-require ('/home/eduardo/VideoVerse/VideoVerse/VideoVerse/vendor/autoload.php');
+require __DIR__ . '/../../../vendor/autoload.php';
+
+use App\Models\Canal; // Certifique-se de importar o modelo Canal
 
 class MeuCanalController extends Controller
 {
+    public function view()
+    {
+        // Busque os dados do canal do usuário autenticado (ou como desejar obtê-los)
+        $canal = Canal::where('user_id', auth()->id())->first();
 
-    public function view(){
-        return view('meu_canal');
+        return view('meu_canal', compact('canal'));
     }
 }
