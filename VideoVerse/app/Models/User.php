@@ -82,6 +82,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Canal::class);
     }
+
+    public function canaisSeguidos()
+    {
+        return $this->belongsToMany(Canal::class, 'seguidores', 'user_id', 'canal_id');
+    }
     
 
 }
