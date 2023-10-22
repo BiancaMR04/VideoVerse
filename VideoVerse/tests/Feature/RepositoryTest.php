@@ -7,14 +7,18 @@ use Illuminate\Foundation\Testing\WithFaker;
 use App\Repositories\UserRepository;
 use Tests\TestCase;
 
-class RepositoryTest extends TestCase
-{
-   
-        public function testGetAll()
-    {
-        $repository = new UserRepository();
-        $result = $repository->getAll();
+class RepositoryTest extends TestCase {
+    // Classe de teste para o repositório.
 
-        $this->assertNotEmpty($result);
+    public function testGetAll() {
+        
+        $repository = new UserRepository(); 
+        // Cria uma instância de UserRepository.
+
+        $result = $repository->getAll(); 
+        // Chama getAll() e armazena o resultado.
+
+        $this->assertNotEmpty($result); 
+        // Verifica se o resultado não está vazio (assertion).
     }
 }

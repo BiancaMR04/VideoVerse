@@ -10,7 +10,11 @@ use Illuminate\Http\Request;
 
 class UserRepository
 {
-
+    /**
+     * Cria um novo usuario
+     * @param Request $request
+     * @return User
+     */
     public function save(Request $request)
     {
         $user = User::create([
