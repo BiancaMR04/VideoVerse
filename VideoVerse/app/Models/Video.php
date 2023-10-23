@@ -9,6 +9,7 @@ class Video extends Model
 {
     use HasFactory;
 
+
     /**
      * The name of the table associated with the model.
      *

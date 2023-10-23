@@ -28,6 +28,8 @@ Route::post('/login', 'LoginController@login')-> name('login');
 
 Route::view('/index', 'index');
 
+Route::get('/videos/criar', 'VideoController@create')->name('videos.create');
+Route::post('/videos', 'VideoController@store')->name('videos.store');
 
 Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
 Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
@@ -38,8 +40,8 @@ Route::get('/cadastro-canal', 'CadastroCanalController@view')->name('cadastro-ca
 Route::post('/cadastro-canal', 'CadastroCanalController@cadastrarCanal')->name('cadastrar_canal');
 
 // Rota para a página de início após o login ou cadastro
-Route::get('/videos.upload', 'VideoController@categorias')->name('videos.upload');
-Route::post('/videos.upload', 'VideoController@carregar')->name('videos.upload');
+//Route::get('/videos.upload', 'VideoController@categorias')->name('videos.upload');
+//Route::post('/videos.upload', 'VideoController@carregar')->name('videos.upload');
 
 
 Route::view('/view_canal', 'view_canal')->name('view_canal');
