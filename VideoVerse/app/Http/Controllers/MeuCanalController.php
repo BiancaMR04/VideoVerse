@@ -19,7 +19,8 @@ class MeuCanalController extends Controller
     {
         // Busque os dados do canal do usuário autenticado (ou como desejar obtê-los)
         $canal = Canal::where('user_id', auth()->id())->first();
+        $temCanal = Canal::where('user_id', auth()->id())->exists();
 
-        return view('meu_canal', compact('canal'));
+        return view('meu_canal', compact('canal', 'temCanal'));
     }
 }

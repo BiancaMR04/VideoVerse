@@ -27,14 +27,12 @@ class HomeController extends Controller
     public function index()
     {
         $temCanal = Canal::where('user_id', auth()->id())->exists();
-    
-    // Buscar vídeos do banco de dados para exibir na página inicial
-    $videos = Video::all(); // Ou qualquer outra lógica para buscar os vídeos desejados
-    
-    return view('home', compact('temCanal', 'videos'));
+        $videos = Video::all();
+        
+        return view('home', compact('temCanal', 'videos'));
     }
 
-public function meuCanal()
+    public function meuCanal()
     {
         // Lógica para obter informações do canal do usuário
         $userCanal = Canal::where('user_id', auth()->id())->first();
@@ -50,18 +48,18 @@ public function meuCanal()
         }
     }
     public function criarCanal()
-{
-    // Lógica para verificar se o usuário já possui um canal
-    $temCanal = Canal::where('user_id', auth()->id())->exists();
+    {
+        // Lógica para verificar se o usuário já possui um canal
+        $temCanal = Canal::where('user_id', auth()->id())->exists();
 
-    // Se o usuário já possui um canal, redirecione para a página do seu canal
-    if ($temCanal) {
-        return redirect()->route('meu-canal');
+        // Se o usuário já possui um canal, redirecione para a página do seu canal
+        if ($temCanal) {
+            return redirect()->route('meu-canal');
+        }
+
+        // Se o usuário não possui um canal, redirecione para a página de criação de canal
+        return view('criar_canal');
     }
-
-    // Se o usuário não possui um canal, redirecione para a página de criação de canal
-    return view('criar_canal');
-}
 
 
 }

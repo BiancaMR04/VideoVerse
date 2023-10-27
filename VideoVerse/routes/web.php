@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Video;
+use App\Models\Canal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +51,8 @@ Auth::routes();
 
 Route::get('/videos/{id}', function ($id) {
     $video = Video::find($id);
-    return view('view_video', compact('video'));
+    $temCanal = Canal::where('user_id', auth()->id())->exists();
+    return view('view_video', compact('video', 'temCanal'));
 })->name('video.show');
 
 Route::get('/meu-canal', 'MeuCanalController@view')->name('meu-canal')->middleware('auth');
@@ -58,4 +60,8 @@ Route::get('/criar-canal', [HomeController::class, 'criarCanal'])->name('criar-c
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
+Route::post('/updateViewCount/{video}', 'VideoController@updateViewCount');
 
+Route::get('/monetizacao', 'MonetizacaoController@index')->name('monetizacao.index');
+
+Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar.valor');

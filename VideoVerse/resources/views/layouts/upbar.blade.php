@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-purple shadow-sm">
 
         <div class="col-xl-8">
-            <i class="fas fa-search search-icon"></i>
+            <i class="fas fa-search search-icon" style="margin-top: -7px;"></i>
             <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 0px;">
 
         </div>
@@ -63,6 +63,9 @@
                                     @if($temCanal)
                                     <a class="dropdown-item" href="{{ route('meu-canal') }}">
                                         {{ __('Meu Canal') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('monetizacao') }}">
+                                        {{ __('Monetização') }}
                                     </a>
                                 @else
                                     <a class="dropdown-item" href="{{ route('cadastro-canal') }}">

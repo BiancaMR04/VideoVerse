@@ -1,6 +1,4 @@
-@extends('layouts.app')
 
-@section('content')
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +8,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
 </head>
 <body style="background: #1A1818;">
-    <div class="col-xl-8">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
-
-    </div>
 @section('content')
-    @extends('layouts.app')
+@extends('layouts.upbar')
 
     <div class="sidebar">
         <a href="/home">
@@ -83,44 +76,34 @@
             <span class="icon-label">Sair</span>
         </a>
     </div>
-    <div class="content">
-        <div class="video-grid">
-            @foreach ($videos as $video)
-                <div class="video">
-                    <a href="{{ route('video.show', ['id' => $video->id]) }}">
-                        <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
-                        <h2 class="video-title">{{ $video->titulo }}</h2>
-                        <p class="video-info">{{ $video->canal->nome }}</p>
-                        <p class="video-info">{{ $video->visualizacao }} visualizações</p>
-                        <p class="video-info">{{ $video->data }}</p>
-                    </a>
-                </div>
-            @endforeach
+
+    
+    <div class="container">
+        <h1 class="text-center text-white" style="margin-top: 70px;">Monetização</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                @if ($videosDoUsuario->isEmpty())
+                    <p class="text-center text-white" style="margin-top: 25px;">Você ainda não postou nenhum vídeo! :c.</p>
+                    <p class="text-center text-white">Você precisa ter ao menos um vídeo no seu canal para ativar a função de monetização</p>
+                @else
+                    <h2 class="text-white">Vídeos do Usuário:</h2>
+                    <ul class="list-group">
+                        @foreach ($videosDoUsuario as $video)
+                            <li class="list-group-item text-black">{{ $video->titulo }} - {{ $video->visualizacao }} visualizações</li>
+                        @endforeach
+                    </ul>
+
+                    <p class="text-center text-white mt-4">Soma Total de Visualizações: {{ $somaVisualizacoes }}</p>
+                    <p class="text-center text-white">Valor em Dinheiro: R$ {{ number_format($valorTotal, 2) }}</p>
+
+                    <form method="POST" action="{{ route('retirar.valor') }}" class="text-center">
+                        @csrf
+                        <button type="submit" class="btn btn-primary mt-3">Retirar Valor</button>
+                    </form>
+                @endif
+            </div>
         </div>
-    </div>
-
-    <div class="form">
-        <h1>Informações Bancárias</h1>
-        <form method="post" action="/salvar-informacoes-bancarias">
-            @csrf
-
-            <div class="form-group">
-                <label for="banco">Banco:</label>
-                <input type="text" id="banco" name="banco" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="agencia">Agência:</label>
-                <input type="text" id="agencia" name="agencia" class="form-control" required>
-            </div>
-
-            <div class="form-group">
-                <label for="conta">Conta:</label>
-                <input type="text" id="conta" name="conta" class="form-control" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Salvar Informações Bancárias</button>
-        </form>
     </div>
 </body>
 @endsection
