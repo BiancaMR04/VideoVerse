@@ -100,6 +100,16 @@
             </div>
             <h1 class="title" style="margin-top: 40px; margin-left: 500px; font-size: 24px;">Vídeos</h1>
             <div class="gray-background2"></div>
+            @foreach ($videos as $video)
+                <h2>{{ $video->titulo }}</h2>
+                <p>{{ $video->descricao }}</p>
+                <form method="POST" action="{{ route('excluir.video', ['videoId' => $video->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class=excluir-button type="submit">Excluir</button>
+                </form>
+                </div>
+            @endforeach
         @else
             <!-- Se o canal não existir (usuário não logado ou canal não criado), você pode exibir uma mensagem ou redirecionar para a página de criação do canal -->
             <h1 class="title">Canal não encontrado</h1>

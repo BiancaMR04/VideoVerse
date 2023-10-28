@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Supabase\SupabaseClient;
@@ -22,5 +23,22 @@ class MeuCanalController extends Controller
         $temCanal = Canal::where('user_id', auth()->id())->exists();
 
         return view('meu_canal', compact('canal', 'temCanal'));
+    }
+
+    public function excluirVideo($videoId)
+    {
+        // Certifique-se de verificar se o vídeo pertence ao usuário autenticado
+        $video = Video::find($videoId);
+        
+        if ($video && $video->canal->user_id === auth()->id()) {
+            // Execute a lógica de exclusão do vídeo
+            $video->delete();
+            
+            // Redirecione de volta para a página do canal
+            return redirect()->route('meu-canal');
+        } else {
+            // Retorne uma resposta de erro ou redirecione para uma página de erro
+            return redirect()->route('pagina.erro');
+        }
     }
 }

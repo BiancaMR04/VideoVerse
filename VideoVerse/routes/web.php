@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MeuCanalController;
 use App\Models\Video;
 use App\Models\Canal;
 use Illuminate\Support\Facades\Auth;
@@ -54,6 +55,10 @@ Route::get('/videos/{id}', function ($id) {
     $temCanal = Canal::where('user_id', auth()->id())->exists();
     return view('view_video', compact('video', 'temCanal'));
 })->name('video.show');
+
+Route::delete('/meu-canal/excluir-video/{videoId}', [MeuCanalController::class, 'excluirVideo'])->name('meu-canal');
+Route::get('/canal/{canalId}/videos', [MeuCanalController::class, 'listarVideosDoCanal'])->name('meu-canal');
+
 
 Route::get('/meu-canal', 'MeuCanalController@view')->name('meu-canal')->middleware('auth');
 Route::get('/criar-canal', [HomeController::class, 'criarCanal'])->name('criar-canal')->middleware('auth');
