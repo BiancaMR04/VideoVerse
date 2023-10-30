@@ -26,7 +26,7 @@ class Video extends Model
 
     public function canal()
     {
-        return $this->belongsTo(Canal::class); 
+        return $this->belongsTo(Canal::class);
     }
 
     public function comments()
@@ -35,7 +35,7 @@ class Video extends Model
     }
 
     public function likes()
-{
-    return $this->hasMany(Favorito::class);
-}
+    {
+        return $this->hasMany(Favorito::class);
+    }
 }

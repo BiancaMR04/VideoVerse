@@ -78,11 +78,14 @@
 
 
     <div class="video-container" style="color:white">
-        <!-- Elemento de vídeo -->
+        
         <h1 style="margin-top: 60px;">{{ $video->titulo }}</h1>
 
+        <?php
+        $caminho = asset($video->caminho);
+        ?>
         <video id="videoElement" controls autoplay style="margin-top: 25px;">
-            <source src="{{ $video->caminho }}" type="video/mp4">
+            <source src="{{$caminho}}" type="video/mp4">
             Seu navegador não suporta o elemento de vídeo.
         </video>
         
@@ -90,25 +93,46 @@
         <p id="viewsCount">{{ $video->visualizacao }} visualizações</p>
         <p>Publicado em {{ $video->data }}</p>
 
+        <h2>Comentários</h2>
+        
+        <form action="{{ route('comment.store', $video) }}" method="POST">
+            @csrf
+            <textarea name="body" rows="3" placeholder="Adicione um comentário"></textarea>
+            <input type="hidden" name="video_id" value="{{ $video->id }}">
+
+            <button type="submit">Comentar</button>
+        </form>
+
+
+        @foreach ($comments as $comment)
+            <div class="comment">
+                <p>{{ $comment->user->canal->nome }}</p>
+                <p>{{ $comment->body }}</p>
+            </div>
+        @endforeach
+
+    
+        
+
     </div>
 
+    
 <script>
     const video = document.getElementById('videoElement');
     let viewed = false;
 
     video.addEventListener('timeupdate', function() {
         if (video.currentTime >= 10 && !viewed) {
-            // If 10 seconds are reached and it's the first time
+            
             viewed = true;
 
-            // Update the view count via an AJAX call
             fetch('/updateViewCount/{{ $video->id }}', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 }
             }).then(response => {
-                // Update the displayed view count on the page
+                
                 document.getElementById('viewsCount').textContent = '{{ $video->views + 1 }} visualizações';
             }).catch(error => {
                 console.error('Error updating view count:', error);

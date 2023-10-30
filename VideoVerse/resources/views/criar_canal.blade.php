@@ -15,72 +15,93 @@
             <div class="row">
                 <div class="col-xl-2 offset-xl-0">
                     <nav class="navbar navbar-light navbar-expand-md">
-                        <div class="container-fluid">
-                            <div>
-                            <img src="{{ asset('img/home.png') }}" width="32" height="28" style="width: 36px;height: 36px;">
-                                <a class="menulateral" href="#home" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Inicial</a>
-                                <div style="margin-top: 2rem;">
-                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAW0lEQVR4nMXSwQ2AIBBEURrQZqzFq31ZoDcswTxPJh4IgmD8BfyZ2WwIPcEuT+waWJv+YQvl6ekWUBnoUYCpVXBgxfhWcLFhaRXMLROGf44YMqQE8ba5hH7vfAJufzB5oRubigAAAABJRU5ErkJggg==" width="36" height="36" style="width: 36px;height: 36px;">
-                                    <a class="menulateral" href="#channel" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Canais</a>
-                                    <div class="menulateral" style="margin-top: 2rem;">
-                                        <img src="{{ asset('img/Musica-icon.png') }}" width="32" height="28" style="width: 36px;height: 36px;">
-                                        <a class="menulateral" href="#music" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Música</a>
-                                        <div style="margin-top: 2rem;">
-                                            <img src="{{ asset('img/Podcasts-icon.png') }}" width="32" height="28" style="width: 36px;height: 36px;">
-                                            <a class="menulateral" href="#podcast" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Podcasts</a>
-                                            <div class="menulateral" style="margin-top: 2rem;">
-                                                <img src="{{ asset('img/Educação-icon.png') }}" width="36" height="36" style="width: 36px;height: 36px;">
-                                                <a class="menulateral" href="#education" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Educação</a>
-                                                <div style="margin-top: 2rem;">
-                                                    <img src="{{ asset('img/Inscrições-icon.png') }}" width="36" height="36" style="width: 36px;height: 36px;">
-                                                    <a href="#registrations" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Inscrições</a>
-                                                    <div class="menulateral" style="margin-top: 2rem;">
-                                                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAYAAACpSkzOAAAACXBIWXMAAAsTAAALEwEAmpwYAAABmklEQVR4nO2VzStEURjGx6iRjyzMsFCIhQ3lo8mKhVA2mvwlxmqWxsaOjbKzsJSRjZSPjb9AslIoinwNybDCT6d5bk7TnesOdxbKW2/NPc9znt+dt3vPDYX+qxwFxEz79EVLDW8BloAbvuoSSAO1lq9Wa1eW7xpYBJq/gwwCWWvjQ8H1MdCpNr+dysrr1C0wUAzSBNzJuAl0WdoYcCLtQo3WRi1ft/Y6/67BDTQnwzYQdtHrgH3rrvfMmosvDOzIk3YDHUkc9BhtPbCroBoP35CyDtzEnMSiAX6L/INi6tlNfJUYDQAUU1bOa3TDAYBGlHXoJs5KzAQAWlfWjJvYqPF9AJO/gEwo46XoqQJMWy9qzw8gvcCjMqa8jBXAmoz3QLwESNw6RVZN1ncbIsCG89QACR+QceBJe7aAKr93Z2Ar2vgGJD28SXnQnogvSEFICnhXyII9DvJjnpdmPKmSAQWwhHnDFbgMVKqXnbffz3j9wvqt705G7Xyn+gKBWLA24Mw6vU+B1kAhFqwDOFe3lwViwapNlxXyJ+oThKq06TosO84AAAAASUVORK5CYII=" width="36" height="36" style="width: 36px; height: 36px;">
-                                                        <a class="menulateral" href="#favorites" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Favoritos</a>
-                                                        <div style="margin-top: 2rem;">
-                                                            <img src="{{ asset('img/Recentes-icon.png') }}" width="36" height="36" style="width: 36px;height: 36px;">
-                                                            <a class="menulateral" href="#recent" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Recente</a>
-                                                            <div class="menulateral" style="margin-top: 2rem;">
-                                                                <img src="{{ asset('img/Ajustes-icon.png') }}" width="36" height="36" style="width: 36px;height: 36px;">
-                                                                <a class="menulateral" href="#settings" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Ajustes</a>
-                                                                <div class="menulateral" style="margin-top: 2rem;">
-                                                                    <div class="menulateral" style="margin-top: 2rem;">
-                                                                        <img src="{{ asset('img/Sair-icon.png') }}" width="36" height="36" style="width: 36px;height: 36px;">
-                                                                        <a class="menulateral" href="#exit" style="font-size: 20px;margin-left: 1rem;color: rgb(255,255,255);">Sair</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="sidebar">
+                            <a href="/">
+                                <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Video.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1ZpZGVvLnBuZyIsImlhdCI6MTY5NTIzNzE5MiwiZXhwIjoxNzI2NzczMTkyfQ.eNEc9UbyE-R8FvUIEFluv1idyFtPoZb0dAxgoVPy9zs&t=2023-09-20T19%3A13%3A12.647Z" alt="Logo" class="image">
+                            </a>
+                            <div class="icon-container" style="margin-top: 130px;">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Inicio-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0luaWNpby1pY29uLnBuZyIsImlhdCI6MTY5NTIzNzU2MiwiZXhwIjoxNzI2NzczNTYyfQ.rDxkg7fLVzZRWYgxYmCOKjkCJ5ol1nkP9gTlaoQXZ5M&t=2023-09-20T19%3A19%3A22.417Z" width="32" height="28" style="width: 36px;height: 36px;">
                                 </div>
+                                <span class="icon-label">Início</span>
                             </div>
-                        </div>
+                            <div class="icon-container">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Canais-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0NhbmFpcy1pY29uLnBuZyIsImlhdCI6MTY5NTIzNzYwOCwiZXhwIjoxNzI2NzczNjA4fQ.pQRUxTFk3tLDGK1zH_dewsL3Wy__qw1-dXFeEldTyIw&t=2023-09-20T19%3A20%3A08.090Z" width="32" height="28" style="width: 36px;height: 36px;">
+                                </div>
+                                <span class="icon-label">Canais</span>
+                            </div>
+                            <div class="icon-container">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Musica-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL011c2ljYS1pY29uLnBuZyIsImlhdCI6MTY5NTIzNzYyMywiZXhwIjoxNzI2NzczNjIzfQ.D49Dn-Mb833xfTjc0CImFzq2NelHfuYfb99iryODTMg&t=2023-09-20T19%3A20%3A23.141Z" width="32" height="28" style="width: 36px;height: 36px;">
+                                </div>
+                                <span class="icon-label">Música</span>
+                            </div>
+                            <div class="icon-container">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Podcasts-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1BvZGNhc3RzLWljb24ucG5nIiwiaWF0IjoxNjk1MjM3NzA5LCJleHAiOjE3MjY3NzM3MDl9.z4tWErm2AAq-c2kGULfJc-QPzRFvOjcjPUPeK3Y6Cqo&t=2023-09-20T19%3A21%3A48.953Z" width="32" height="28" style="width: 36px;height: 36px;">
+                                </div>
+                                <span class="icon-label">Podcasts</span>
+                            </div>
+                            <div class="icon-container">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Educacao-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0VkdWNhY2FvLWljb24ucG5nIiwiaWF0IjoxNjk1MjM3NzUwLCJleHAiOjE3MjY3NzM3NTB9.ToZV4BTgSarS5ap98-ID-NW35s4vJerVHZ8f7UmVPb0&t=2023-09-20T19%3A22%3A30.629Z" width="32" height="28" style="width: 36px;height: 36px;">
+                                </div>
+                                <span class="icon-label">Educação</span>
+                            </div>
+                            <div class="icon-container" style="margin-top: 100px;">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Inscricoes-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0luc2NyaWNvZXMtaWNvbi5wbmciLCJpYXQiOjE2OTUyMzc3NjMsImV4cCI6MTcyNjc3Mzc2M30.2Mj711PqmgtBIDKLkE004YnjmOMlT0rvK368xFy8-2Q&t=2023-09-20T19%3A22%3A43.840Z" width="32" height="28" style="width: 36px;height: 36px;">
+                                </div>
+                                <span class="icon-label">Incrições</span>
+                            </div>
+                            <div class="icon-container">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Favoritos-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0Zhdm9yaXRvcy1pY29uLnBuZyIsImlhdCI6MTY5NTIzNzY1MiwiZXhwIjoxNzI2NzczNjUyfQ.JQiGVfxanfkyTPed15itPQwkd7jXMdUvF6ZqzAIRmLw&t=2023-09-20T19%3A20%3A52.676Z" width="32" height="28" style="width: 36px;height: 36px;">
+                                </div>
+                                <span class="icon-label">Favoritos</span>
+                            </div>
+                            <div class="icon-container">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Recentes-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1JlY2VudGVzLWljb24ucG5nIiwiaWF0IjoxNjk1MjM3Njc0LCJleHAiOjE3MjY3NzM2NzR9.FcgJNEpiwat-yW8m1dBnZLQOMho0V53GDW3qOCi_iDM&t=2023-09-20T19%3A21%3A15.774Z" width="32" height="28" style="width: 36px;height: 36px;">
+                                </div>
+                                <span class="icon-label">Recentes</span>
+                            </div>
+                            <div class="icon-container" style="margin-top: 130px;">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Ajustes-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0FqdXN0ZXMtaWNvbi5wbmciLCJpYXQiOjE2OTUyMzc3ODcsImV4cCI6MTcyNjc3Mzc4N30.-Ug28aVXnKF_LM1FrRBKps5tAAFoqYZ359OdKBvcLT4&t=2023-09-20T19%3A23%3A08.010Z" width="32" height="28" style="width: 36px;height: 36px;">
+                                </div>
+                                <span class="icon-label">Configurações</span>
+                            </div>
+                            <a href="/login" class="icon-container">
+                                <div class="icon">
+                                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Sair-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1NhaXItaWNvbi5wbmciLCJpYXQiOjE2OTUyNDYxMDksImV4cCI6MTcyNjc4MjEwOX0.jPXbmqw3cRts6dJxL5ZXqYYesIB0tNZc9KzlZtwB1k8&t=2023-09-20T21%3A41%3A50.112Z" width="32" height="28" style="width: 33px;height: 33px; margin-left: 3px;">
+                                </div>
+                                <span class="icon-label">Sair</span>
+                            </a>
+                        </div>  
                     </nav>
                 </div>
-                <div class="col-xl-9 offset-xl-0" style="color: rgb(33, 37, 41);border-color: rgb(33,37,41);">
+                <div class="col-xl-9 offset-xl-0" style="color: rgb(33, 37, 41);border-color: rgb(33,37,41);" >
                     <h1 class="text-center-horizontal" style="color: rgba(255, 255, 255, 0.91); font-family: 'Anek Bangla', sans-serif; text-shadow: 3px 3px 7px rgb(0, 0, 0); margin-left: 300px;">Crie seu canal</h1>
-                    <!-- Start: Contact Form Basic -->
+                    
                     <section class="position-relative py-4 py-xl-5">
                         <div class="container position-relative">
-                            <!-- Start: Login Form Basic -->
+                            
                             <section class="position-relative py-4 py-xl-5">
-                                <div class="container position-relative">
+                                <div class="container position-relative" >
                                     <div class="row d-flex justify-content-center">
                                         <div class="col-md-6 col-xl-4" style="width: 390.5px;max-width: none;">
-                                            <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0); margin-top: 20px;">
-                                                <div class="card-body text-center border rounded d-flex float-none flex-column align-items-center" style="width: 769px; min-width: 0px; padding: 0px; margin-left: -11rem; margin-right: 0rem; border-radius: 15px; background: #323232; position: relative;">
-                                                    <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
+                                            <div class="card" style="width: 440px;color: rgba(33,37,41,0);background: rgba(255,255,255,0); margin-top: 20px;" >
+                                                <div class="card-body text-center border rounded d-flex float-none flex-column align-items-center" style="width: 769px; min-width: 0px; padding: 0px; margin-left: -11rem; margin-right: 0rem; border-radius: 15px; background: #323232; position: relative; ">
+                                                    <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4" >
                                                     dd($request->all());
                                                     @if(isset($msg) && !empty($msg))
                                                         <div class="alert alert-danger">
                                                             {{ $msg }}
                                                         </div>
                                                     @endif
-                                                    <form action="{{ route('cadastrar_canal') }}" method="post" enctype="multipart/form-data">
+                                                    <form action="{{ route('cadastrar_canal') }}" method="post" enctype="multipart/form-data" >
                                                             @csrf
                                                             <input type="file" name="foto_fundo" id="foto_fundo" accept="image/*" style="display: none;">
                                                             <label for="foto_fundo" style="cursor: pointer;">
