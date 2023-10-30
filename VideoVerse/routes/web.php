@@ -46,8 +46,8 @@ Route::get('/criar_canal', 'CadastroCanalController@view')->name('criar_canal');
 Route::view('/canal', 'HomeController@meuCanal')->name('canal');
 
 //rotas para o upload de vídeos
-Route::get('/upload', 'VideoController@showUploadForm')->name('video.uploadForm');
-Route::post('/upload', 'VideoController@uploadVideo')->name('video.upload');
+Route::get('/upload_video', 'VideoController@showUploadForm')->name('video.uploadForm')->middleware('auth');
+Route::post('/upload', 'VideoController@uploadVideo')->name('video.upload')->middleware('auth');
 Route::get('/video/{id}', 'VideoController@showVideo')->name('video.show');
 
 Auth::routes();

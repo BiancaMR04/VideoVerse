@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload de vídeos </title>
+    <title>Upload de Vídeos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/upload_video.css') }}">
 </head>
+
 <body style="background: #1A1818;">
     <div class="sidebar">
         <a href="/home">
@@ -74,80 +75,91 @@
             <span class="icon-label">Sair</span>
         </a>
     </div>
-
-    <h1 class="card-header">Upload de Vídeo</h1>
-
-    <div class="card-body">
-        <form method="POST" action="{{ route('video.upload') }}" enctype="multipart/form-data">
-            @csrf
-        <div class= "video-preview">
-            <video id="preview_video" width="620" height="400" controls ></video>
-            <div class="upload">    
-                <input type="file" id="upload_video" name="upload_video" accept="video/*" onchange="previewFile()">
-            </div>
+    
+    <div class="main-content">
+        $temCanal
+        <h1 class="card-header">Upload de Vídeo</h1>
+        @if(isset($msg))
+            <a>{{ $msg }}</a>
+        @endif
+        <div class="card-body">
+            <form method="POST" action="{{ route('video.upload') }}" enctype="multipart/form-data">
+                @csrf
+                <div class="video-preview">
+                    <video id="preview_video" width="620" height="400" controls></video>
+                    <div class="upload">
+                        <input type="file" id="upload_video" name="upload_video" accept="video/*" onchange="previewFile()">
+                    </div>
+                </div>
+                <div class="formulario">
+                    <div class="card mb-4 mb-xl-5">
+                        <input type="file" name="foto-video" id="foto-video" accept="image/*" style="display: none;">
+                        <label for="foto-video" style="cursor: pointer;">
+                            <img id="preview_foto" style="width: 200px; height: 100px; border: 2px solid black; margin-top: 2em; margin-top: -10px;" src="{{ asset('images.jpeg') }}">
+                            <p class="legenda">Imagem do vídeo</p>
+                        </label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="titulo_video" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="titulo_video" name="titulo_video" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <textarea class="form-control" id="descricao" name="descricao" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="privacidade" class="form-label">Privacidade</label>
+                        <select class="form-select" aria-label="Default select example" id="privacidade" name="privacidade" required>
+                            <option value="publico">Público</option>
+                            <option value="privado">Privado</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="enviar-button">Enviar</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="formulario">
-        <div class="card mb-4 mb-xl-5">
-            <input type="file" name="foto-video" id="foto-video" accept="image/*" style="display: none;">
-            <label for="foto-video" style="cursor: pointer;">
-            <img id="preview_foto" style="width: 200px; height: 100px; border: 2px solid black; margin-top: 2em; margin-top: -10px;" src="{{ asset('images.jpeg') }}">
-            <p class="legenda" >Imagem do vídeo</p>
-            </label>
-        </div>
-        <div class="mb-3">
-            <label for="titulo_video" class="form-label">Título</label>
-            <input type="text" class="form-control" id="titulo_video" name="titulo_video" required>
-        </div>
-        <div class="mb-3">
-            <label for="descricao" class="form-label">Descrição</label>
-            <textarea class="form-control" id="descricao" name="descricao" required></textarea>
-        </div>
-        <div class="mb-3">
-                <button type="submit" class="enviar-button">Enviar</button>
-            </div>
-        </div>
-    </form>
     </div>
+
     <script>
-            function previewFile() {
-                var preview = document.querySelector('#preview_video');
-                var file    = document.querySelector('#upload_video').files[0];
-                var reader  = new FileReader();
+        function previewFile() {
+            var preview = document.querySelector('#preview_video');
+            var file = document.querySelector('#upload_video').files[0];
+            var reader = new FileReader();
 
-                reader.onloadend = function () {
-                    preview.src = reader.result;
-                }
-
-                    if (file) {
-                        reader.readAsDataURL(file);
-                    } else {
-                        preview.src = "";
-                    }
+            reader.onloadend = function () {
+                preview.src = reader.result;
             }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+        }
 
         var inputFoto = document.getElementById('foto-video');
         var previewfoto = document.getElementById('preview_foto');
 
-        // Define um ouvinte de evento para o campo de arquivo do fundo
-        inputFoto.addEventListener('change', function() {
+        inputFoto.addEventListener('change', function () {
             if (inputFoto.files && inputFoto.files[0]) {
                 var reader = new FileReader();
 
-                reader.onload = function(e) {
-                    // Define o atributo 'src' da imagem de pré-visualização do fundo com a imagem carregada
+                reader.onload = function (e) {
                     previewfoto.src = e.target.result;
                 };
 
-                // Lê o arquivo selecionado como um URL de dados
                 reader.readAsDataURL(inputFoto.files[0]);
             }
         });
-        </script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
-                <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
-                <script src="/assets/js/script.min.js?h=7943ac0cdc1b9005d36ad60ce20571b3"></script>
-    </body>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/js/script.min.js') }}"></script>
+</body>
 </html>

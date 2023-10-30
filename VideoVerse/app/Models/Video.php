@@ -15,14 +15,21 @@ class Video extends Model
      * @var string
      */
     protected $table = 'videos';
+    public $timestamps = false;
 
     protected $fillable = [
-        'nome',
+        'titulo',
+        'descricao',
         'caminho',
         'caminho_imagem',
-        'data_postagem',
+        'data',
         'canal_id',
+        'categoria',
+        'duracao',
+        'estado_video',
+        'likes',
     ];
+    
 
     public function canal()
     {

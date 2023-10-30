@@ -5,6 +5,8 @@ use App\Models\Comentario;
 use App\Models\Video;
 use App\Models\Canal;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 
 class VideoController extends Controller
 {
@@ -54,38 +56,138 @@ class VideoController extends Controller
         return response()->json(['message' => 'View count updated']);
     }
 
-    public function uploadVideo(Request $request)
-    {
-        $request->validate([
-            'titulo_video' => 'required',
-            'descricao' => 'required',
-            'upload_video' => 'required|mimetypes:video/*', // Verifique se é um arquivo de vídeo
-            'foto-video' => 'required|image', // Verifique se é uma imagem
-            // Adicione outras regras de validação conforme necessário
-        ]);
+public function uploadVideo(Request $request)
+{
+    // Verifica se o formulário foi enviado
+    if ($request->hasFile('upload_video') && $request->hasFile('foto-video')) {
+        // Verifica se os arquivos são válidos
+        if ($request->file('upload_video')->isValid() && $request->file('foto-video')->isValid()) {
+            // Obtém os nomes dos arquivos dos vídeos e das imagens
+            $nomeArquivoVideo = $request->file('upload_video')->getClientOriginalName();
+            $nomeArquivoImagem = $request->file('foto-video')->getClientOriginalName();
 
-        // Salve o vídeo e a imagem no servidor
-        $videoPath = $request->file('upload_video')->store('videos', 'public');
-        $imagePath = $request->file('foto-video')->store('thumbnails', 'public');
+            // Move os vídeos e imagens para a pasta de uploads
+            $caminhoDestinoVideo = 'videos/' . $nomeArquivoVideo;
+            $caminhoDestinoImagem = 'thumbnails/' . $nomeArquivoImagem;
+            
+            if (
+                $request->file('upload_video')->move(public_path('videos'), $nomeArquivoVideo) &&
+                $request->file('foto-video')->move(public_path('thumbnails'), $nomeArquivoImagem,)
+            ) {
+                $tituloVideo = $request->input('titulo_video');
+                $descricao = $request->input('descricao');
+                $privacidade = $request->input('privacidade');
 
-        // Crie um novo registro de vídeo
-        $video = new Video;
-        $video->title = $request->input('titulo_video');
-        $video->description = $request->input('descricao');
-        $video->video_path = $videoPath;
-        $video->image_path = $imagePath;
-        $video->date_posted = now(); // Pode ser personalizado
-        $video->channel_id = auth()->user()->canal->id; 
+                /*
+                if (empty($tituloVideo) || empty($descricao) || empty($privacidade)) {
+                    $msg = 'Todos os campos devem ser preenchidos!';
+                    return redirect()->route('video.uploadForm')->with('error', $msg);
+                }
 
-        // Adicione outros campos, como duração e estado do vídeo, conforme necessário
-        $video->save();
+                try {
+                    */
+                    // Criando uma instância de Video e preenchendo com os dados do formulário
+                    $video = new Video();
+                    $video->titulo = $tituloVideo;
+                    $video->descricao = $descricao;
+                    $video->caminho = $caminhoDestinoVideo;
+                    $video->caminho_imagem = $caminhoDestinoImagem;
+                    $video->data = now();
+                    $video->canal_id = auth()->user()->canal->id;
+                    $video->visualizacao = 0;
+                    $video->estado_video = $privacidade;
 
-        return redirect()->route('video.show', $video->id);
+                    // Salva o vídeo no banco de dados
+                    $video->save();
+
+                    return redirect()->route('video.show', $video->id)->with('success', 'Vídeo enviado com sucesso!');
+                /*} catch (\Exception $e) {
+                    // Em caso de erro, volta para o formulário de upload com uma mensagem de erro
+                    $msg = 'Erro ao processar o upload do vídeo: ' . $e->getMessage();
+                    return redirect()->route('video.uploadForm')->with('error', $msg);
+                }*/
+            } else {
+                $msg = "Ocorreu um erro ao fazer o upload dos vídeos e imagens.";
+            }
+        } else {
+            $msg = "Arquivos de vídeo e imagem inválidos.";
+        }
+    } else {
+        $msg = "Nenhum arquivo de vídeo ou imagem enviado.";
     }
+
+    return redirect()->route('video.uploadForm')->with('error', $msg);
+}
+
 
     public function showUploadForm()
     {
         return view('upload_video');
+    }
+
+
+
+
+    public function cadastro(Request $request)
+    {
+        if ($request->hasFile('upload_video') && $request->hasFile('foto-video')) {
+            // Verifica se os arquivos são válidos
+            if ($request->file('foto-video')->isValid() && $request->file('upload_file')->isValid()) {
+                // Obtém os nomes dos arquivos das imagens de perfil e de fundo
+                $nomeArquivoVideo = $request->file('upload_video')->getClientOriginalName();
+                $nomeArquivoImagem = $request->file('foto-video')->getClientOriginalName();
+    
+                // Move as imagens para a pasta de uploads
+                $caminhoDestinoPerfil = public_path('videos') . '/' . $nomeArquivoVideo;
+                $caminhoDestinoFundo = public_path('thumbnails') . '/' . $nomeArquivoImagem;
+    
+                if (
+                    $request->file('upload_video')->move(public_path('videos'), $nomeArquivoVideo) &&
+                    $request->file('foto-video')->move(public_path('thumbnails'), $nomeArquivoImagem)
+                ) {
+    
+                    $titulo = $request->input('titulo_video');
+                    $descricao = $request->input('descricao');
+                    $privacidade = $request->input('privacidade');
+    
+                    if (empty($nomeCanal) || empty($descricao)) {
+                        $msg = 'Todos os campos devem ser preenchidos!';
+                        return view('criar_canal', ['msg' => $msg]);
+                    }
+    
+                    try {
+                        $video = new Video();
+                        $video->titulo = $request->input('titulo_video');
+                        $video->descricao = $request->input('descricao');
+                        $video->caminho = $nomeArquivoVideo;
+                        $video->caminho_imagem = $nomeArquivoImagem;
+                        $video->data = now();
+                        $video->estado_video = $request->input('privacidade');
+                        $video->canal_id = auth()->user()->canal->id;
+    
+                        // Salva o canal no banco de dados
+                        $video->save();
+    
+                        // Redireciona para a home
+                        $temCanal = Canal::where('user_id', auth()->id())->exists();
+                        $videos = Video::all();
+                        return view('home', compact('temCanal', 'videos'));
+                    } catch (\Exception $e) {
+                        // Em caso de erro, volta para o formulário de cadastro com uma mensagem de erro
+                        $msg = 'Erro ao processar upload de vídeo: ' . $e->getMessage();
+                        return view('criar_canal', ['msg' => $msg]);
+                    }
+                } else {
+                    $msg = "Ocorreu um erro ao fazer o upload do vídeo ou imagem.";
+                }
+            } else {
+                $msg = "Arquivos de imagem inválidos.";
+            }
+        } else {
+            $msg = "Nenhum arquivo de imagem enviado.";
+        }
+    
+        return view('home', ['msg' => $msg]);
     }
 
 }
