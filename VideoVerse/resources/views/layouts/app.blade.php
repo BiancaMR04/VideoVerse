@@ -74,9 +74,16 @@
                                     <a class="dropdown-item" href="criar_canal">
                                         {{ __('Canal') }}
                                     </a>
+                                    <!-- redirecionamento para upload de video -->
+                                    <a class="dropdown-item" href="{{ route('video.uploadForm') }}">
+                                        {{ __('Upload de Vídeo') }}
+                                    </a>
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
+
+                                    
                                     </form>
                                 </div>
                             </li>
