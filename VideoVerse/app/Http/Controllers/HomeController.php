@@ -24,13 +24,13 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function index()
-    {
-        $temCanal = Canal::where('user_id', auth()->id())->exists();
-        $videos = Video::all();
-        
-        return view('home', compact('temCanal', 'videos'));
-    }
+     public function index()
+     {
+         $temCanal = Canal::where('user_id', auth()->id())->exists();
+         $publicVideos = Video::where('estado_video', 'publico')->get();
+         return view('home', compact('temCanal', 'publicVideos')); // Alterado de 'publico' para 'publicVideos'
+     }
+     
 
     public function meuCanal()
     {

@@ -13,16 +13,16 @@ class VideoController extends Controller
     public function index()
     {
         $videos = Video::all();
-
-        return view('home_visitante', ['videos' => $videos]);
+        $publicVideos = Video::where('estado_video', 'publico')->get();
+        return view('home_visitante', compact('publicVideos'));    
     }
 
     public function index2()
     {
         $videos = Video::all();
         $temCanal = Canal::where('user_id', auth()->id())->exists();
-
-        return view('home', ['videos' => $videos], compact('temCanal'));
+        $publicVideos = Video::where('estado_video', 'publico')->get();
+        return view('home', ['videos' => $videos], compact('temCanal', 'publicVideos'));
     }
 
     public function storeComment(Request $request, Video $video)
@@ -43,18 +43,23 @@ class VideoController extends Controller
 
 
     public function show($id)
-    {
-        $video = Video::find($id);
-        $temCanal = Canal::where('user_id', auth()->id())->exists();
-        $comments = $video->comments;
+{
+    $video = Video::find($id);
+    $temCanal = Canal::where('user_id', auth()->id())->exists();
+    $comments = $video->comments;
 
-        return view('view_video', compact('video', 'temCanal', 'comments'));
-    }
+    // Recupere o canal associado a este vídeo
+    $canal = $video->canal;
+
+    return view('view_video', compact('video', 'temCanal', 'comments', 'canal'));
+}
+
 
     public function updateViewCount(Video $video) {
         $video->increment('views');
         return response()->json(['message' => 'View count updated']);
     }
+
 
 public function uploadVideo(Request $request)
 {
@@ -125,69 +130,5 @@ public function uploadVideo(Request $request)
         return view('upload_video');
     }
 
-
-
-
-    public function cadastro(Request $request)
-    {
-        if ($request->hasFile('upload_video') && $request->hasFile('foto-video')) {
-            // Verifica se os arquivos são válidos
-            if ($request->file('foto-video')->isValid() && $request->file('upload_file')->isValid()) {
-                // Obtém os nomes dos arquivos das imagens de perfil e de fundo
-                $nomeArquivoVideo = $request->file('upload_video')->getClientOriginalName();
-                $nomeArquivoImagem = $request->file('foto-video')->getClientOriginalName();
-    
-                // Move as imagens para a pasta de uploads
-                $caminhoDestinoPerfil = public_path('videos') . '/' . $nomeArquivoVideo;
-                $caminhoDestinoFundo = public_path('thumbnails') . '/' . $nomeArquivoImagem;
-    
-                if (
-                    $request->file('upload_video')->move(public_path('videos'), $nomeArquivoVideo) &&
-                    $request->file('foto-video')->move(public_path('thumbnails'), $nomeArquivoImagem)
-                ) {
-    
-                    $titulo = $request->input('titulo_video');
-                    $descricao = $request->input('descricao');
-                    $privacidade = $request->input('privacidade');
-    
-                    if (empty($nomeCanal) || empty($descricao)) {
-                        $msg = 'Todos os campos devem ser preenchidos!';
-                        return view('criar_canal', ['msg' => $msg]);
-                    }
-    
-                    try {
-                        $video = new Video();
-                        $video->titulo = $request->input('titulo_video');
-                        $video->descricao = $request->input('descricao');
-                        $video->caminho = $nomeArquivoVideo;
-                        $video->caminho_imagem = $nomeArquivoImagem;
-                        $video->data = now();
-                        $video->estado_video = $request->input('privacidade');
-                        $video->canal_id = auth()->user()->canal->id;
-    
-                        // Salva o canal no banco de dados
-                        $video->save();
-    
-                        // Redireciona para a home
-                        $temCanal = Canal::where('user_id', auth()->id())->exists();
-                        $videos = Video::all();
-                        return view('home', compact('temCanal', 'videos'));
-                    } catch (\Exception $e) {
-                        // Em caso de erro, volta para o formulário de cadastro com uma mensagem de erro
-                        $msg = 'Erro ao processar upload de vídeo: ' . $e->getMessage();
-                        return view('criar_canal', ['msg' => $msg]);
-                    }
-                } else {
-                    $msg = "Ocorreu um erro ao fazer o upload do vídeo ou imagem.";
-                }
-            } else {
-                $msg = "Arquivos de imagem inválidos.";
-            }
-        } else {
-            $msg = "Nenhum arquivo de imagem enviado.";
-        }
-    
-        return view('home', ['msg' => $msg]);
-    }
 
 }

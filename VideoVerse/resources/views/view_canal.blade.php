@@ -82,7 +82,9 @@
             <div class="btn">
                 <button class="inscrever-se-button">Inscrever-se</button>
             </div>
-            <div class="gray-background"></div>
+            <div class="gray-background">
+                
+            </div>
                 <!-- Foto de Perfil Redonda -->
                 <div class="profile-photo" style="background-image: url('https://img.quizur.com/f/img648ca358045449.79012472.jpg?lastEdited=1686938471');"></div>
             </div>

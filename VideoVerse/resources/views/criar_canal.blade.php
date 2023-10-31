@@ -126,21 +126,6 @@
                                                             <label for="descricao" class="form-label">Descrição do Canal</label>
                                                             <textarea class="form-control" id="descricao" name="descricao" required></textarea>
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Conta</p>
-                                                            <label for="conta" class="form-label">Conta</label>
-                                                            <input type="text" class="form-control" id="conta" name="conta" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Banco</p>
-                                                            <label for="banco" class="form-label">Banco</label>
-                                                            <input type="text" class="form-control" id="banco" name="banco" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Agência</p>
-                                                            <label for="agencia" class="form-label">Agência</label>
-                                                            <input type="text" class="form-control" id="agencia" name="agencia" required>
-                                                        </div>
                                                         <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
                                                         <div class="mb-3">
                                                             <button type="submit" class="btn btn-primary">Próximo</button>
@@ -237,4 +222,5 @@
              <script src="/assets/js/script.min.js?h=7943ac0cdc1b9005d36ad60ce20571b3"></script>
 @endsection
 </body>
+
         </html>
