@@ -222,12 +222,29 @@ p {
 /* Estilo dos links do dropdown quando o mouse passa por cima */
 .dropdown-menu button:hover {
     background-color: #be49f4
-    border-radius: 5px;
-    box-shadow: none;
+    
 }
 
 /* Exibir o dropdown quando o mouse passa sobre a imagem */
 .dropdown:hover .dropdown-menu {
     opacity: 1; /* Torna o dropdown visível */
     transform: translateY(0); 
+}
+
+.confirmarExcluir {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+}
+/* Estilos para os botões no balão de confirmação */
+.confirmarExcluir-button {
+    margin: 10px;
 }
