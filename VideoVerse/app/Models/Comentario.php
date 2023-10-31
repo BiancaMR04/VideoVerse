@@ -1,26 +1,33 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comentario extends Model
 {
+    protected $table = 'comments';
+    use HasFactory; 
     protected $fillable = [
-        'user_id', // ID do usuário que fez o comentário
-        'video_id', // ID do vídeo associado ao comentário
-        'body', // Texto do comentário
+        'user_id', 
+        'video_id', 
+        'body', 
     ];
 
-    // Relação com o usuário que fez o comentário
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // Relação com o vídeo associado ao comentário
+    public function canal()
+    {
+        return $this->belongsTo(Canal::class);
+    }
+
     public function video()
     {
         return $this->belongsTo(Video::class);
     }
+
 }
