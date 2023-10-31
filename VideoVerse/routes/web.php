@@ -22,9 +22,10 @@ use App\Http\Controllers\CadastroCanalController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//rotas da home
 Route::get('/', 'VideoController@index')->name('home');
 Route::get('/home', 'VideoController@index2')->name('home');
-Route::view('/home-visitor', 'home_visitante')->name('home-visitor');
 
 Route::view('/login', 'login')->name('login');
 
@@ -45,16 +46,20 @@ Route::get('/criar_canal', 'CadastroCanalController@view')->name('criar_canal');
 
 Route::view('/canal', 'HomeController@meuCanal')->name('canal');
 
-Route::view('/upload_video', 'upload_video')->name('upload_video');
-Auth::routes();
+//rotas para o upload de vídeos
+Route::get('/upload_video', 'VideoController@showUploadForm')->name('video.uploadForm')->middleware('auth');
+Route::post('/upload', 'VideoController@uploadVideo')->name('video.upload')->middleware('auth');
+Route::get('/video/{id}', 'VideoController@showVideo')->name('video.show');
 
 Auth::routes();
 
-Route::get('/videos/{id}', function ($id) {
-    $video = Video::find($id);
-    $temCanal = Canal::where('user_id', auth()->id())->exists();
-    return view('view_video', compact('video', 'temCanal'));
-})->name('video.show');
+Auth::routes(['verify' => true]);
+
+//rotas visualizar vídeo
+Route::get('/videos/{id}', 'VideoController@show')->name('video.show');
+Route::post('/favorite/{video}', 'VideoController@favorite')->name('video.favorite');
+Route::get('/videos/{video}', 'VideoController@showComment')->name('video.comment');
+Route::post('/comment/store', 'VideoController@storeComment')->name('comment.store');
 
 Route::delete('/meu-canal/excluir-video/{videoId}', 'MeuCanalController@excluirVideo')->name('excluir.video');
 //Route::get('/canal/{canalId}/videos', 'MeuCanalController@listarVideosDoCanal')->name('meu-canal');

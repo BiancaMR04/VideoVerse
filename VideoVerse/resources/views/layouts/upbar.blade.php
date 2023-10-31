@@ -66,6 +66,9 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('monetizacao') }}">
                                         {{ __('Monetização') }}
+                                    </a>  
+                                    <a class="dropdown-item" href="{{ route('video.uploadForm') }}">
+                                        {{ __('Upload de Vídeo') }}
                                     </a>
                                 @else
                                     <a class="dropdown-item" href="{{ route('cadastro-canal') }}">
