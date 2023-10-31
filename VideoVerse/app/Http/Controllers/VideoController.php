@@ -60,6 +60,7 @@ class VideoController extends Controller
         return response()->json(['message' => 'View count updated']);
     }
 
+
 public function uploadVideo(Request $request)
 {
     // Verifica se o formulário foi enviado
@@ -128,5 +129,6 @@ public function uploadVideo(Request $request)
     {
         return view('upload_video');
     }
+
 
 }
