@@ -103,11 +103,13 @@
                                                     @endif
                                                     <form action="{{ route('cadastrar_canal') }}" method="post" enctype="multipart/form-data" >
                                                             @csrf
+                                                            <div class = "foto-preview">
                                                             <input type="file" name="foto_fundo" id="foto_fundo" accept="image/*" style="display: none;">
                                                             <label for="foto_fundo" style="cursor: pointer;">
                                                                 <img id="preview_fundo" style="width: 700px; height: 150px; border: 2px solid black; border-radius: 10px; margin-top: -10px;" src="{{ asset('images.jpeg') }}">
                                                                 <p style="color: #767676; width: 152.281px; height: 11px; margin-top: -5px; line-height: normal; font-size: 14px; margin-right: -5px;">Alterar foto de fundo</p>
                                                             </label>
+                                                            </div>
                                                             <input type="file" name="foto_perfil" id="foto_perfil" accept="image/*" style="display: none;">
                                                             <label for="foto_perfil" style="cursor: pointer;">
                                                                 <img id="preview" style="border: 2px solid black; border-radius: 50px; width: 100px; height: 100px; margin-top: -50px;" src="{{ asset('profile.jpg') }}">
@@ -123,21 +125,6 @@
                                                             <p style="color: #9c9c9c; font-size: 18px; width: 93px; height: 7px;">Descrição</p>
                                                             <label for="descricao" class="form-label">Descrição do Canal</label>
                                                             <textarea class="form-control" id="descricao" name="descricao" required></textarea>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Conta</p>
-                                                            <label for="conta" class="form-label">Conta</label>
-                                                            <input type="text" class="form-control" id="conta" name="conta" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Banco</p>
-                                                            <label for="banco" class="form-label">Banco</label>
-                                                            <input type="text" class="form-control" id="banco" name="banco" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Agência</p>
-                                                            <label for="agencia" class="form-label">Agência</label>
-                                                            <input type="text" class="form-control" id="agencia" name="agencia" required>
                                                         </div>
                                                         <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
                                                         <div class="mb-3">
@@ -157,25 +144,22 @@
                 </div>
                 </div>
                 
-            @endsection
-            <script>
-                // Função para fechar o dropdown quando o usuário clicar fora dele
-                window.onclick = function(event) {
-                    if (!event.target.matches('#profile-image')) {
-                        var dropdowns = document.getElementsByClassName("dropdown-content");
-                        var i;
-                        for (i = 0; i < dropdowns.length; i++) {
-                            var openDropdown = dropdowns[i];
-                            if (openDropdown.style.display === "block") {
-                                openDropdown.style.display = "none";
-                            }
-                        }
-                    }
+            
+<script>
+    function previewFile() {
+                var reader  = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
                 }
 
-                
-            </script>
-                        <script>
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    } else {
+                        preview.src = "";
+                    }
+            }
+            
         // Obtém o elemento de entrada de arquivo e a imagem de pré-visualização
         var inputFoto = document.getElementById('foto_perfil');
         var preview = document.getElementById('preview');
@@ -194,15 +178,29 @@
                 reader.readAsDataURL(inputFoto.files[0]);
             }
         });
-    </script>
+ </script>
+
     <script>
+        function previewFile2() {
+                var reader  = new FileReader();
+
+                reader.onloadend = function () {
+                    preview.src = reader.result;
+                }
+
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    } else {
+                        preview.src = "";
+                    }
+            }
         // Obtém o elemento de entrada de arquivo e a imagem de pré-visualização do fundo
-        var inputFotoFundo = document.getElementById('foto_fundo');
+        var inputFoto2 = document.getElementById('foto_fundo');
         var previewFundo = document.getElementById('preview_fundo');
 
         // Define um ouvinte de evento para o campo de arquivo do fundo
-        inputFotoFundo.addEventListener('change', function() {
-            if (inputFotoFundo.files && inputFotoFundo.files[0]) {
+        inputFoto2.addEventListener('change', function() {
+            if (inputFoto2.files && inputFoto2.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function(e) {
@@ -211,15 +209,17 @@
                 };
 
                 // Lê o arquivo selecionado como um URL de dados
-                reader.readAsDataURL(inputFotoFundo.files[0]);
+                reader.readAsDataURL(inputFoto2.files[0]);
             }
-        });
+        }
+    );
     </script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
-            <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
-            <script src="/assets/js/script.min.js?h=7943ac0cdc1b9005d36ad60ce20571b3"></script>
-        </body>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
+             <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
+             <script src="/assets/js/script.min.js?h=7943ac0cdc1b9005d36ad60ce20571b3"></script>
+@endsection
+</body>
         </html>

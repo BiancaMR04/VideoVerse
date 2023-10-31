@@ -21,8 +21,8 @@ class VideoController extends Controller
     {
         $videos = Video::all();
         $temCanal = Canal::where('user_id', auth()->id())->exists();
-
-        return view('home', ['videos' => $videos], compact('temCanal'));
+        $publicVideos = Video::where('estado_video', 'publico')->get();
+        return view('home', ['videos' => $videos], compact('temCanal', 'publicVideos'));
     }
 
     public function storeComment(Request $request, Video $video)
