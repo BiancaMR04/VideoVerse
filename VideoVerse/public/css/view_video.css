@@ -7,14 +7,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Alinha os elementos verticalmente ao topo */
-    color: white;
 }
 
 .video-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    text-align: center;
     align-items: baseline;
     margin-left: -20rem;
 }
@@ -32,7 +30,6 @@ body {
 }
 
 .comment-container h2 {
-    text-align: center;
     font-size: 24px;
 }
 
