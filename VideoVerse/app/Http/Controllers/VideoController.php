@@ -26,20 +26,21 @@ class VideoController extends Controller
     }
 
     public function storeComment(Request $request, Video $video)
-    {
-        $user = auth()->user();
-    
-        if ($user->canal) {
-            $comment = new Comentario();
-            $comment->body = $request->input('body');
-            $comment->user_id = auth()->id();
-            $comment->video_id = $request->input('video_id');
-            $comment->save();
-            return redirect()->back();
-        }
-    
-        return view('/cadastro-canal');
+{
+    $user = auth()->user();
+
+    // Verifica se o usuário tem um canal
+    if ($user->canal) {
+        $comment = new Comentario();
+        $comment->body = $request->input('body');
+        $comment->user_id = auth()->id();
+        $comment->video_id = $request->input('video_id');
+        $comment->save();
+        return redirect()->back();
     }
+
+    return redirect()->route('criar_canal'); 
+}
 
 
     public function show($id)

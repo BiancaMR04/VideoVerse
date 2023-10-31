@@ -7,16 +7,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Alinha os elementos verticalmente ao topo */
-    color: white;
 }
 
 .video-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    text-align: center;
     align-items: baseline;
-    margin-left: 2rem;
+    margin-left: -20rem;
 }
 
 .video-container video {
@@ -27,11 +25,11 @@ body {
 
 .comment-container {
     flex: 1;
-    background-color: #1A1818;
+    margin-left: 5rem;
+    margin-top: 5rem;
 }
 
 .comment-container h2 {
-    text-align: center;
     font-size: 24px;
 }
 
@@ -40,20 +38,20 @@ body {
 }
 
 .comment-container form textarea {
-    width: 50%;
+    width: 300px;
     max-width: 100%;
-    
 }
 
 .comment-container form button {
     margin-top: 10px;
+    margin-left: -8rem;
 }
 
 .comment {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    margin-left: 9rem;
+    margin-left: 0rem;
     margin-top: 2rem;
 }
 
