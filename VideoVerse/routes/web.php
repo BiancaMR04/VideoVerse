@@ -60,8 +60,6 @@ Route::post('/favorite/{video}', 'VideoController@favorite')->name('video.favori
 Route::get('/videos/{video}', 'VideoController@showComment')->name('video.comment');
 Route::post('/comment/store', 'VideoController@storeComment')->name('comment.store');
 
-
-
 Route::get('/meu-canal', 'MeuCanalController@view')->name('meu-canal')->middleware('auth');
 Route::get('/criar-canal', [HomeController::class, 'criarCanal'])->name('criar-canal')->middleware('auth');
 

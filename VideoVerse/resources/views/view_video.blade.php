@@ -77,69 +77,69 @@
     </div>
 
 
-    <div class="video-container" style="color:white">
-        
-        <h1 style="margin-top: 60px;">{{ $video->titulo }}</h1>
+    <div class="container">
+        <div class="video-container">
+            <?php
+            $caminho = asset($video->caminho);
+            ?>
 
-        <?php
-        $caminho = asset($video->caminho);
-        ?>
-        <video id="videoElement" controls autoplay style="margin-top: 25px;">
-            <source src="{{$caminho}}" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-        </video>
-        
-        <p style="margin-top: 30px;">{{ $video->canal->nome }}</p>
-        <p id="viewsCount">{{ $video->visualizacao }} visualizações</p>
-        <p>Publicado em {{ $video->data }}</p>
+            <video id="videoElement" controls autoplay>
+                <source src="{{$caminho}}" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
 
-        <h2>Comentários</h2>
-        
-        <form action="{{ route('comment.store', $video) }}" method="POST">
-            @csrf
-            <textarea name="body" rows="3" placeholder="Adicione um comentário"></textarea>
-            <input type="hidden" name="video_id" value="{{ $video->id }}">
-
-            <button type="submit">Comentar</button>
-        </form>
-
-
-        @foreach ($comments as $comment)
-            <div class="comment">
-                <p>{{ $comment->user->canal->nome }}</p>
-                <p>{{ $comment->body }}</p>
+            <div class="video-info">
+                <h1>{{ $video->titulo }}</h1>
+                <p style="font-size: 20px">{{ $video->descricao }}</p>
+                <div class="channel-info">
+                    <img src="{{ asset('uploads/' . $video->canal->imagem_perfil) }}" alt="Imagem de Perfil" class="channel-avatar">
+                    <p class="channel-name">{{ $video->canal->nome }}</p>
+                </div>
+                <p id="viewsCount">{{ $video->visualizacao }} visualizações</p>
+                <p> Publicado em {{ $video->data }}</p>
             </div>
-        @endforeach
+        </div>
 
-    
-        
+        <div class="comment-container">
+            <h2>Comentários</h2>
 
+            <form action="{{ route('comment.store', $video) }}" method="POST">
+                @csrf
+                <textarea name="body" rows="3" placeholder="Adicione um comentário"></textarea>
+                <input type="hidden" name="video_id" value="{{ $video->id }}">
+                <button type="submit">Comentar</button>
+            </form>
+
+            @foreach ($comments as $comment)
+                <div class="comment">
+                    <p>{{ $comment->user->canal->nome }}</p>
+                    <p>{{ $comment->body }}</p>
+                </div>
+            @endforeach
+        </div>
     </div>
 
-    
-<script>
-    const video = document.getElementById('videoElement');
-    let viewed = false;
+        <script>
+            const video = document.getElementById('videoElement');
+            let viewed = false;
 
-    video.addEventListener('timeupdate', function() {
-        if (video.currentTime >= 10 && !viewed) {
-            
-            viewed = true;
+            video.addEventListener('timeupdate', function() {
+                if (video.currentTime >= 10 && !viewed) {
+                    viewed = true;
 
-            fetch('/updateViewCount/{{ $video->id }}', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+                    fetch('/updateViewCount/{{ $video->id }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }).then(response => {
+                        document.getElementById('viewsCount').textContent = '{{ $video->views + 1 }} visualizações';
+                    }).catch(error => {
+                        console.error('Error updating view count:', error);
+                    });
                 }
-            }).then(response => {
-                
-                document.getElementById('viewsCount').textContent = '{{ $video->views + 1 }} visualizações';
-            }).catch(error => {
-                console.error('Error updating view count:', error);
             });
-        }
-    });
-</script>
+        </script>
 
 </body>
 @endsection
