@@ -21,8 +21,9 @@ class MeuCanalController extends Controller
         // Busque os dados do canal do usuário autenticado (ou como desejar obtê-los)
         $canal = Canal::where('user_id', auth()->id())->first();
         $temCanal = Canal::where('user_id', auth()->id())->exists();
+        $videos = Video::where('canal_id', $canal->id)->get();
 
-        return view('meu_canal', compact('canal', 'temCanal'));
+        return view('meu_canal', compact('canal', 'temCanal', 'videos'));
     }
 
     public function excluirVideo($videoId)
@@ -41,4 +42,21 @@ class MeuCanalController extends Controller
             return redirect()->route('pagina.erro');
         }
     }
+
+    public function listarVideosDoCanal($canalId)
+    {
+        // Recupera o canal com base no ID
+        $canal = Canal::find($canalId);
+    
+        if (!$canal) {
+            // caso canal não encontrado
+            return redirect()->route('pagina.erro');
+        }
+    
+        // Recupera todos os vídeos pertencentes ao canal
+        $videos = Video::where('canal_id', $canal->id)->get();
+    
+        return view('meu_canal', compact('canal', 'videos'));
+    }
+    
 }

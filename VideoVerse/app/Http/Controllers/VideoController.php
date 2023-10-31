@@ -35,20 +35,5 @@ class VideoController extends Controller
         return response()->json(['message' => 'View count updated']);
     }
 
-    public function listarVideosDoCanal($canalId)
-{
-    // Recupera o canal com base no ID
-    $canal = Canal::find($canalId);
-
-    if (!$canal) {
-        // caso canal não encontrado
-        return redirect()->route('pagina.erro');
-    }
-
-    // Recupera todos os vídeos pertencentes ao canal
-    $videos = Video::where('canal_id', $canal->id)->get();
-
-    return view('meu_canal', compact('canal', 'videos'));
-}
-
+   
 }

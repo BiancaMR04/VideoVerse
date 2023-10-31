@@ -56,8 +56,8 @@ Route::get('/videos/{id}', function ($id) {
     return view('view_video', compact('video', 'temCanal'));
 })->name('video.show');
 
-Route::delete('/meu-canal/excluir-video/{videoId}', [MeuCanalController::class, 'excluirVideo'])->name('meu-canal');
-Route::get('/canal/{canalId}/videos', [MeuCanalController::class, 'listarVideosDoCanal'])->name('meu-canal');
+Route::delete('/meu-canal/excluir-video/{videoId}', 'MeuCanalController@excluirVideo')->name('excluir.video');
+//Route::get('/canal/{canalId}/videos', 'MeuCanalController@listarVideosDoCanal')->name('meu-canal');
 
 
 Route::get('/meu-canal', 'MeuCanalController@view')->name('meu-canal')->middleware('auth');
