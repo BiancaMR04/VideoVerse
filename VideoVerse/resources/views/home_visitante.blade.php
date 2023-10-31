@@ -80,7 +80,8 @@
     </div>
     <div class="content">
         <div class="video-grid">
-            @foreach ($videos as $video)
+        @foreach ($publicVideos as $video)
+                @if ($video->estado_video == 'publico')
                 <div class="video">
                     <a href="{{ route('video.show', ['id' => $video->id]) }}">
                         <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
@@ -90,6 +91,7 @@
                         <p class="video-info">{{ $video->data }}</p>
                     </a>
                 </div>
+                @endif
             @endforeach
         </div>
     </div>
