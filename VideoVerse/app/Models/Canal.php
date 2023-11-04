@@ -36,4 +36,8 @@ public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function seguidores(){
+        return $this->hasMany(Seguidor::class);
+    }
 }
