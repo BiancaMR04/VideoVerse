@@ -117,18 +117,19 @@
                                 <path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM128,72a12,12,0,1,0-12-12A12,12,0,0,0,128,72Zm0,112a12,12,0,1,0,12,12A12,12,0,0,0,128,184Z"></path>
                             </svg>
                         </button>
-                            <div class="dropdown-menu">
-                                <form method="POST" action="{{ route('excluir.video', ['videoId' => $video->id]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="dropdown-item">
+                        <div class="dropdown-content">
+                            <form method="POST" action="{{ route('excluir.video', ['videoId' => $video->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button class="dropdown-item">
                                     Excluir
-                                    </button>
-                                </form>
+                                </button>
+                            </form>
                                 <button class="dropdown-item" >
                                    Privacidade
                                 </button>
                         </div>
+                      </div>
                     </div>
                 @endforeach
             </div>

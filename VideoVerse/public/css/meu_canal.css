@@ -187,64 +187,45 @@ p {
     border-radius: 5%;
 }
 
-.dropdown {
+
+  .dropdown {
     position: relative;
     display: inline-block;
-    
-}
+  }
+  
 
-.dropdown-menu {
-    position: absolute;
-    background-color: #1a1a1a;
-    min-width: 130px;
-    box-shadow: 0px 0px 2px #B42DF4;
-    border-radius: 5px;
-    z-index: 1;
-    margin-top: 0rem;
-    margin-left: -10rem; /* Ajuste o valor de margin-left conforme necessário */
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Estilo dos links do dropdown */
-.dropdown-menu button {
-    background-color: #B42DF4;
-    color: white;
-    display: block;
-    width: 130px;
-    height: 40px;
-    border-radius: 5px;
-    box-shadow: none;
-    border: none;
-}
-
-/* Estilo dos links do dropdown quando o mouse passa por cima */
-.dropdown-menu button:hover {
-    background-color: #be49f4
-    
-}
-
-/* Exibir o dropdown quando o mouse passa sobre a imagem */
-.dropdown:hover .dropdown-menu {
-    opacity: 1; /* Torna o dropdown visível */
-    transform: translateY(0); 
-}
-
-.confirmarExcluir {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    z-index: 1000;
+  /* O conteúdo suspenso (Hidden by Default) */
+  .dropdown-content {
     display: none;
-}
-/* Estilos para os botões no balão de confirmação */
-.confirmarExcluir-button {
-    margin: 10px;
-}
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    right: 400; /* Posiciona o conteúdo suspenso à direita do botão */
+    top:12%; /* Posiciona o conteúdo suspenso abaixo do botão */
+  }
+  
+  /* Links dentro do dropdown */
+  .dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Altera a cor dos links do dropdown ao passar o mouse */
+  .dropdown-content button:hover {
+    background-color: #ddd;
+    border-radius: 10px;
+  }
+  
+  /* Mostra o menu suspenso ao passar o mouse sobre o dropdown */
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Altera a cor de fundo do botão do dropdown quando o conteúdo suspenso é exibido */
+  .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+  }
