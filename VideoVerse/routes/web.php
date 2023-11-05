@@ -29,8 +29,7 @@ Route::get('/home', 'VideoController@index2')->name('home');
 
 Route::view('/login', 'login')->name('login');
 
-Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
-Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
+Route::view('/register', 'register')->name('register');
 
 //rotas para monetizacao
 Route::get('/monetizacao', 'MonetizacaoController@view')->name('monetizacao');
