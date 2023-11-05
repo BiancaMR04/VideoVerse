@@ -121,11 +121,13 @@
                             <form method="POST" action="{{ route('excluir.video', ['videoId' => $video->id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="dropdown-item">
+                                <button class="dropdown-item" >
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVR4nOWTQQqDMBBF33Fc6D30RGpXLj2X4iGaZbsQ5hJThCyCtGDSyULyYWCYkP8gfwKlaAL0VHOq2fbFTC/WegWw/gFYKEaaWIUCnsAISDA7+h5wFoDBz2pvLL4/9LAASGBYn3qxykCAJjivgN0yZMkJkNxPNOQO2f1Y09FqTfWWP/mdYP6KAXT+gkaYtzGA++gD63/T/SYvXbsAAAAASUVORK5CYII=">
                                     Excluir
                                 </button>
                             </form>
                                 <button class="dropdown-item" >
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABXElEQVR4nN2Vu0oDQRSGvyJewA2IYlAI5Al8A8EIYq1vIeQJtNHSZ7AQUlmbWIuYysLG9VKpkJDSQoIKgq6s/MgwzNlNhEX0wLAwc875Zs9t4D/KVJHOd4FbYKGom8dAom9F+2XgEHgAnoFXoAccAw1gZhRIxYCsA2/a99cA2AJKw0IWgfcRIQlwDlTznM8DN55h7EAmFMo60ApA7oCa5Tw1vDZuFzsQV7YDuukFoxBgP6B8auTElXbArukrLRk3X5XTbgZkxbBNw/gtJ4bSrM4fM8JVNmw7LqBjKEU672fkZNKorjMXUM/5zb2cxG94kA9g2c9DM+CkpbNxQfoKVzcHchAohq9w+D2QqBR9SZ1eGc14kTUwa2oWH9JWtURK/JpKOBSuMXKkqrZPRlxWnwSlpAE2GMLxE3D/EwgaxQ2N5p5G9YuSfARsAtOBKVzIozUHXAI7/NXnll+RT3SJxryK+e+1AAAAAElFTkSuQmCC">
                                    Privacidade
                                 </button>
                         </div>
