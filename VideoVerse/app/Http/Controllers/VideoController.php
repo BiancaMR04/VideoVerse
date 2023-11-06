@@ -28,7 +28,8 @@ class VideoController extends Controller
     public function storeComment(Request $request, Video $video)
     {
         $user = auth()->user();
-    
+
+        // Verifica se o usuário tem um canal
         if ($user->canal) {
             $comment = new Comentario();
             $comment->body = $request->input('body');
@@ -37,22 +38,27 @@ class VideoController extends Controller
             $comment->save();
             return redirect()->back();
         }
-    
-        return view('/cadastro-canal');
+
+        return redirect()->route('criar_canal'); 
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comentario::class);
     }
 
 
     public function show($id)
-{
-    $video = Video::find($id);
-    $temCanal = Canal::where('user_id', auth()->id())->exists();
-    $comments = $video->comments;
+    {
+        $video = Video::find($id);
+        $temCanal = Canal::where('user_id', auth()->id())->exists();
+        $comments = $video->comments;
 
-    // Recupere o canal associado a este vídeo
-    $canal = $video->canal;
+        // Recupere o canal associado a este vídeo
+        $canal = $video->canal;
 
-    return view('view_video', compact('video', 'temCanal', 'comments', 'canal'));
-}
+        return view('view_video', compact('video', 'temCanal', 'comments', 'canal'));
+    }
 
 
     public function updateViewCount(Video $video) {

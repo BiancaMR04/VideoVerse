@@ -222,4 +222,5 @@
              <script src="/assets/js/script.min.js?h=7943ac0cdc1b9005d36ad60ce20571b3"></script>
 @endsection
 </body>
+
         </html>
