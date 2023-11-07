@@ -12,21 +12,45 @@
     <!-- Fonts -->
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <style>
-        a{
-            text-decoration: none;
-        }
-        </style>
 </head>
+<style>
+    .btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .button {
+        margin-right: 5px;
+        padding: 0.5em;
+        padding-left: 2em;
+        padding-right: 2em;
+        margin-top: -10px;
+        border-radius: 5px;
+        width: 140px;
+        height: 40px;
+        border: none;
+        outline: none;
+        transition: .4s ease-in-out;
+        background-color: #252525;
+        color: white;
+        text-decoration: none;
+    }
+
+    .button:hover {
+        background-color: #B42DF4;
+        color: white;
+    }
+</style>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-purple shadow-sm">
 
         <div class="col-xl-8">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 0px;">
-
+            <i class="fas fa-search search-icon" style="margin-top: -3px;"></i>
+            <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 10px;">
         </div>
+
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -42,17 +66,11 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                            <div class="btn">
+                                <a href="/login" class="button" >Entrar</a>
+                                <a href="/register" class="button" >Cadastre-se</a>
+                            </div>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('cadastro') }}">{{ __('Cadastrar-se') }}</a>
-                                </li>
-                            @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -63,6 +81,12 @@
                                     @if($temCanal)
                                     <a class="dropdown-item" href="{{ route('meu-canal') }}">
                                         {{ __('Meu Canal') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('monetizacao') }}">
+                                        {{ __('Monetização') }}
+                                    </a>  
+                                    <a class="dropdown-item" href="{{ route('video.uploadForm') }}">
+                                        {{ __('Upload de Vídeo') }}
                                     </a>
                                 @else
                                     <a class="dropdown-item" href="{{ route('cadastro-canal') }}">

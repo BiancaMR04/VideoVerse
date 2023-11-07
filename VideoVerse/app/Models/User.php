@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -68,7 +68,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'timestamp',
         'password' => 'hashed',
     ];
 
@@ -76,4 +76,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comentario::class);
     }
+
+    public function videos() {
+        return $this->hasMany(Video::class);
+    }
+    
+    public function canal()
+    {
+        return $this->hasOne(Canal::class);
+    }
+
 }

@@ -13,9 +13,10 @@ class CadastroCanalController extends Controller
     public function view()
     {
         $temCanal = Canal::where('user_id', auth()->id())->exists();
-        return view('criar_canal', compact('temCanal'));
+        $publicVideos = Video::where('estado_video', 'publico')->get();
+        return view('criar_canal', compact('temCanal', 'publicVideos'));
     }
-
+    
     public function cadastrarCanal(Request $request)
 {
     // Verifica se o formulário foi enviado
@@ -46,9 +47,7 @@ class CadastroCanalController extends Controller
 
                 $nomeCanal = $request->input('nome_canal');
                 $descricao = $request->input('descricao');
-                $banco = $request->input('banco');
-                $conta = $request->input('conta');
-                $agencia = $request->input('agencia');
+
                 $dataCadastro = now();
 
                 if (empty($nomeCanal) || empty($descricao)) {
@@ -68,17 +67,14 @@ class CadastroCanalController extends Controller
                     $canal->ativo = true;
                     $canal->categorias = '[]';
                     $canal->inscritos = 0;
-                    $canal->banco = $banco;
-                    $canal->conta = $conta;
-                    $canal->agencia = $agencia;
 
                     // Salva o canal no banco de dados
                     $canal->save();
 
-                    // Redireciona para a home
                     $temCanal = Canal::where('user_id', auth()->id())->exists();
+                    $publicVideos = Video::where('estado_video', 'publico')->get(); // Adicione essa linha
                     $videos = Video::all();
-                    return view('home', compact('temCanal', 'videos'));
+                    return view('home', compact('temCanal', 'publicVideos', 'videos'));
                 } catch (\Exception $e) {
                     // Em caso de erro, volta para o formulário de cadastro com uma mensagem de erro
                     $msg = 'Erro ao processar cadastro do canal: ' . $e->getMessage();

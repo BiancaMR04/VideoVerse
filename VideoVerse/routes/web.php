@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MeuCanalController;
 use App\Models\Video;
+use App\Models\Canal;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -20,14 +22,14 @@ use App\Http\Controllers\CadastroCanalController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//rotas da home
 Route::get('/', 'VideoController@index')->name('home');
 Route::get('/home', 'VideoController@index2')->name('home');
-Route::view('/home-visitor', 'home_visitante')->name('home-visitor');
 
 Route::view('/login', 'login')->name('login');
 
-Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
-Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
+Route::view('/register', 'register')->name('register');
 
 //rotas para monetizacao
 Route::get('/monetizacao', 'MonetizacaoController@view')->name('monetizacao');
@@ -43,19 +45,32 @@ Route::get('/criar_canal', 'CadastroCanalController@view')->name('criar_canal');
 
 Route::view('/canal', 'HomeController@meuCanal')->name('canal');
 
-Route::view('/upload_video', 'upload_video')->name('upload_video');
-Auth::routes();
+//rotas para o upload de vídeos
+Route::get('/upload_video', 'VideoController@showUploadForm')->name('video.uploadForm')->middleware('auth');
+Route::post('/upload', 'VideoController@uploadVideo')->name('video.upload')->middleware('auth');
+Route::get('/video/{id}', 'VideoController@showVideo')->name('video.show');
 
 Auth::routes();
 
-Route::get('/videos/{id}', function ($id) {
-    $video = Video::find($id);
-    return view('view_video', compact('video'));
-})->name('video.show');
+Auth::routes(['verify' => true]);
+
+//rotas visualizar vídeo
+Route::get('/videos/{id}', 'VideoController@show')->name('video.show');
+Route::post('/favorite/{video}', 'VideoController@favorite')->name('video.favorite');
+Route::get('/videos/{video}', 'VideoController@showComment')->name('video.comment');
+Route::post('/comment/store', 'VideoController@storeComment')->name('comment.store');
+
+Route::delete('/meu-canal/excluir-video/{videoId}', 'MeuCanalController@excluirVideo')->name('excluir.video');
+//Route::get('/canal/{canalId}/videos', 'MeuCanalController@listarVideosDoCanal')->name('meu-canal');
+
 
 Route::get('/meu-canal', 'MeuCanalController@view')->name('meu-canal')->middleware('auth');
 Route::get('/criar-canal', [HomeController::class, 'criarCanal'])->name('criar-canal')->middleware('auth');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
+Route::post('/updateViewCount/{video}', 'VideoController@updateViewCount');
 
+Route::get('/monetizacao', 'MonetizacaoController@index')->name('monetizacao.index');
+
+Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar.valor');

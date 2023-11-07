@@ -12,6 +12,9 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="/resources/css/styles.min.css">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -19,7 +22,9 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-purple shadow-sm">
-            <div class="container">
+            <div class="container"><a class="navbar-brand" href="{{ url('/') }}">
+                <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Video.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1ZpZGVvLnBuZyIsImlhdCI6MTY5NTIzNzE5MiwiZXhwIjoxNzI2NzczMTkyfQ.eNEc9UbyE-R8FvUIEFluv1idyFtPoZb0dAxgoVPy9zs&t=2023-09-20T19%3A13%3A12.647Z" alt="Logo" style="margin-left: 400px;">
+            </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -69,9 +74,16 @@
                                     <a class="dropdown-item" href="criar_canal">
                                         {{ __('Canal') }}
                                     </a>
+                                    <!-- redirecionamento para upload de video -->
+                                    <a class="dropdown-item" href="{{ route('video.uploadForm') }}">
+                                        {{ __('Upload de Vídeo') }}
+                                    </a>
+
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
+
+                                    
                                     </form>
                                 </div>
                             </li>
