@@ -43,9 +43,9 @@ class VideoController extends Controller
 }
 
 
-    public function show($id)
+public function show($id)
 {
-    $video = Video::find($id);
+    $video = Video::findOrFail($id);
     $temCanal = Canal::where('user_id', auth()->id())->exists();
     $comments = $video->comments;
 
@@ -54,6 +54,7 @@ class VideoController extends Controller
 
     return view('view_video', compact('video', 'temCanal', 'comments', 'canal'));
 }
+
 
 
     public function updateViewCount(Video $video) {
