@@ -8,6 +8,12 @@ body {
     margin-left: 80px;
     padding: 20px;
 }
+.inscritos{
+    margin-left: 1200px;
+}
+
+
+
 
 .title{
     font-size: 34px;
@@ -17,26 +23,19 @@ body {
 }
 
 .gray-background {
-    background-color: #323232; /* Cor de fundo cinza */
+    background-color:transparent;
+    border: 1px solid #ae17f4;
     width: 100%;
-    height: 400px; /* Altura do fundo cinza */
+    height: 470px; /* Altura do fundo cinza */
     position: relative;
-    border-radius: 25px;
+    border-radius: 15px;
     bottom: 0;
     z-index: -1;
+}
+.gray-background:hover{
+    border-color: #c754fd;
 }
 
-.gray-background2 {
-    background-color: #323232; /* Cor de fundo cinza */
-    width: 1000px;
-    height: 400px; /* Altura do fundo cinza */
-    position: relative;
-    margin-left: 400px;
-    margin-top: 20px;
-    border-radius: 25px;
-    bottom: 0;
-    z-index: -1;
-}
 
 .cover-photo {
      /* Substitua 'cover-photo.jpg' pela URL da sua foto de capa */
@@ -45,23 +44,23 @@ body {
     margin-left: 300px;
     margin-top: 55px;
     width: 100%;
-    height: 200px; 
+    height: 300px; 
     width: 1200px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     position: relative;
 }
 
 .profile-photo {
     background-size: cover;
     background-position: center;
-    width: 150px; /* Diâmetro da foto de perfil redonda */
-    height: 150px; /* Diâmetro da foto de perfil redonda */
+    width: 280px; /* Diâmetro da foto de perfil redonda */
+    height: 280px; /* Diâmetro da foto de perfil redonda */
     border-radius: 50%; /* Tornar a foto de perfil redonda */
     position: absolute;
-    margin-left: 15px;
+    margin-left: 450px;
     bottom: -120px; /* Metade da altura da foto de perfil redonda */
-    left: 20px;
+    margin-top: -50px;
 }
 
 .btn {
@@ -115,22 +114,12 @@ body {
 }
 
 .channel-info {
-    margin-top: 20px;
+    margin-top: -10px ;
     margin-left: 350px;
     padding: 20px;
     width: 1000px;
     height: 70px;
     border-radius: 10px;
-}
-
-h1 {
-    font-size: 24px;
-    margin-right: 20px;
-}
-
-p {
-    font-size: 16px;
-    color: #666;
 }
 
 .button-excluir {

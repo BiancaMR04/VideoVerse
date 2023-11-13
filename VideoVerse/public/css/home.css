@@ -3,11 +3,12 @@ body {
     padding: 0;
     font-family: 'Questrial', sans-serif;
     background-color: #f0f0f0;
+
 }
 
 .sidebar {
-    width: 100px;
-    background-color: #1A1818;
+    width: 120px;
+    background: linear-gradient(to botton, #160F2E, #2A163A);
     position: fixed;
     top: 0;
     left: 0;
@@ -22,7 +23,7 @@ body {
 }
 
 .sidebar:hover {
-    width: 210px;
+    width: 250px;
 }
 
 .icon-container {
@@ -33,14 +34,10 @@ body {
     width: 100%;
     margin-left: 50px;
     margin-top: -1px;
-    border-radius: 25px;
-    box-sizing: border-box;
+    border-radius: 15px;
     cursor: pointer;
 }
 
-.icon-container:hover {
-    background-color: #1a1a1a; /* Cor de destaque ao passar o mouse */
-}
 
 .icon {
     color: white;
@@ -76,7 +73,7 @@ body {
 /* Estilo para o ícone de lupa */
 .search-icon {
     position: absolute;
-    top: 28px;
+    top: 32px;
     left: 1240px;
     color: #ffffff;
     z-index: 1000;
@@ -84,7 +81,7 @@ body {
 
 .btn {
     position: absolute;
-    top: 20px; /* Ajuste a distância do topo conforme necessário */
+    top: 15px; /* Ajuste a distância do topo conforme necessário */
     right: 20px; /* Ajuste a distância da direita conforme necessário */
 }
 
@@ -93,23 +90,34 @@ body {
     padding: 0.5em;
     padding-left: 2em;
     padding-right: 2em;
-    margin-top: 0px;
+    margin-top: -10px;
     border-radius: 5px;
     width: 130px;
-    height: 40px;
+    height: 50px;
     border: none;
     outline: none;
     transition: .4s ease-in-out;
-    background-color: #252525;
+    background: linear-gradient(-45deg, #4F6ED9 0%, #B42DF4 100% );
     color: white;
 }
 
 .button:hover {
-    background-color: #B42DF4;
-    color: white;
+    outline: 2px solid #B42DF4;
+    background: linear-gradient(-45deg, #2A163A 0%, #2A163A 100% );
+    color: #e8e8e8;
 }
 
-
+.caixadebusca{
+    font-size: 16px;
+    border-radius: 10.166px;
+    border: 1.017px solid #B42DF4;
+    background: #160F2E;
+    width: 550px;
+    color: white;
+    height: 28px;
+    margin-left: 710px;
+    margin-top: 15px;
+}
 /* Estilo da imagem de perfil */
 #profile-image {
     width: 50px;
@@ -138,6 +146,7 @@ body {
     display: inline-block;
     
 }
+
 
 /* Estilo do conteúdo do dropdown */
 .dropdown-content {
@@ -174,17 +183,7 @@ body {
     transform: translateY(0); 
 }
 
-body {
-    font-family: 'Questrial';
-}
 
-a{
-    text-decoration: none;
-}
-
-h1{
-    color: white
-}
 
 .video-grid {
     display: grid;
@@ -200,26 +199,34 @@ h1{
 .video {
     width: 370px; /* Largura fixa para todos os vídeos */
     margin-right: 5px; /* Reduz a margem direita entre as colunas */
-
     margin: 10px; /* Espaçamento entre os vídeos */
+}
+
+.video a {
+    text-decoration: none;
 }
 
 .video-thumbnail {
     width: 100%; /* A imagem preencherá todo o espaço disponível na div */
     height: auto; /* A altura se ajustará automaticamente para manter a proporção */
     border-radius: 5%;
+
 }
 
 .video-title {
     font-size: 20px; /* Tamanho da fonte para o título */
     margin: 5px 0; /* Espaçamento vertical para o título */
     color: #fff; /* Cor do texto do título */
+    text-decoration: none;
+
 }
 
 .video-info {
     font-size: 14px; /* Tamanho da fonte para as informações */
     margin: 3px 0; /* Espaçamento vertical para as informações */
     color: #999; /* Cor do texto das informações */
+    text-decoration: none;
+
 }
 
         

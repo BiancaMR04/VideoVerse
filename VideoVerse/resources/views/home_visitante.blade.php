@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
 </head>
-<body style="background: #1A1818;">
+<body style="background: linear-gradient(144deg, #160F2E, #2A163A 50%, #411C48);">
 @section('content')
 @extends('layouts.upbar')
 @extends('layouts.sidebar')

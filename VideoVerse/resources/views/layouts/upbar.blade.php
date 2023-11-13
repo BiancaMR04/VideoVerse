@@ -48,7 +48,7 @@
 
         <div class="col-xl-8">
             <i class="fas fa-search search-icon" style="margin-top: -3px;"></i>
-            <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 10px;">
+            <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" >
         </div>
 
             <div class="container">

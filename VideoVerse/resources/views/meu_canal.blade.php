@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
     
 </head>
-<body style="background: #1A1818;">
+<body style="background: linear-gradient(144deg, #160F2E, #2A163A 50%, #411C48)";>
 @section('content')
 @extends('layouts.upbar')
 @extends('layouts.sidebar')
 
     <div class="perfil">
     @isset($canal)
-        <h1 class="title">Meu Canal</h1>
-            <div class="cover-photo" style="background-image: url('/uploads/{{ $canal->imagem_fundo }}');">
+        <h1 class="title">{{ $canal->nome }}</h1>
+            <div class="cover-photo" style="background-image: url('/uploads/{{ $canal->imagem_fundo }}'); ">
                 <div class="btn">
                     <button class="editar-canal-button">
                     <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Edit-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0VkaXQtaWNvbi5wbmciLCJpYXQiOjE2OTU1MDE0MzUsImV4cCI6MTcyNzAzNzQzNX0.1E7_R6qzxJqlOdv2z0bmPoKpn19r8SlcFtPEguPrJEo&t=2023-09-23T20%3A37%3A15.323Z" width="26" height="26"></img>
@@ -29,12 +29,13 @@
                 <!-- Foto de Perfil Redonda -->
                 <div class="profile-photo" style="background-image: url('/uploads/{{ $canal->imagem_perfil }}');"></div>
             </div>
-            <div class="nome-do-canal">
-                <h1>{{ $canal->nome }}</h1>
-                <h1 style="font-size: 16px; color: grey; margin-top: -10px;">{{ $canal->inscritos }} Inscritos</h1>
+            <div class="inscritos">
+                <h2 style="font-size: 30px; margin-top: 10px; color:#ffff;">INSCRITOS</h2>
+                <h3 style="font-size: 18px; margin-top: -10px; color:#ffff;">{{ $canal->inscritos }}</h3>
             </div>
             <div class="channel-info">
-                <p>{{ $canal->descricao }}</p>
+                <h2 style="font-size: 30px; margin-top: -91,5px; color:#ffff;">DESCRIÇÃO</h2>
+                <h3 style="font-size: 18px; margin-top: -10px; color:#ffff;">{{ $canal->descricao }}</h3>
             </div>
             <h1 class="title" style="margin-top: 40px; margin-left: 300px; font-size: 24px;">Vídeos</h1>
             <div class="video-grid">
