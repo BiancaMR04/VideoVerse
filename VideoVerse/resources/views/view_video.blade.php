@@ -45,15 +45,21 @@
 
             <form action="{{ route('comment.store', $video) }}" method="POST">
                 @csrf
-                <input class="leave-comment" type="text" placeholder=" Deixe um comentário">
+                <textarea class="leave-comment" name="body" rows="1" placeholder="Deixe um comentário"></textarea>
                 <input type="hidden" name="video_id" value="{{ $video->id }}">
                 <button class="comment-button" type="submit">Comentar</button>
             </form>
 
+
             @foreach ($comments as $comment)
                 <div class="comment">
-                    <p style="color: white;">{{ $comment->user->canal->nome }}</p>
-                    <p style="color: grey;">comentou em {{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y') }}</p>
+                <p class="comment-content">
+                    <img src="{{ asset('uploads/' . $comment->user->canal->imagem_perfil) }}" alt="Imagem de Perfil" class="channel-avatar">
+                    <span class="comment-username">{{ $comment->user->canal->nome }}</span>
+                    <span class="comment-details">
+                        comentou em {{ \Carbon\Carbon::parse($comment->created_at)->format('d/m/Y') }}
+                    </span>
+                </p>
                     <div>
                         <p style="color: white;">{{ $comment->body }}</p>
                     </div>
@@ -84,5 +90,13 @@
             });
         </script>
 
+<script>
+    const textarea = document.querySelector('.leave-comment');
+
+    textarea.addEventListener('input', function () {
+        this.style.height = 'auto'; // Redefinir a altura para auto
+        this.style.height = (this.scrollHeight) + 'px'; // Ajustar a altura do textarea
+    });
+</script>
 </body>
 @endsection
