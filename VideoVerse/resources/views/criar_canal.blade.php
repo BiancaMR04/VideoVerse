@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Página Inicial</title>
     <link rel="stylesheet" href="VideoVerse/resources/css/styles.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/criar_canal.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -13,53 +12,52 @@
 @section('content')
 @extends('layouts.upbar')
 @extends('layouts.sidebar')
-<div class="col-xl-9 offset-xl-0" style="color: rgb(33, 37, 41); border-color: rgb(33, 37, 41);">
-    <h1 class="text-center-horizontal" style="color: rgba(255, 255, 255, 0.91); font-family: 'Anek Bangla', sans-serif; text-shadow: 3px 3px 7px rgb(0, 0, 0); margin-left: 750px; margin-top: 50px;">Crie seu canal</h1>
+<h1 class="title">Crie seu canal</h1>
 
-    <div class="col-md-6 col-xl-4" style="width: 390.5px; max-width: none;">
-        <div class="card" style="width: 440px; color: rgba(33, 37, 41, 0); background: rgba(255, 255, 255, 0); margin-top: 20px; margin-left: 750px;">
-            <div class="card-body text-center border rounded d-flex float-none flex-column align-items-center" style="width: 769px; min-width: 0px; padding: 0px; margin-left: -11rem; margin-right: 0rem; border-radius: 15px; background: #323232; position: relative;">
-                <div class="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
-                    dd($request->all());
-                    @if(isset($msg) && !empty($msg))
-                        <div class="alert alert-danger">
-                            {{ $msg }}
-                        </div>
-                    @endif
-                    <form action="{{ route('cadastrar_canal') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="foto-preview">
-                            <input type="file" name="foto_fundo" id="foto_fundo" accept="image/*" style="display: none;">
-                            <label for="foto_fundo" style="cursor: pointer;">
-                                <img id="preview_fundo" style="width: 700px; height: 150px; border: 2px solid black; border-radius: 10px; margin-top: -10px;" src="{{ asset('images.jpeg') }}">
-                                <p style="color: #767676; width: 152.281px; height: 11px; margin-top: -5px; line-height: normal; font-size: 14px; margin-right: -5px;">Alterar foto de fundo</p>
-                            </label>
-                        </div>
-                        <input type="file" name="foto_perfil" id="foto_perfil" accept="image/*" style="display: none;">
-                        <label for="foto_perfil" style="cursor: pointer;">
-                            <img id="preview" style="border: 2px solid black; border-radius: 50px; width: 100px; height: 100px; margin-top: -50px;" src="{{ asset('profile.jpg') }}">
-                            <p style="line-height: normal; font-size: 14px; color: #767676; width: 139.875px; min-width: 143px; height: 103px; margin-bottom: -250px; margin-right: 0rem;">Alterar foto de perfil</p>
-                        </label>
-                        <div class="mb-3">
-                            <p style="width: 144px; min-width: 0; height: 6px; max-width: none; border-width: 0px; border-color: #9c9c9c; color: #9c9c9c; font-size: 18px; text-shadow: 1px 1px 0px #787878;">Nome do canal</p>
-                            <label for="nome_canal" class="form-label">Nome do Canal</label>
-                            <input type="text" class="form-control" id="nome_canal" name="nome_canal" required>
-                        </div>
-                        <div class="mb-3">
-                            <p style="color: #9c9c9c; font-size: 18px; width: 93px; height: 7px;">Descrição</p>
-                            <label for="descricao" class="form-label">Descrição do Canal</label>
-                            <textarea class="form-control" id="descricao" name="descricao" required></textarea>
-                        </div>
-                        <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">Próximo</button>
-                        </div>
-                    </form>
-                </div>
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('cadastrar_canal') }}" method="post" enctype="multipart/form-data">
+            @csrf
+
+            <div class="foto-preview">
+                <input type="file" name="foto_fundo" id="foto_fundo" accept="image/*" style="display: none;">
+                <label for="foto_fundo" style="cursor: pointer;">
+                    <img id="preview_fundo" class="preview-fundo" src="{{ asset('capa.jpeg') }}">
+                    <p style="color: #767676; width: 152.281px; height: 11px; margin-top: 8px; line-height: normal; font-size: 14px; margin-right: -5px;">Alterar foto de fundo</p>
+                </label>
             </div>
-        </div>
+
+            <input type="file" name="foto_perfil" id="foto_perfil" accept="image/*" style="display: none;">
+            <label for="foto_perfil" style="cursor: pointer;">
+                <img id="preview" class="preview-foto" src="{{ 'foto.jpg' }}">
+                <p style="line-height: normal; font-size: 14px; color: #767676; margin-top: 8px; margin-left: 250px;">Alterar foto de perfil</p>
+            </label>
+
+            <div>
+                <p style="color: #9c9c9c; font-size: 18px; margin-left: 20px;">Nome do canal</p>
+                <input type="text" class="nome" id="nome_canal" name="nome_canal" required placeholder="Escolha um nome para seu canal">
+            </div>
+
+            <div style="overflow-y: none;">
+                <p style="color: #9c9c9c; font-size: 18px; margin-left: 20px; margin-top: 20px;">Descrição</p>
+                <textarea class="descricao" id="descricao" name="descricao" rows="2" required placeholder="Escreva brevemente sobre seu canal e seus vídeos"></textarea>
+            </div>
+
+            <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
+
+            <div>
+                <button type="button" href="/home" class="btn-cancelar">Cancelar</button>
+                <button type="submit" class="btn-criar">Criar Canal</button>
+            </div>
+        </form>
     </div>
 </div>
+
+<script>
+    document.querySelector('.btn-cancelar').addEventListener('click', function() {
+    window.location.href = '/home';
+});
+</script>
      
 <script>
     function previewFile() {
@@ -130,13 +128,20 @@
         }
     );
     </script>
+    
+<script>
+    const textarea = document.querySelector('.descricao');
+
+    textarea.addEventListener('input', function () {
+        this.style.height = 'auto'; // Redefinir a altura para auto
+        this.style.height = (this.scrollHeight) + 'px'; // Ajustar a altura do textarea
+    });
+</script>
              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
              <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
              <script src="https://cdn.reflowhq.com/v2/toolkit.min.js"></script>
              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
              <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
              <script src="/assets/js/script.min.js?h=7943ac0cdc1b9005d36ad60ce20571b3"></script>
+</body
 @endsection
-</body>
-
-</html>
