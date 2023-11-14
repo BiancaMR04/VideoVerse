@@ -33,6 +33,7 @@
                     </div>
 
                     <p class="text-center text-white mt-4">Total de Visualizações: {{ $somaVisualizacoes }}</p>
+                    <p class="text-center text-white">Valor total de referente as {{ $somaVisualizacoes }} visualizações: R$ {{ number_format($valorTodasVisualizacoes, 2) }}</p>
                     <p class="text-center text-white">Valor já sacado previamente: R$ {{ number_format($valorRetirado, 2) }}</p>
                     <p class="text-center text-white">Valor disponível para saque: R$ {{ number_format($valorTotal, 2) }}</p>
 

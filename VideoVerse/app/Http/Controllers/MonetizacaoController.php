@@ -48,6 +48,7 @@ class MonetizacaoController extends Controller
             'temCanal' => $temCanal,
             'nomeCanal' => $nomeCanal,
             'valorRetirado' => $monetizacao->valor_retirado,
+            'valorTodasVisualizacoes' => $somaVisualizacoes * 0.15,
         ]);
     }
 
