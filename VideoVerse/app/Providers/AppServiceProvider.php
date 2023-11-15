@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Comentario;
+use App\Observers\CommentObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Comentario::observe(CommentObserver::class);
     }
 }

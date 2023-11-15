@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Events\NewComment;
 use App\Models\Comentario;
 use App\Models\Video;
 use App\Models\Canal;
@@ -36,6 +37,7 @@ class VideoController extends Controller
             $comment->user_id = auth()->id();
             $comment->video_id = $request->input('video_id');
             $comment->save();
+            event(new NewComment($comment));
             return redirect()->back();
         }
 
