@@ -1,0 +1,91 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+.card-body {
+    visibility: visible;
+    width: 450px; 
+    border-radius: 15px;
+    background: #292929; 
+    position: relative;
+    align-items: flex-start; 
+    margin-top: 70px;
+    transition: .4s ease-in-out;
+}
+
+  
+.card-body:hover {
+    transform: scale(1.05);
+    border: 1px solid #b24Df4;
+}
+
+.nome {
+    width: 380px;
+    height: 30px;
+    margin-left: 20px;
+    margin-top: -10px;
+    border-radius: 6px;
+    color: white;
+    background-color: #292929; /* Cor de fundo */
+    border: 0.5px solid #444444; /* Adiciona uma borda */
+    padding: 5px; /* Adiciona espaço interno */
+}
+
+.btn-criar {
+    margin-left: 260px;
+    margin-top: -40px;
+    padding: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 5px;
+    width: 140px;
+    height: 40px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-criar:hover {
+    background-color: #B42DF4;
+    color: white;
+}
+
+.btn-cancelar {
+    margin-left: 20px;
+    margin-top: 30px;
+    padding: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 5px;
+    width: 140px;
+    height: 40px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-cancelar:hover {
+    background-color: red;
+    color: white;
+}
+
+.lista {
+    border: 1px solid #B42DF4;
+}
+
+.conteiner {
+    display: flex;
+    flex-direction: column; /* Empilha os elementos verticalmente */
+    align-items: center; /* Centraliza os elementos ao longo do eixo transversal (verticalmente) */
+    justify-content: center; /* Centraliza os elementos ao longo do eixo principal (verticalmente) */
+    height: 24vh; /* Garante que ocupe toda a altura da tela */
+}

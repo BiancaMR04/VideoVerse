@@ -18,7 +18,7 @@ class CadastroCanalController extends Controller
     }
     
     public function cadastrarCanal(Request $request)
-{
+    {
     // Verifica se o formulário foi enviado
     if ($request->hasFile('foto_perfil') && $request->hasFile('foto_fundo')) {
         // Verifica se os arquivos são válidos
