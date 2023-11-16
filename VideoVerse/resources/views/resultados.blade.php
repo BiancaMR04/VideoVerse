@@ -88,7 +88,6 @@
         <div>
             <h3>{{ $canal->nome }}</h3>
             <p>{{ $canal->descricao }}</p>
-            <!-- Outras informações do canal... -->
         </div>
     @empty
         <p>Nenhum canal encontrado.</p>
@@ -97,9 +96,11 @@
     <h2>Vídeos</h2>
     @forelse ($videos as $video)
         <div>
-            <h3>{{ $video->titulo }}</h3>
-            <p>{{ $video->descricao }}</p>
-            <!-- Outras informações do vídeo... -->
+            <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail" style= "width: 100%; height: auto; border-radius: 5%;">
+            <h2 class="video-title">{{ $video->titulo }}</h2>
+            <p class="video-info">{{ $video->canal->nome }}</p>
+            <p class="video-info">{{ $video->visualizacao }} visualizações</p>
+            <p class="video-info">{{ $video->data }}</p>
         </div>
     @empty
         <p>Nenhum vídeo encontrado.</p>

@@ -60,7 +60,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @if($temCanal)
+                                    @if(Auth::user()->canal)
                                     <a class="dropdown-item" href="{{ route('meu-canal') }}">
                                         {{ __('Meu Canal') }}
                                     </a>

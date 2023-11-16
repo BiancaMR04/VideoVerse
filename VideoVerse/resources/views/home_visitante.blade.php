@@ -9,10 +9,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
 </head>
 <body style="background: #1A1818;">
+<form action="{{ route('pesquisar') }}" method="POST">
+    @csrf
     <div class="col-xl-8">
         <i class="fas fa-search search-icon"></i>
-        <input type="text" id="caixaDePesquisa" class="caixadebusca" placeholder=" Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
+        <input type="text" name="query" class="caixadebusca" placeholder="Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
     </div>
+    <button type="submit">Pesquisar</button>
+</form>
+
 
     <div class="btn">
         <button href="/login" class="button" id="btn_entrar">Entrar</button>
@@ -96,5 +101,36 @@
         </div>
     </div>
     <script src="js/home.js"></script>
+
+    <script>
+        // Adicionando um evento de escuta para capturar a tecla Enter ou o clique no ícone de pesquisa
+        const input = document.getElementById('caixaDePesquisa');
+        input.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                fazerPesquisa();
+            }
+        });
+
+        // Função para enviar os dados da pesquisa para o backend
+        function fazerPesquisa() {
+            const termoDePesquisa = document.getElementById('caixaDePesquisa').value;
+            
+            // Aqui você pode enviar o termoDePesquisa para o backend usando fetch ou XMLHttpRequest
+            // Exemplo de uso do fetch:
+            fetch('/pesquisar', {
+                method: 'POST',
+                body: JSON.stringify({ termo: termoDePesquisa }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                // Lógica para lidar com a resposta do backend, se necessário
+            })
+            .catch(error => {
+                // Lidar com erros, se houver
+            });
+        }
+    </script>
 </body>
 </html>

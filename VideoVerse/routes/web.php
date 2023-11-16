@@ -76,6 +76,7 @@ Route::get('/monetizacao', 'MonetizacaoController@index')->name('monetizacao.ind
 
 Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar.valor');
 
-Route::get('/videos/{id}', 'VideoController@show')->name('video.show');
-Route::get('/videos/{video}', 'VideoController@show')->name('video.show')->where('video', '[0-9]+');
+Route::get('/videos/{id}', 'VideoController@show')->name('video.show')->where('id', '[0-9]+');
+Route::post('/pesquisar', 'SearchController@pesquisar')->name('pesquisar');
+
 
