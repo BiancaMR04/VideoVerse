@@ -41,6 +41,26 @@
         background-color: #B42DF4;
         color: white;
     }
+
+    .dropdown-item {
+        color: white;
+        transition: .4s ease-in-out;
+    }
+
+    .dropdown-item:hover {
+        background-color: #B42DF4;
+        color: white;
+    }
+
+    .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        margin-top: 3px;
+        margin-right: 10px;
+    }
 </style>
 <body>
     <div id="app">
@@ -72,13 +92,16 @@
                             </div>
 
                         @else
+                            @if (Auth::user()->canal)
+                                <div class="icon" style="background-image: url('/uploads/{{ Auth::user()->canal->imagem_perfil }}');"></div>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @if($temCanal)
+                                <div style="background-color: #252525;" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->canal)
                                     <a class="dropdown-item" href="{{ route('meu-canal') }}">
                                         {{ __('Meu Canal') }}
                                     </a>
