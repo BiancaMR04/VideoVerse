@@ -77,6 +77,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comentario::class);
     }
 
+    public function likedVideos()
+    {
+        return $this->belongsToMany(Video::class, 'favorites', 'user_id', 'video_id');
+    }
+
+    public function subscribedChannels()
+    {
+        return $this->belongsToMany(Canal::class, 'followers', 'user_id', 'canal_id');
+    }
+
     public function videos() {
         return $this->hasMany(Video::class);
     }

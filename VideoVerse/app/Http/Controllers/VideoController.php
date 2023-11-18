@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Events\NewComment;
 use App\Models\Comentario;
+use App\Models\Favorito;
 use App\Models\Video;
 use App\Models\Canal;
 use Illuminate\Http\Request;
@@ -21,10 +22,22 @@ class VideoController extends Controller
     public function index2()
     {
         $videos = Video::all();
-        $temCanal = Canal::where('user_id', auth()->id())->exists();
         $publicVideos = Video::where('estado_video', 'publico')->get();
-        return view('home', ['videos' => $videos], compact('temCanal', 'publicVideos'));
+        return view('home', ['videos' => $videos], compact('publicVideos'));
     }
+
+    public function view_favoritos()
+    {
+        $user = auth()->user();
+    
+        if (!$user) {
+            return redirect()->route('login');
+        }
+    
+        $videosFavoritos = $user->likedVideos;
+        $favoritos = Favorito::where('user_id', $user->id)->get();
+        return view('view_favoritos', compact('videosFavoritos', 'favoritos'));
+    }    
 
     public function storeComment(Request $request, Video $video)
     {
@@ -62,75 +75,73 @@ class VideoController extends Controller
         return view('view_video', compact('video', 'temCanal', 'comments', 'canal'));
     }
 
-
-    public function updateViewCount(Video $video) {
-        $video->increment('views');
-        return response()->json(['message' => 'View count updated']);
+    public function updateViewCount($id)
+    {
+        $video = Video::find($id);
+        $video->visualizacao += 1;
+        $video->save();
+        return response()->json(['message' => 'Visualizações atualizadas com sucesso']);
     }
 
+    public function uploadVideo(Request $request)
+    {
+        if ($request->hasFile('upload_video') && $request->hasFile('foto-video')) {
+            if ($request->file('upload_video')->isValid() && $request->file('foto-video')->isValid()) {
+                $nomeArquivoVideo = $request->file('upload_video')->getClientOriginalName();
+                $nomeArquivoImagem = $request->file('foto-video')->getClientOriginalName();
 
-public function uploadVideo(Request $request)
-{
-    // Verifica se o formulário foi enviado
-    if ($request->hasFile('upload_video') && $request->hasFile('foto-video')) {
-        // Verifica se os arquivos são válidos
-        if ($request->file('upload_video')->isValid() && $request->file('foto-video')->isValid()) {
-            // Obtém os nomes dos arquivos dos vídeos e das imagens
-            $nomeArquivoVideo = $request->file('upload_video')->getClientOriginalName();
-            $nomeArquivoImagem = $request->file('foto-video')->getClientOriginalName();
+                $caminhoDestinoVideo = 'videos/' . $nomeArquivoVideo;
+                $caminhoDestinoImagem = 'thumbnails/' . $nomeArquivoImagem;
+                
+                if (
+                    $request->file('upload_video')->move(public_path('videos'), $nomeArquivoVideo) &&
+                    $request->file('foto-video')->move(public_path('thumbnails'), $nomeArquivoImagem)
+                ) {
+                    $tituloVideo = $request->input('titulo_video');
+                    $descricao = $request->input('descricao');
+                    $privacidade = $request->input('privacidade');
 
-            // Move os vídeos e imagens para a pasta de uploads
-            $caminhoDestinoVideo = 'videos/' . $nomeArquivoVideo;
-            $caminhoDestinoImagem = 'thumbnails/' . $nomeArquivoImagem;
-            
-            if (
-                $request->file('upload_video')->move(public_path('videos'), $nomeArquivoVideo) &&
-                $request->file('foto-video')->move(public_path('thumbnails'), $nomeArquivoImagem,)
-            ) {
-                $tituloVideo = $request->input('titulo_video');
-                $descricao = $request->input('descricao');
-                $privacidade = $request->input('privacidade');
+                    /*
+                    if (empty($tituloVideo) || empty($descricao) || empty($privacidade)) {
+                        $msg = 'Todos os campos devem ser preenchidos!';
+                        return redirect()->route('video.uploadForm')->with('error', $msg);
+                    }
 
-                /*
-                if (empty($tituloVideo) || empty($descricao) || empty($privacidade)) {
-                    $msg = 'Todos os campos devem ser preenchidos!';
-                    return redirect()->route('video.uploadForm')->with('error', $msg);
+                    try {
+                        */
+                        // Criando uma instância de Video e preenchendo com os dados do formulário
+                        $video = new Video();
+                        $video->titulo = $tituloVideo;
+                        $video->descricao = $descricao;
+                        $video->caminho = $caminhoDestinoVideo;
+                        $video->caminho_imagem = $caminhoDestinoImagem;
+                        $video->data = now();
+                        $video->canal_id = auth()->user()->canal->id;
+                        $video->visualizacao = 0;
+                        $video->likes = 0;
+                        $video->estado_video = $privacidade;
+
+                        // Salva o vídeo no banco de dados
+                        $video->save();
+
+                        return redirect()->route('video.show', $video->id)->with('success', 'Vídeo enviado com sucesso!');
+                    /*} catch (\Exception $e) {
+                        // Em caso de erro, volta para o formulário de upload com uma mensagem de erro
+                        $msg = 'Erro ao processar o upload do vídeo: ' . $e->getMessage();
+                        return redirect()->route('video.uploadForm')->with('error', $msg);
+                    }*/
+                } else {
+                    $msg = "Ocorreu um erro ao fazer o upload dos vídeos e imagens.";
                 }
-
-                try {
-                    */
-                    // Criando uma instância de Video e preenchendo com os dados do formulário
-                    $video = new Video();
-                    $video->titulo = $tituloVideo;
-                    $video->descricao = $descricao;
-                    $video->caminho = $caminhoDestinoVideo;
-                    $video->caminho_imagem = $caminhoDestinoImagem;
-                    $video->data = now();
-                    $video->canal_id = auth()->user()->canal->id;
-                    $video->visualizacao = 0;
-                    $video->estado_video = $privacidade;
-
-                    // Salva o vídeo no banco de dados
-                    $video->save();
-
-                    return redirect()->route('video.show', $video->id)->with('success', 'Vídeo enviado com sucesso!');
-                /*} catch (\Exception $e) {
-                    // Em caso de erro, volta para o formulário de upload com uma mensagem de erro
-                    $msg = 'Erro ao processar o upload do vídeo: ' . $e->getMessage();
-                    return redirect()->route('video.uploadForm')->with('error', $msg);
-                }*/
             } else {
-                $msg = "Ocorreu um erro ao fazer o upload dos vídeos e imagens.";
+                $msg = "Arquivos de vídeo e imagem inválidos.";
             }
         } else {
-            $msg = "Arquivos de vídeo e imagem inválidos.";
+            $msg = "Nenhum arquivo de vídeo ou imagem enviado.";
         }
-    } else {
-        $msg = "Nenhum arquivo de vídeo ou imagem enviado.";
-    }
 
-    return redirect()->route('video.uploadForm')->with('error', $msg);
-}
+        return view('upload_video')->with('msg', $msg);
+    }
 
 
     public function showUploadForm()
@@ -139,4 +150,38 @@ public function uploadVideo(Request $request)
     }
 
 
+    public function likeVideo(Request $request)
+    {
+        // Obtém o ID do vídeo do formulário Ajax
+        $videoId = $request->input('video_id');
+        $user = auth()->user();
+
+        $isFavorito = Favorito::where('user_id', $user->id)->where('video_id', $videoId)->first();
+
+        if ($isFavorito){
+            // Remove a curtida
+            Favorito::where('user_id', $user->id)->where('video_id', $videoId)->delete();
+    
+            // Decrementa o número de likes no vídeo
+            $video = Video::find($videoId);
+            $video->likes -= 1;
+            $video->save();
+            $numeroCurtidas = Video::find($videoId)->likes;
+            $mensagem = 'Vídeo descurtido com sucesso!';
+            return response()->json(['likes' => $numeroCurtidas, 'mensagem' => $mensagem]);
+        } else {
+            Video::where('id', $videoId)->increment('likes');
+
+            $like = new Favorito();
+            $like->video_id = $videoId;
+            $like->user_id = $user->id;
+            $like->save();
+            $numeroCurtidas = Video::find($videoId)->likes;
+            $mensagem = 'Vídeo curtido com sucesso!';
+
+            return response()->json(['likes' => $numeroCurtidas, 'mensagem' => $mensagem]);
+        }
+
+        // Retorna a resposta em formato JSON ou outra lógica desejada
+    }
 }

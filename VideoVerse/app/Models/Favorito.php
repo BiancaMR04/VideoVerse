@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Favorito extends Model
 {
     use HasFactory;
+    protected $table = 'favorites';
 
     protected $fillable = [
         'user_id', // ID do usuário que marcou como favorito
