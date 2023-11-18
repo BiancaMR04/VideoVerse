@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Seguidor;
 use App\Models\Video;
+use App\Models\Canal; 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Supabase\SupabaseClient;
@@ -12,18 +14,38 @@ use App\Models\User;
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
-use App\Models\Canal; // Certifique-se de importar o modelo Canal
-
 class MeuCanalController extends Controller
 {
     public function view()
     {
         // Busque os dados do canal do usuário autenticado (ou como desejar obtê-los)
         $canal = Canal::where('user_id', auth()->id())->first();
-        $temCanal = Canal::where('user_id', auth()->id())->exists();
         $videos = Video::where('canal_id', $canal->id)->get();
 
-        return view('meu_canal', compact('canal', 'temCanal', 'videos'));
+        return view('meu_canal', compact('canal', 'videos'));
+    }
+
+    public function viewCanal($canalId)
+    {
+        $canal = Canal::where('id', $canalId)->first();
+        $videos = Video::where('canal_id', $canal->id)->get();
+
+        $user = auth()->user();
+        if(auth()->check() && $user->canal->id == $canalId){
+            return view('meu_canal', compact('canal', 'videos'));
+        }
+        return view('view_canal', compact('canal', 'videos'));
+    }
+
+    public function viewInscrições()
+    {
+        $user = auth()->user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
+        $canaisInscritos = $user->subscribedChannels;
+        $inscricoes = Seguidor::where('user_id', $user->id)->get();
+        return view('view_inscricoes', compact('canaisInscritos', 'inscricoes'));
     }
 
     public function excluirVideo($videoId)
@@ -40,6 +62,39 @@ class MeuCanalController extends Controller
         } else {
             // Retorne uma resposta de erro ou redirecione para uma página de erro
             return redirect()->route('pagina.erro');
+        }
+    }
+
+    public function inscrever_se(Request $request)
+    {
+        $canalId = $request->input('canal_id');
+        $user = auth()->user();
+
+        $inscrito = Seguidor::where('user_id', $user->id)->where('canal_id', $canalId)->first();
+
+        if ($inscrito){
+            // Remove a curtida
+            Seguidor::where('user_id', $user->id)->where('canal_id', $canalId)->delete();
+    
+            // Decrementa o número de likes no vídeo
+            $canal = Canal::find($canalId);
+            $canal->inscritos -= 1;
+            $canal->save();
+            $inscritos = Canal::find($canalId)->inscritos;
+            $mensagem = 'Deixou de seguir';
+
+            return response()->json(['inscritos' => $inscritos, 'mensagem' => $mensagem]);
+        } else {
+            Canal::where('id', $canalId)->increment('inscritos');
+
+            $seguidor = new Seguidor();
+            $seguidor->canal_id = $canalId;
+            $seguidor->user_id = $user->id;
+            $seguidor->save();
+            $inscritos = Canal::find($canalId)->inscritos;
+            $mensagem = 'Seguiu';
+
+            return response()->json(['inscritos' => $inscritos, 'mensagem' => $mensagem]);
         }
     }
 

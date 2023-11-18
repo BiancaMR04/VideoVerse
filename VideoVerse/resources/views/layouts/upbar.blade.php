@@ -31,7 +31,7 @@
         height: 40px;
         border: none;
         outline: none;
-        transition: .4s ease-in-out;
+        transition: .2s ease-in-out;
         background-color: #252525;
         color: white;
         text-decoration: none;
