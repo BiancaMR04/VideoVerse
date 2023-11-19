@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewFollowerEvent;
 use App\Models\Seguidor;
 use App\Models\Video;
 use App\Models\Canal; 
@@ -93,6 +94,7 @@ class MeuCanalController extends Controller
             $seguidor->save();
             $inscritos = Canal::find($canalId)->inscritos;
             $mensagem = 'Seguiu';
+            event(new NewFollowerEvent($seguidor));
 
             return response()->json(['inscritos' => $inscritos, 'mensagem' => $mensagem]);
         }
