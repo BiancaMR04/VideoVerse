@@ -107,7 +107,7 @@
     <!-- Seção de Vídeos -->
     <div>
     @forelse ($videos as $video)
-    <a href="{{ route('video.show', ['id' => $video->id]) }}">
+    <a href="{{ route('video.show', ['id' => $video->id]) }}" class="information_video">
         <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
         <div class="info">
             <h2>{{ $video->titulo }}</h2>
