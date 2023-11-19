@@ -246,13 +246,20 @@ h1{
     }
     
 
-    .information {
+    .information_canal {
         display: flex;
         align-items: center;
         gap: 20px; /* Espaçamento entre a imagem e as informações */
         margin-bottom: 20px; /* Espaçamento inferior entre os blocos de informações */
+        align-self: center; /* Centraliza verticalmente */
     }
-    
+    .information_video {
+        display: flex;
+        align-items: center;
+        gap: 20px; /* Espaçamento entre a imagem e as informações */
+        margin-bottom: 20px; /* Espaçamento inferior entre os blocos de informações */
+        align-self: center; /* Centraliza verticalmente */
+    }
     .info {
         color: #fff; /* Cor do texto das informações */
     }
