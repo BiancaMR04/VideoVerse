@@ -23,7 +23,7 @@ body {
 }
 
 .sidebar:hover {
-    width: 250px;
+    width: 210px;
 }
 
 .icon-container {
@@ -31,13 +31,17 @@ body {
     display: flex;
     align-items: center;
     padding: 10px;
-    width: 100%;
-    margin-left: 50px;
+    width: 62%;
+    margin-left: 40px;
     margin-top: -1px;
     border-radius: 15px;
     cursor: pointer;
+    transition: margin 0.3s ease;
 }
 
+.icon-container:hover {
+    background-color: #1a1a1a; /* Cor de destaque ao passar o mouse */
+}
 
 .icon {
     color: white;
@@ -53,13 +57,10 @@ body {
     color: white;
     font-size: 20px;
     opacity: 0; /* Começa com opacidade 0 para ficar escondido */
-    transform: translateX(-10px); /* Move 10px para a esquerda */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Transição suave de 0.3 segundos */
 }
 
 .icon-container:hover .icon-label {
     opacity: 1; /* Torna a label visível */
-    transform: translateX(0); /* Retorna à posição original */
 }
 
 .image {
@@ -200,10 +201,6 @@ body {
     width: 370px; /* Largura fixa para todos os vídeos */
     margin-right: 5px; /* Reduz a margem direita entre as colunas */
     margin: 10px; /* Espaçamento entre os vídeos */
-}
-
-.video a {
-    text-decoration: none;
 }
 
 .video-thumbnail {
