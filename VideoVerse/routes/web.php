@@ -87,3 +87,6 @@ Route::post('/monetizacao-cadastro', 'MonetizacaoController@cadastro')->name('mo
 Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar_valor');
 
 Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.favorite');
+
+Route::get('/denunciar/{id}', 'DenunciasController@view')->name('denuncia.motivo');
+Route::post('/denunciar/{id}', 'DenunciasController@denunciar')->name('denuncia_concluida');

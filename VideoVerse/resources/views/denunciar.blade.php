@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Denúnciar Vídeo</title>
     <link rel="stylesheet" href="VideoVerse/resources/css/styles.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/criar_canal.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/denunciar.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -15,9 +16,9 @@
 @extends('layouts.sidebar')
 <div class="report-modal" id="reportModal">
     <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
         <h2>Denunciar Vídeo</h2>
-        <form action="#" method="post" id="reportForm">
+        <form action="denuncia_concluida" method="post" id="reportForm">
+            @csrf
             <label>Motivo da Denúncia:</label><br>
             <input type="radio" id="conteudo-sexual" name="reason" value="conteudo-sexual">
             <label for="conteudo-sexual">Conteúdo Sexual</label><br>

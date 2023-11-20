@@ -3,11 +3,10 @@ body {
     padding: 0;
     font-family: 'Questrial', sans-serif;
     background-color: #f0f0f0;
-
 }
 
 .sidebar {
-    width: 120px;
+    width: 100px;
     background: linear-gradient(to botton, #160F2E, #2A163A);
     position: fixed;
     top: 0;
@@ -17,13 +16,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    transition: width 0.3s ease;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
-}
-
-.sidebar:hover {
-    width: 210px;
+    transition: margin 0.3s ease;
 }
 
 .icon-container {
@@ -34,13 +27,15 @@ body {
     width: 62%;
     margin-left: 40px;
     margin-top: -1px;
-    border-radius: 15px;
+    border-radius: 25px;
+    box-sizing: border-box;
     cursor: pointer;
     transition: margin 0.3s ease;
 }
 
 .icon-container:hover {
-    background-color: #1a1a1a; /* Cor de destaque ao passar o mouse */
+    background: linear-gradient(-45deg, #4F6ED9 0%, #B42DF4 100% );
+    margin-right: -25px;
 }
 
 .icon {
@@ -74,15 +69,15 @@ body {
 /* Estilo para o ícone de lupa */
 .search-icon {
     position: absolute;
+    top: 28px;
     top: 32px;
     left: 1240px;
     color: #ffffff;
     z-index: 1000;
 }
-
 .btn {
     position: absolute;
-    top: 15px; /* Ajuste a distância do topo conforme necessário */
+    top: 20px; /* Ajuste a distância do topo conforme necessário */
     right: 20px; /* Ajuste a distância da direita conforme necessário */
 }
 
@@ -91,10 +86,10 @@ body {
     padding: 0.5em;
     padding-left: 2em;
     padding-right: 2em;
-    margin-top: -10px;
+    margin-top: 0px;
     border-radius: 5px;
     width: 130px;
-    height: 50px;
+    height: 40px;
     border: none;
     outline: none;
     transition: .4s ease-in-out;
@@ -108,17 +103,7 @@ body {
     color: #e8e8e8;
 }
 
-.caixadebusca{
-    font-size: 16px;
-    border-radius: 10.166px;
-    border: 1.017px solid #B42DF4;
-    background: #160F2E;
-    width: 550px;
-    color: white;
-    height: 28px;
-    margin-left: 710px;
-    margin-top: 15px;
-}
+
 /* Estilo da imagem de perfil */
 #profile-image {
     width: 50px;
@@ -147,7 +132,6 @@ body {
     display: inline-block;
     
 }
-
 
 /* Estilo do conteúdo do dropdown */
 .dropdown-content {
@@ -184,6 +168,9 @@ body {
     transform: translateY(0); 
 }
 
+.video a{
+    text-decoration: none;
+}
 
 
 .video-grid {
@@ -203,27 +190,29 @@ body {
     margin: 10px; /* Espaçamento entre os vídeos */
 }
 
+.video a {
+    text-decoration: none;
+}
+
 .video-thumbnail {
     width: 100%; /* A imagem preencherá todo o espaço disponível na div */
     height: auto; /* A altura se ajustará automaticamente para manter a proporção */
-    border-radius: 5%;
+    border-radius: 10%;
+    transition: .3s ease-in-out;
+}
 
+.video:hover .video-thumbnail {
+    border-radius: 0;
 }
 
 .video-title {
     font-size: 20px; /* Tamanho da fonte para o título */
     margin: 5px 0; /* Espaçamento vertical para o título */
     color: #fff; /* Cor do texto do título */
-    text-decoration: none;
-
 }
 
 .video-info {
     font-size: 14px; /* Tamanho da fonte para as informações */
     margin: 3px 0; /* Espaçamento vertical para as informações */
     color: #999; /* Cor do texto das informações */
-    text-decoration: none;
-
 }
-
-        

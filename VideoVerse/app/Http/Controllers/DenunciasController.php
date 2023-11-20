@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class DenunciaController extends Controller
+class DenunciasController extends Controller
 {
     public function view()
     {
         // Retorne a view correspondente para o formulário de denúncia
-        return view('denuncia');
+        return view('denunciar');
     }
 
     public function denunciar(Request $request)
