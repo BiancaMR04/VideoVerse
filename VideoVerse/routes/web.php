@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroCanalController;
+use App\Http\Controllers\AdminController;
 
 
 
@@ -95,4 +96,6 @@ Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retir
 
 Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.favorite');
 
+Route::get('/usuarios', 'admController@listaUsuarios')->name('lista.usuarios');
+Route::delete('/usuarios/{id}', 'admController@excluirUsuario')->name('excluir.usuario');
 

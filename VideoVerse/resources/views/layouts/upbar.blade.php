@@ -115,14 +115,14 @@
                                         <a class="dropdown-item" href="{{ route('video.uploadForm') }}">
                                             {{ __('Upload de Vídeo') }}
                                         </a>
-                                    @else
                                         @if (Auth::user()->adm)
-                                            <a class="dropdown-item" href="{{ route('dashboard_adm') }}">
-                                                {{ __('Dashboard de Administrador') }}
-                                            </a>
-                                            <!-- Adicione outras opções específicas para administradores aqui -->
+                                    <a class="dropdown-item" href="{{ route('lista.usuarios') }}">Lista de Usuários</a>
                                         @endif
-                                        <a class="dropdown-item" href="{{ route('cadastro-canal') }}">
+                                    @else
+                                    @if (Auth::user()->adm)
+                                    <a class="dropdown-item" href="{{ route('lista.usuarios') }}">Lista de Usuários</a>
+                                        @endif
+                                    <a class="dropdown-item" href="{{ route('cadastro-canal') }}">
                                             {{ __('Criar Canal') }}
                                         </a>
                                     @endif
