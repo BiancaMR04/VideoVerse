@@ -12,12 +12,56 @@
     <!-- Fonts -->
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <style>
-        a{
-            text-decoration: none;
-        }
-        </style>
 </head>
+<style>
+    .btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    }
+
+    .button {
+        margin-right: 5px;
+        padding: 0.5em;
+        padding-left: 2em;
+        padding-right: 2em;
+        margin-top: -10px;
+        border-radius: 5px;
+        width: 140px;
+        height: 40px;
+        border: none;
+        outline: none;
+        transition: .2s ease-in-out;
+        background-color: #252525;
+        color: white;
+        text-decoration: none;
+    }
+
+    .button:hover {
+        background-color: #B42DF4;
+        color: white;
+    }
+
+    .dropdown-item {
+        color: white;
+        transition: .4s ease-in-out;
+    }
+
+    .dropdown-item:hover {
+        background-color: #B42DF4;
+        color: white;
+    }
+
+    .icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        margin-top: 3px;
+        margin-right: 10px;
+    }
+</style>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-purple shadow-sm">
@@ -30,7 +74,9 @@
     </div>
     <button type="submit">Pesquisar</button>
 </form>
+
         </div>
+
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -46,25 +92,22 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+                            <div class="btn">
+                                <a href="/login" class="button" >Entrar</a>
+                                <a href="/register" class="button" >Cadastre-se</a>
+                            </div>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('cadastro') }}">{{ __('Cadastrar-se') }}</a>
-                                </li>
-                            @endif
                         @else
+                            @if (Auth::user()->canal)
+                                <div class="icon" style="background-image: url('/uploads/{{ Auth::user()->canal->imagem_perfil }}');"></div>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    @if(Auth::user()->canal)
+                                <div style="background-color: #252525;" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if (Auth::user()->canal)
                                     <a class="dropdown-item" href="{{ route('meu-canal') }}">
                                         {{ __('Meu Canal') }}
                                     </a>

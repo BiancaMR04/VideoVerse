@@ -26,27 +26,11 @@ class HomeController extends Controller
 
      public function index()
      {
-         $temCanal = Canal::where('user_id', auth()->id())->exists();
          $publicVideos = Video::where('estado_video', 'publico')->get();
-         return view('home', compact('temCanal', 'publicVideos')); // Alterado de 'publico' para 'publicVideos'
+         $publicVideos = $publicVideos->sortByDesc('visualizacao');
+         return view('home', compact('publicVideos'));
      }
      
-
-    public function meuCanal()
-    {
-        // Lógica para obter informações do canal do usuário
-        $userCanal = Canal::where('user_id', auth()->id())->first();
-
-        // Verifique se o canal do usuário existe
-        if ($userCanal) {
-            // Se o canal existe, você pode passar os dados do canal para a view
-            return view('meu_canal', compact('userCanal'));
-        } else {
-            // Se o canal não existe, você pode redirecionar o usuário para a página de criação do canal
-            return redirect()->route('criar_canal');
-
-        }
-    }
     public function criarCanal()
     {
         // Lógica para verificar se o usuário já possui um canal

@@ -14,19 +14,70 @@ body {
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    margin-left: -20rem;
+    margin-top: 50px;
+    margin-left: -10rem;
 }
 
 .video-container video {
-    width: 1100px; /* Defina o tamanho desejado */
-    height: 700px; /* Defina o tamanho desejado */
+    width: 1100px; 
+    height: 700px; 
     margin-left: 15rem;
+}
+
+.description-box {
+    background-color: #2c2c2c; 
+    padding: 4px;
+    padding-bottom: -5px;
+    border-radius: 8px;
+    width: 1100px; 
+    display: inline-block; 
+    vertical-align: top; 
+}
+
+.channel-info {
+    margin-top: 15px; 
+}
+
+.channel-avatar {
+    display: inline-block;
+    vertical-align: middle; 
+    width: 50px; /* Defina a largura desejada */
+    height: 50px; /* Defina a altura desejada */
+    border-radius: 50%; /* Cria um círculo com metade do valor da largura/altura */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */
+}
+
+.channel-name {
+    display: inline-block; 
+    margin-left: 13px; 
+    margin-top: 7px;
+    color: white;
+}
+
+.like-button {
+    background-color: #272727; 
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 1000px;
+    margin-top: -60px; 
+    transition-duration: 0.4s;
+}
+.like-button:hover {
+    background-color: #B42DF4; 
+    color: white; 
+}
+.like-button.curtido {
+    background-color: #B42DF4; 
+    color: white; 
 }
 
 .comment-container {
     flex: 1;
     margin-left: 5rem;
-    margin-top: 5rem;
+    margin-top: 3rem;
 }
 
 .comment-container h2 {
@@ -34,21 +85,29 @@ body {
 }
 
 .comment-container form {
+    display: flex;
     text-align: center;
-}
-
-.comment-container form textarea {
-    width: 300px;
-    max-width: 100%;
 }
 
 .comment-container form button {
     margin-top: 10px;
-    margin-left: -8rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #1A1818; 
+    color: white; 
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.comment-container form button:hover {
+    background-color: #B42DF4; 
+    color: white; 
 }
 
 .comment {
-    display: flex;
     align-items: center;
     margin-bottom: 10px;
     margin-left: 0rem;
@@ -57,8 +116,37 @@ body {
 
 .comment p {
     margin: 0;
+    display: inline-block;
+    width: 1100px; /* Defina a largura que deseja */
 }
+
 
 .comment p:first-child {
     margin-right: 10px;
+}
+
+.comment-username {
+    color: white;
+    margin-left: 13px;
+}
+
+.comment-details {
+    color: grey;
+    margin-left: 5px;
+}
+
+.leave-comment {
+    font-size: 16px; 
+    border-radius: 5px; 
+    border: none;
+    border-bottom: 1.017px solid rgba(255, 255, 255, 0.10);
+    background: #1A1818;
+    width: 550px;
+    color: rgb(255,255,255);
+    width: 1020px;
+    margin-top: 10px;
+    display: block;
+    outline: none;
+    resize: none;
+    min-height: 35px;
 }

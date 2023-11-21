@@ -1,0 +1,66 @@
+.channel-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-gap: 20px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    gap:10px;
+    margin-left: 180px; 
+}
+
+.channel {
+    width: 300px; /* Largura fixa para todos os vídeos */
+    margin-right: 0px; /* Reduz a margem direita entre as colunas */
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    height: 220px;
+    border-radius: 25px;
+    transition: .7s ease-in;
+}
+
+.channel a {
+    text-decoration: none;
+}
+
+.channel:hover {
+    border: #b42df4 1px solid;
+}
+
+.foto-do-canal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    margin-top: 5px;
+    margin-left: 115px;
+    height: auto; 
+    border-radius: 50%;
+    transition: .4s ease-in-out;
+}
+
+.channel:hover .foto-do-canal {
+    width: 120px;
+    border: #b42df4 2px solid;
+    margin-left: 95px;
+}
+
+.titulo-canal {
+    align-self: center;
+    font-size: 20px;
+    margin: 10px 0; /* Espaçamento vertical para o título */
+    color: #fff; /* Cor do texto do título */
+    display: flex; 
+    justify-content: center; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.canal-info {
+    font-size: 14px; /* Tamanho da fonte para as informações */
+    margin: 3px 0; /* Espaçamento vertical para as informações */
+    color: #999; /* Cor do texto das informações */
+    display: flex; 
+    justify-content: center; 
+}

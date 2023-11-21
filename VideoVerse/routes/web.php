@@ -24,13 +24,12 @@ use App\Http\Controllers\CadastroCanalController;
 */
 
 //rotas da home
-Route::get('/', 'VideoController@index')->name('home');
+Route::get('/', 'VideoController@index')->name('visitante');
 Route::get('/home', 'VideoController@index2')->name('home');
 
 Route::view('/login', 'login')->name('login');
 
-Route::post('/cadastro', 'CadastroController@cadastro')-> name('cadastro');
-Route::get('/cadastro', 'CadastroController@view')-> name('cadastro');
+Route::view('/register', 'register')->name('register');
 
 //rotas para monetizacao
 Route::get('/monetizacao', 'MonetizacaoController@view')->name('monetizacao');
@@ -57,26 +56,41 @@ Auth::routes(['verify' => true]);
 
 //rotas visualizar vídeo
 Route::get('/videos/{id}', 'VideoController@show')->name('video.show');
-Route::post('/favorite/{video}', 'VideoController@favorite')->name('video.favorite');
 Route::get('/videos/{video}', 'VideoController@showComment')->name('video.comment');
 Route::post('/comment/store', 'VideoController@storeComment')->name('comment.store');
+
+//videos curtidos
+Route::post('/video/like/{id}', 'VideoController@likeVideo')->name('video.like')->middleware('auth');
+Route::post('/video/like', 'VideoController@likeVideo')->name('video.like')->middleware('auth');
+Route::get('/favoritos', 'VideoController@view_favoritos')->name('view_favoritos')->middleware('auth');
+
+Route::post('/canal/inscrever-se', 'MeuCanalController@inscrever_se')->name('inscrever.se');
+Route::get('/inscricoes', 'MeuCanalController@viewInscrições')->name('view.inscricoes')->middleware('auth');
 
 Route::delete('/meu-canal/excluir-video/{videoId}', 'MeuCanalController@excluirVideo')->name('excluir.video');
 //Route::get('/canal/{canalId}/videos', 'MeuCanalController@listarVideosDoCanal')->name('meu-canal');
 
+Route::get('/canal/{canalId}', 'MeuCanalController@viewCanal')->name('view.canal');
 
 Route::get('/meu-canal', 'MeuCanalController@view')->name('meu-canal')->middleware('auth');
 Route::get('/criar-canal', [HomeController::class, 'criarCanal'])->name('criar-canal')->middleware('auth');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 
-Route::post('/updateViewCount/{video}', 'VideoController@updateViewCount');
+Route::post('/updateViewCount/{id}', 'VideoController@updateViewCount')->name('updateViewCount');
 
 Route::get('/monetizacao', 'MonetizacaoController@index')->name('monetizacao.index');
 
-Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar.valor');
 
 Route::get('/videos/{id}', 'VideoController@show')->name('video.show')->where('id', '[0-9]+');
 Route::post('/pesquisar', 'SearchController@pesquisar')->name('pesquisar');
 
+
+
+Route::get('/monetizacao-cadastro', 'MonetizacaoController@cadastroView')->name('monetizacao_cadastro');
+Route::post('/monetizacao-cadastro', 'MonetizacaoController@cadastro')->name('monetizacao_cadastro');
+
+Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar_valor');
+
+Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.favorite');
 
