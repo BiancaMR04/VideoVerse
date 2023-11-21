@@ -23,31 +23,32 @@ class DenunciasController extends Controller
         // Obtenha os dados do formulário
         $id_video = $request->input('id_video');
         $outro = $request->input('outro');
-        $data_denuncia = Carbon::now()->toDateString();
-        $status = false; 
-        $denuncia = $request->input('reason');
+        $status = "pendente"; 
+        $denuncias = $request->input('reason');
 
+        /*
         $request->validate([
             'id_video' => 'required|numeric',
             'outro' => 'nullable|string|max:255',
             'reason' => 'required|string|max:255',
-        ]);
+        ]);*/
 
-        try {
+       /* try {*/
             // Insira os dados no banco de dados
             $denuncia = new Denuncia();
-            $denuncia->id_video = $id_video;
+            $denuncia->video_id = $id_video;
+            $denuncia->user_id = auth()->user()->id;
             $denuncia->outro = $outro;
-            $denuncia->data = $data_denuncia;
-            $denuncia->denuncia = $denuncia;    
+            $denuncia->data_denuncia = now();
+            $denuncia->denuncia = $denuncias;    
             $denuncia->status = $status;
 
             $denuncia->save(); // Salvar a denúncia
 
-            return redirect()->route('denuncia_concluida')->with('success', 'Denúncia enviada com sucesso!');
+            return redirect()->route('home')->with('success', 'Denúncia enviada com sucesso!');
 
-        } catch (\Exception $e) {
+       /* } catch (\Exception $e) {
             return redirect()->route('denuncia.motivo', ['id' => $id_video])->with('error', 'Erro ao processar denúncia: ' . $e->getMessage());
-        }
+        }*/
     }
 }

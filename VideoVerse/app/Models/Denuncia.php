@@ -11,7 +11,8 @@ class Denuncia extends Model
     protected $table = 'denuncias'; 
 
     protected $fillable = [
-        'id_video',
+        'video_id',
+        'user_id',
         'denuncia',
         'outro',
         'data_denuncia',
