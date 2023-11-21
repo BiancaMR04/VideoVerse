@@ -13,7 +13,6 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $videos = Video::all();
         $publicVideos = Video::where('estado_video', 'publico')->get();
         return view('home_visitante', compact('publicVideos'));    
     }

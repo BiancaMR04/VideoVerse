@@ -68,7 +68,6 @@ Route::post('/canal/inscrever-se', 'MeuCanalController@inscrever_se')->name('ins
 Route::get('/inscricoes', 'MeuCanalController@viewInscrições')->name('view.inscricoes')->middleware('auth');
 
 Route::delete('/meu-canal/excluir-video/{videoId}', 'MeuCanalController@excluirVideo')->name('excluir.video');
-//Route::get('/canal/{canalId}/videos', 'MeuCanalController@listarVideosDoCanal')->name('meu-canal');
 
 Route::get('/canal/{canalId}', 'MeuCanalController@viewCanal')->name('view.canal');
 

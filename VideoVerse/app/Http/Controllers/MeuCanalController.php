@@ -40,9 +40,6 @@ class MeuCanalController extends Controller
     public function viewInscrições()
     {
         $user = auth()->user();
-        if (!$user) {
-            return redirect()->route('login');
-        }
         $canaisInscritos = $user->subscribedChannels;
         $inscricoes = Seguidor::where('user_id', $user->id)->get();
         return view('view_inscricoes', compact('canaisInscritos', 'inscricoes'));
@@ -96,22 +93,6 @@ class MeuCanalController extends Controller
 
             return response()->json(['inscritos' => $inscritos, 'mensagem' => $mensagem]);
         }
-    }
-
-    public function listarVideosDoCanal($canalId)
-    {
-        // Recupera o canal com base no ID
-        $canal = Canal::find($canalId);
-    
-        if (!$canal) {
-            // caso canal não encontrado
-            return redirect()->route('pagina.erro');
-        }
-    
-        // Recupera todos os vídeos pertencentes ao canal
-        $videos = Video::where('canal_id', $canal->id)->get();
-    
-        return view('meu_canal', compact('canal', 'videos'));
     }
     
 }

@@ -54,6 +54,11 @@ body {
     opacity: 0; /* Começa com opacidade 0 para ficar escondido */
 }
 
+.icon-label:hover .icon-container {
+    background: linear-gradient(144deg, #411C48, #965C97, #9046C2 50%) ; /* Cor de destaque ao passar o mouse */
+    margin-right: -25px;
+}
+
 .icon-container:hover .icon-label {
     opacity: 1; /* Torna a label visível */
 }
