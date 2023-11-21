@@ -17,9 +17,20 @@
 <div class="report-modal" id="reportModal">
     <div class="modal-content">
         <h2>Denunciar Vídeo</h2>
-        <form action="denuncia_concluida" method="post" id="reportForm">
+        <form action="{{ route('denuncia_concluida', ['id' => $video->id]) }}" method="post" id="reportForm">
             @csrf
             <label>Motivo da Denúncia:</label><br>
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul style="margin-bottom: 0px;">
+                        @foreach($errors->all() as $error)
+                            <li style="list-style: none;">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <input type="hidden" name="id_video" value="{{ $video->id }}">
+
             <input type="radio" id="conteudo-sexual" name="reason" value="conteudo-sexual">
             <label for="conteudo-sexual">Conteúdo Sexual</label><br>
             <input type="radio" id="violento-repulsivo" name="reason" value="violento-repulsivo">
