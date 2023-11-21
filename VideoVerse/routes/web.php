@@ -26,6 +26,7 @@ use App\Http\Controllers\CadastroCanalController;
 //rotas da home
 Route::get('/', 'VideoController@index')->name('visitante');
 Route::get('/home', 'VideoController@index2')->name('home');
+Route::get('/dashboard_adm', 'VideoController@index2')->name('dashboard_adm');
 
 Route::view('/login', 'login')->name('login');
 
@@ -93,4 +94,5 @@ Route::post('/monetizacao-cadastro', 'MonetizacaoController@cadastro')->name('mo
 Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar_valor');
 
 Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.favorite');
+
 
