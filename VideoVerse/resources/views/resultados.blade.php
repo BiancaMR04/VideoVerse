@@ -87,7 +87,7 @@
 
 <div class="content">
 <!-- Exibição de vídeos -->
-    <h1>Resultados da Pesquisa para "{{ $query }}"</h1>
+    <h1 style="color: white">Resultados da Pesquisa para "{{ $query }}"</h1>
 <!-- Exibição de canal -->
 <div class="content">
 
@@ -101,7 +101,7 @@
         </div>
     </a>
     @empty
-        <p>Nenhum canal encontrado.</p>
+        <p style="color:white; font-size:25px ">Nenhum canal encontrado.</p>
     @endforelse
 
     <!-- Seção de Vídeos -->
@@ -117,7 +117,7 @@
         </div>
     </a>
     @empty
-        <p>Nenhum vídeo encontrado.</p>
+        <p style="color:white; font-size:25px">Nenhum vídeo encontrado.</p>
     @endforelse
 </div>
 </body>

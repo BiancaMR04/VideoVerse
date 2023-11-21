@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\CadastroCanalController;
+use App\Http\Controllers\AdminController;
 
 
 
@@ -26,6 +27,7 @@ use App\Http\Controllers\CadastroCanalController;
 //rotas da home
 Route::get('/', 'VideoController@index')->name('visitante');
 Route::get('/home', 'VideoController@index2')->name('home');
+Route::get('/dashboard_adm', 'VideoController@index2')->name('dashboard_adm');
 
 Route::view('/login', 'login')->name('login');
 
@@ -93,4 +95,7 @@ Route::post('/monetizacao-cadastro', 'MonetizacaoController@cadastro')->name('mo
 Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar_valor');
 
 Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.favorite');
+
+Route::get('/usuarios', 'admController@listaUsuarios')->name('lista.usuarios');
+Route::delete('/usuarios/{id}', 'admController@excluirUsuario')->name('excluir.usuario');
 

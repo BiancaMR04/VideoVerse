@@ -183,9 +183,8 @@ a{
 }
 
 h1{
-    color: white
+    color: #fff;
 }
-
 .video-grid {
     display: grid;
     grid-template-columns: repeat(3, 33%);
@@ -268,4 +267,5 @@ h1{
     .info h2,
     .info p {
         margin: 5px 0; /* Espaçamento entre os elementos de texto */
+        color: #fff;
     }

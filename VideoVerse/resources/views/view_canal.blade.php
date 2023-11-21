@@ -57,7 +57,8 @@
                             <p class="video-info">Publicado {{ \Carbon\Carbon::parse($video->data)->format('d/m/Y') }} - {{ $video->visualizacao }} visualizações</p>
                         </a>
                     </div>
-                    <div class="dropdown">
+                    @if (auth()->check())
+                            <div class="dropdown">
                         <button class="button-excluir dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM128,72a12,12,0,1,0-12-12A12,12,0,0,0,128,72Zm0,112a12,12,0,1,0,12,12A12,12,0,0,0,128,184Z"></path>
@@ -76,6 +77,7 @@
                             </button>
                         </div>
                     </div>
+                    @endif
                 @endforeach
             </div>
         @else

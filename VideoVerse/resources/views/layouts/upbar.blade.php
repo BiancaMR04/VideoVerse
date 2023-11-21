@@ -59,7 +59,7 @@
         background-size: cover;
         background-position: center;
         margin-top: 3px;
-        margin-right: 10px;
+        margin-right: 40px;
     }
 </style>
 <body>
@@ -67,13 +67,12 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-purple shadow-sm">
 
         <form action="{{ route('pesquisar') }}" method="POST">
-    @csrf
-    <div class="col-xl-8">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" name="query" class="caixadebusca" placeholder="Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
-    </div>
-    <button type="submit">Pesquisar</button>
-</form>
+        @csrf
+        <div class="col-xl-8">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" name="query" class="caixadebusca" placeholder="Pesquisar..." autocomplete="on" style="font-family: 'Questrial', sans-serif; font-size: 16px; border-radius: 10.166px;border: 1.017px solid rgba(255, 255, 255, 0.10);background: #323232;width: 550px;color: rgb(255,255,255);height: 26px;margin-left: 710px;margin-top: 20px;">
+        </div>
+        </form>
 
         </div>
 
@@ -82,7 +81,6 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
@@ -108,23 +106,31 @@
 
                                 <div style="background-color: #252525;" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     @if (Auth::user()->canal)
-                                    <a class="dropdown-item" href="{{ route('meu-canal') }}">
-                                        {{ __('Meu Canal') }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('monetizacao') }}">
-                                        {{ __('Monetização') }}
-                                    </a>  
-                                    <a class="dropdown-item" href="{{ route('video.uploadForm') }}">
-                                        {{ __('Upload de Vídeo') }}
-                                    </a>
-                                @else
+                                        <a class="dropdown-item" href="{{ route('meu-canal') }}">
+                                            {{ __('Meu Canal') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('monetizacao') }}">
+                                            {{ __('Monetização') }}
+                                        </a>  
+                                        <a class="dropdown-item" href="{{ route('video.uploadForm') }}">
+                                            {{ __('Upload de Vídeo') }}
+                                        </a>
+                                        @if (Auth::user()->adm)
+                                    <a class="dropdown-item" href="{{ route('lista.usuarios') }}">Lista de Usuários</a>
+                                        @endif
+                                    @else
+                                    @if (Auth::user()->adm)
+                                    <a class="dropdown-item" href="{{ route('lista.usuarios') }}">Lista de Usuários</a>
+                                        @endif
                                     <a class="dropdown-item" href="{{ route('cadastro-canal') }}">
-                                        {{ __('Criar Canal') }}
-                                    </a>
-                                @endif
+                                            {{ __('Criar Canal') }}
+                                        </a>
+                                    @endif
 
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <!-- Verificação para exibir opções específicas para administradores -->
+                                    
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Sair') }}
                                     </a>
 
