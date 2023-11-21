@@ -81,9 +81,16 @@ Route::post('/updateViewCount/{id}', 'VideoController@updateViewCount')->name('u
 
 Route::get('/monetizacao', 'MonetizacaoController@index')->name('monetizacao.index');
 
+
+Route::get('/videos/{id}', 'VideoController@show')->name('video.show')->where('id', '[0-9]+');
+Route::post('/pesquisar', 'SearchController@pesquisar')->name('pesquisar');
+
+
+
 Route::get('/monetizacao-cadastro', 'MonetizacaoController@cadastroView')->name('monetizacao_cadastro');
 Route::post('/monetizacao-cadastro', 'MonetizacaoController@cadastro')->name('monetizacao_cadastro');
 
 Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar_valor');
 
 Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.favorite');
+

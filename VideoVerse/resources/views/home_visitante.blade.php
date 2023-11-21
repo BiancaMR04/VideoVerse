@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
 </head>
 <body style="background: #1A1818;">
+
 @section('content')
 @extends('layouts.upbar')
 @extends('layouts.sidebar')
-   
+
     </div>
     <div class="content">
         <div class="video-grid">
@@ -29,5 +30,36 @@
         </div>
     </div>
     <script src="js/home.js"></script>
+
+    <script>
+        // Adicionando um evento de escuta para capturar a tecla Enter ou o clique no ícone de pesquisa
+        const input = document.getElementById('caixaDePesquisa');
+        input.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                fazerPesquisa();
+            }
+        });
+
+        // Função para enviar os dados da pesquisa para o backend
+        function fazerPesquisa() {
+            const termoDePesquisa = document.getElementById('caixaDePesquisa').value;
+            
+            // Aqui você pode enviar o termoDePesquisa para o backend usando fetch ou XMLHttpRequest
+            // Exemplo de uso do fetch:
+            fetch('/pesquisar', {
+                method: 'POST',
+                body: JSON.stringify({ termo: termoDePesquisa }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                // Lógica para lidar com a resposta do backend, se necessário
+            })
+            .catch(error => {
+                // Lidar com erros, se houver
+            });
+        }
+    </script>
 </body>
 @endsection
