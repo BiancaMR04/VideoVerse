@@ -34,9 +34,16 @@ cp .env.example .env
 php artisan key:generate
 ```
 
+```
+npm install
+```
+
 Para rodar a aplicação utilize o comando abaixo:
 
 ```
 php artisan serve
+```
+```
+npm run dev
 ```
 
