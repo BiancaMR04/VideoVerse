@@ -23,7 +23,7 @@
                 <div class="video-preview">
                     <video id="preview_video" width="960" height="600" controls></video>
                     <div class="upload">
-                        <input type="file" id="upload_video" name="upload_video" accept="video/*" onchange="previewFile()">
+                        <input type="file" id="upload_video" name="upload_video" accept="video/*" onchange="previewFile()" required>
                     </div>
                 </div>
                 <div class="formulario">

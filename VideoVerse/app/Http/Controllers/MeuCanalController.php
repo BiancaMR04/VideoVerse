@@ -18,7 +18,6 @@ class MeuCanalController extends Controller
 {
     public function view()
     {
-        // Busque os dados do canal do usuário autenticado (ou como desejar obtê-los)
         $canal = Canal::where('user_id', auth()->id())->first();
         $videos = Video::where('canal_id', $canal->id)->get();
 
@@ -35,6 +34,14 @@ class MeuCanalController extends Controller
             return view('meu_canal', compact('canal', 'videos'));
         }
         return view('view_canal', compact('canal', 'videos'));
+    }
+
+    public function meuCanal()
+    {
+        $canal = Canal::where('user_id', auth()->id())->first();
+        $videos = Video::where('canal_id', $canal->id)->get();
+
+        return view('meu_canal', compact('canal', 'videos'));
     }
 
     public function viewInscrições()

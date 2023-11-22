@@ -106,7 +106,7 @@
     color: white;
 }
 
-.btn-cancelar {
+.btn-cancelar-editar {
     margin-left: 30px;
     margin-top: 30px;
     padding: 0.5em;
@@ -123,7 +123,29 @@
     text-decoration: none;
 }
 
-.btn-cancelar:hover {
+.btn-cancelar-editar:hover {
+    background-color: #f42d2d;
+    color: white;
+}
+
+.btn-cancelar-criar {
+    margin-left: 30px;
+    margin-top: 30px;
+    padding: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+    border-radius: 5px;
+    width: 140px;
+    height: 40px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #252525;
+    color: white;
+    text-decoration: none;
+}
+
+.btn-cancelar-criar:hover {
     background-color: #f42d2d;
     color: white;
 }

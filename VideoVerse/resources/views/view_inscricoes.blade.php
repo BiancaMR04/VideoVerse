@@ -24,7 +24,7 @@
                             @php
                                 $dataInscricao = \Carbon\Carbon::parse($inscricao->created_at);
                                 $diasDesdeInscricao = $dataInscricao->diffInDays(\Carbon\Carbon::now());
-                                $mensagemInscricao = ($diasDesdeInscricao == 0) ? 'Inscrevu-se hoje' : "Inscrito há {$diasDesdeInscricao} dias";
+                                $mensagemInscricao = ($diasDesdeInscricao == 0) ? 'Inscreveu-se hoje' : "Inscrito há {$diasDesdeInscricao} dias";
                             @endphp
                             @if ($inscricao->canal_id == $canal->id)
                                 <p class="canal-info">{{ $mensagemInscricao }}</p>

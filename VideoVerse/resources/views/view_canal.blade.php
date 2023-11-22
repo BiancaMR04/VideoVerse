@@ -15,7 +15,6 @@
 
 <div class="perfil">
     @isset($canal)
-        <h1 class="title">{{ $canal->nome }}</h1>
             <div class="cover-photo" style="background-image: url('/uploads/{{ $canal->imagem_fundo }}');">
                 <div class="btn">
                     @csrf

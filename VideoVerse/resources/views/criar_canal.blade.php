@@ -12,6 +12,55 @@
 @section('content')
 @extends('layouts.upbar')
 @extends('layouts.sidebar')
+
+
+@if (Auth::user()->canal)
+<h1 class="title">Edite seu canal</h1>
+
+<div class="card">
+    <div class="card-body">
+        <form action="{{ route('editar_canal', ['id' => $canal->id]) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="foto-preview">
+                <input type="file" name="foto_fundo" id="foto_fundo" accept="image/*" style="display: none;">
+                <label for="foto_fundo" style="cursor: pointer;">
+                    <img id="preview_fundo" class="preview-fundo" src="{{ asset('uploads/' . $canal->imagem_fundo) }}">
+                    <p style="color: #767676; width: 152.281px; height: 11px; margin-top: 8px; line-height: normal; font-size: 14px; margin-right: -5px;">Alterar foto de fundo</p>
+                </label>
+            </div>
+
+            <input type="file" name="foto_perfil" id="foto_perfil" accept="image/*" style="display: none;">
+            <label for="foto_perfil" style="cursor: pointer;">
+                <img id="preview" class="preview-foto" src="{{ asset('uploads/' . $canal->imagem_perfil) }}">
+                <p style="line-height: normal; font-size: 14px; color: #767676; margin-top: 8px; margin-left: 250px;">Alterar foto de perfil</p>
+            </label>
+
+            @if (isset($msg))
+                <div style="color: red; margin-left: 25px;" role="alert">
+                    {{ $msg }}
+                </div>
+            @endif
+            <div>
+                <p style="color: #9c9c9c; font-size: 18px; margin-left: 20px;">Nome do canal</p>
+                <input type="text" class="nome" id="nome_canal" name="nome_canal" placeholder="{{ $canal->nome }}">
+            </div>
+
+            <div style="overflow-y: none;">
+                <p style="color: #9c9c9c; font-size: 18px; margin-left: 20px; margin-top: 20px;">Descrição</p>
+                <textarea class="descricao" id="descricao" name="descricao" rows="2" placeholder="{{ $canal->descricao }}"></textarea>
+            </div>
+
+            <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
+
+            <div>
+                <button type="button" class="btn-cancelar-editar">Cancelar</button>
+                <button type="submit" class="btn-criar">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@else
 <h1 class="title">Crie seu canal</h1>
 
 <div class="card">
@@ -46,16 +95,23 @@
             <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>
 
             <div>
-                <button type="button" href="/home" class="btn-cancelar">Cancelar</button>
+                <button type="button" class="btn-cancelar-criar">Cancelar</button>
                 <button type="submit" class="btn-criar">Criar Canal</button>
             </div>
         </form>
     </div>
 </div>
+@endif
 
 <script>
-    document.querySelector('.btn-cancelar').addEventListener('click', function() {
+    document.querySelector('.btn-cancelar-criar').addEventListener('click', function() {
     window.location.href = '/home';
+});
+</script>
+
+<script>
+    document.querySelector('.btn-cancelar-editar').addEventListener('click', function() {
+    window.location.href = '/meu-canal';
 });
 </script>
      
