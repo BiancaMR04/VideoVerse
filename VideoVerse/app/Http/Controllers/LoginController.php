@@ -47,7 +47,7 @@ class LoginController extends Controller
                 $msg = 'Senha incorreta!';
                 return view('login', ['msg' => $msg]);
             }else{
-                return redirect()->route('home');
+                return view('/');
             }
         } catch(\Exception $e){
             if($e->getMessage() == 'The email field must be a valid email address.'){

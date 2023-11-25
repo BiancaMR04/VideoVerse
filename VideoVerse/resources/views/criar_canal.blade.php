@@ -18,7 +18,7 @@
 <h1 class="title">Edite seu canal</h1>
 
 <div class="card">
-    <div class="card-body">
+    <div class="card-body @if (isset($msg)) error @endif">
         <form action="{{ route('editar_canal', ['id' => $canal->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="foto-preview">
@@ -42,12 +42,12 @@
             @endif
             <div>
                 <p style="color: #9c9c9c; font-size: 18px; margin-left: 20px;">Nome do canal</p>
-                <input type="text" class="nome" id="nome_canal" name="nome_canal" placeholder="{{ $canal->nome }}">
+                <input type="text" class="nome" id="nome_canal" name="nome_canal" value="{{ old('nome_canal', $canal->nome) }}" >
             </div>
 
             <div style="overflow-y: none;">
                 <p style="color: #9c9c9c; font-size: 18px; margin-left: 20px; margin-top: 20px;">Descrição</p>
-                <textarea class="descricao" id="descricao" name="descricao" rows="2" placeholder="{{ $canal->descricao }}"></textarea>
+                <textarea class="descricao" id="descricao" name="descricao" rows="4">{{ old('descricao', $canal->descricao) }}</textarea>
             </div>
 
             <div data-reflow-type="category-list" data-reflow-layout="unstyled"></div>

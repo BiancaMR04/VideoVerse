@@ -11,6 +11,7 @@ use Supabase\SupabaseClient;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
@@ -100,6 +101,28 @@ class MeuCanalController extends Controller
 
             return response()->json(['inscritos' => $inscritos, 'mensagem' => $mensagem]);
         }
+    }
+
+    public function excluirCanal()
+    {
+        $usuario = auth()->user();
+        $canal = $usuario->canal;
+
+        $videosDoCanal = Video::where('canal_id', $canal->id)->get();
+
+        foreach ($videosDoCanal as $video) {
+            Storage::delete($video->caminho);
+            Storage::delete($video->caminho_imagem);
+            
+            $video->delete();
+        }
+
+        Storage::delete('uploads/' . $canal->imagem_perfil);
+        Storage::delete('uploads/' . $canal->imagem_fundo);
+
+        $canal->delete();
+
+        return redirect()->route('home')->with('success', 'Conta excluída com sucesso.');
     }
     
 }

@@ -2,7 +2,7 @@
     color: rgba(255, 255, 255, 0.91); 
     font-family: 'Questrial', sans-serif; 
     text-shadow: 3px 3px 7px rgb(0, 0, 0); 
-    margin-left: 700px; 
+    margin-left: 800px; 
     margin-top: 50px;
 }
 
@@ -20,6 +20,15 @@
     background: #292929; 
     position: relative;
     align-items: flex-start; 
+    transition: .4s ease-in-out;
+}
+
+.card-body.error {
+    border: 1.5px solid red;
+}
+  
+.card-body:hover {
+    transform: scale(1.10);
 }
 
 .preview-fundo {
