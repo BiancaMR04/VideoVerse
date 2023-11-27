@@ -99,3 +99,9 @@ Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.
 Route::get('/usuarios', 'admController@listaUsuarios')->name('lista.usuarios');
 Route::delete('/usuarios/{id}', 'admController@excluirUsuario')->name('excluir.usuario');
 
+Route::get('/gerenciar', function () {
+    return view('gerenciar');
+})->name('gerenciar')->middleware('auth');
+
+Route::get('/gerenciar-videos', 'admController@listaVideos')->name('lista.videos');
+Route::delete('/excluir-video/{id}', 'AdmController@excluirVideo')->name('excluir.video');

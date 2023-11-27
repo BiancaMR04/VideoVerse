@@ -16,7 +16,7 @@
         <div class="video-grid">
             
             @foreach($users as $user)
-        <p style=" color: white;">{{ $user->name }} | <form method="POST" action="{{ route('excluir.usuario', ['id' => $user->id]) }}">
+            <p style=" color: white;">{{ $user->name }}  <form method="POST" action="{{ route('excluir.usuario', ['id' => $user->id]) }}">
             @csrf
             @method('DELETE')
             <button type="submit">Excluir</button>
