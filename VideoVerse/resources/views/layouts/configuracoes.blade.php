@@ -96,7 +96,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @if (Auth::user()->canal)
+            @if (Auth::user() && Auth::user()->canal)
                 <div class="modal-body">
                     Tem certeza de que deseja excluir seu canal?<br>
                     Ao confirmar, o canal {{ Auth::user()->canal->nome }} será excluído permanentemente, <br>
@@ -124,7 +124,7 @@
             </div>
             <div class="modal-footer">
                 <a href="" class="option-button" data-dismiss="modal">Cancelar</a>
-                <a href="" class="option-button option-button-cancelar">Confirmar</a>
+                <a href="{{ route('excluir.conta') }}" class="option-button option-button-cancelar">Confirmar</a>
             </div>
         </div>
     </div>

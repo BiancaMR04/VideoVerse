@@ -124,5 +124,30 @@ class MeuCanalController extends Controller
 
         return redirect()->route('home')->with('success', 'Conta excluída com sucesso.');
     }
+
+    public function excluirConta(){
+        $usuario = User::find(auth()->id());
+        
+        if($usuario->canal){
+            $canal = $usuario->canal;
+            $videosDoCanal = Video::where('canal_id', $canal->id)->get();
+            foreach ($videosDoCanal as $video) {
+                Storage::delete($video->caminho);
+                Storage::delete($video->caminho_imagem);
+                
+                $video->delete();
+            }
+
+            Storage::delete('uploads/' . $canal->imagem_perfil);
+            Storage::delete('uploads/' . $canal->imagem_fundo);
+
+            $canal->delete();
+        }
+
+        auth()->logout();
+        $usuario->delete();
+
+        return redirect()->route('home')->with('success', 'Conta excluída com sucesso.');
+    }
     
 }

@@ -22,6 +22,5 @@ class LoginController extends Controller
 
     public function index()
     {
-        $temCanal = Canal::where('user_id', auth()->id())->exists();
 }
 }

@@ -34,6 +34,15 @@
     border: 1px solid #B42DF4;
 }
 
+.card.has-error {
+    transition: .4s ease-in-out;
+}
+
+.card.has-error:hover {
+    transform: scale(1.05);
+    border: 1px solid red;
+}
+
 .campo {
     display: flex;
     align-items: center;

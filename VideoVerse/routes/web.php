@@ -24,6 +24,7 @@ use App\Http\Controllers\CadastroCanalController;
 */
 
 //rotas da home
+Route::get('/', [HomeController::class, 'index']);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::view('/login', 'login')->name('login');
 Route::view('/register', 'register')->name('register');
@@ -62,6 +63,8 @@ Route::get('/inscricoes', 'MeuCanalController@viewInscrições')->name('view.ins
 
 Route::delete('/meu-canal/excluir-video/{videoId}', 'MeuCanalController@excluirVideo')->name('excluir.video');
 Route::get('/canal/excluir', 'MeuCanalController@excluirCanal')->name('excluir.canal')->middleware('auth');
+
+Route::get('/excluir-conta', 'MeuCanalController@excluirConta')->name('excluir.conta')->middleware('auth');
 
 Route::get('/canal/{canalId}', 'MeuCanalController@viewCanal')->name('view.canal');
 Route::get('/meu-canal', 'MeuCanalController@meuCanal')->name('meu-canal')->middleware('auth');
