@@ -81,10 +81,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

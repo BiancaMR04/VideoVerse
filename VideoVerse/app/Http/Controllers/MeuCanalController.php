@@ -12,6 +12,7 @@ use Supabase\SupabaseClient;
 use Illuminate\Support\Facades\DB;
 use GuzzleHttp\Client;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
@@ -19,7 +20,6 @@ class MeuCanalController extends Controller
 {
     public function view()
     {
-        // Busque os dados do canal do usuário autenticado (ou como desejar obtê-los)
         $canal = Canal::where('user_id', auth()->id())->first();
         $videos = Video::where('canal_id', $canal->id)->get();
 
@@ -38,12 +38,17 @@ class MeuCanalController extends Controller
         return view('view_canal', compact('canal', 'videos'));
     }
 
+    public function meuCanal()
+    {
+        $canal = Canal::where('user_id', auth()->id())->first();
+        $videos = Video::where('canal_id', $canal->id)->get();
+
+        return view('meu_canal', compact('canal', 'videos'));
+    }
+
     public function viewInscrições()
     {
         $user = auth()->user();
-        if (!$user) {
-            return redirect()->route('login');
-        }
         $canaisInscritos = $user->subscribedChannels;
         $inscricoes = Seguidor::where('user_id', $user->id)->get();
         return view('view_inscricoes', compact('canaisInscritos', 'inscricoes'));
@@ -100,20 +105,51 @@ class MeuCanalController extends Controller
         }
     }
 
-    public function listarVideosDoCanal($canalId)
+    public function excluirCanal()
     {
-        // Recupera o canal com base no ID
-        $canal = Canal::find($canalId);
-    
-        if (!$canal) {
-            // caso canal não encontrado
-            return redirect()->route('pagina.erro');
+        $usuario = auth()->user();
+        $canal = $usuario->canal;
+
+        $videosDoCanal = Video::where('canal_id', $canal->id)->get();
+
+        foreach ($videosDoCanal as $video) {
+            Storage::delete($video->caminho);
+            Storage::delete($video->caminho_imagem);
+            
+            $video->delete();
         }
-    
-        // Recupera todos os vídeos pertencentes ao canal
-        $videos = Video::where('canal_id', $canal->id)->get();
-    
-        return view('meu_canal', compact('canal', 'videos'));
+
+        Storage::delete('uploads/' . $canal->imagem_perfil);
+        Storage::delete('uploads/' . $canal->imagem_fundo);
+
+        $canal->delete();
+
+        return redirect()->route('home')->with('success', 'Conta excluída com sucesso.');
+    }
+
+    public function excluirConta(){
+        $usuario = User::find(auth()->id());
+        
+        if($usuario->canal){
+            $canal = $usuario->canal;
+            $videosDoCanal = Video::where('canal_id', $canal->id)->get();
+            foreach ($videosDoCanal as $video) {
+                Storage::delete($video->caminho);
+                Storage::delete($video->caminho_imagem);
+                
+                $video->delete();
+            }
+
+            Storage::delete('uploads/' . $canal->imagem_perfil);
+            Storage::delete('uploads/' . $canal->imagem_fundo);
+
+            $canal->delete();
+        }
+
+        auth()->logout();
+        $usuario->delete();
+
+        return redirect()->route('home')->with('success', 'Conta excluída com sucesso.');
     }
     
 }

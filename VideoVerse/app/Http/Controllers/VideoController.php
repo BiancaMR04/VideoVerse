@@ -16,13 +16,6 @@ class VideoController extends Controller
     {
         $videos = Video::all();
         $publicVideos = Video::where('estado_video', 'publico')->get();
-        return view('home_visitante', compact('publicVideos'));    
-    }
-
-    public function index2()
-    {
-        $videos = Video::all();
-        $publicVideos = Video::where('estado_video', 'publico')->get();
         return view('home', ['videos' => $videos], compact('publicVideos'));
     }
 
@@ -66,13 +59,12 @@ class VideoController extends Controller
     public function show($id)
     {
         $video = Video::find($id);
-        $temCanal = Canal::where('user_id', auth()->id())->exists();
         $comments = $video->comments;
 
         // Recupere o canal associado a este vídeo
         $canal = $video->canal;
 
-        return view('view_video', compact('video', 'temCanal', 'comments', 'canal'));
+        return view('view_video', compact('video', 'comments', 'canal'));
     }
 
     public function updateViewCount($id)
@@ -149,20 +141,16 @@ class VideoController extends Controller
         return view('upload_video');
     }
 
-
     public function likeVideo(Request $request)
     {
-        // Obtém o ID do vídeo do formulário Ajax
         $videoId = $request->input('video_id');
         $user = auth()->user();
 
         $isFavorito = Favorito::where('user_id', $user->id)->where('video_id', $videoId)->first();
 
         if ($isFavorito){
-            // Remove a curtida
             Favorito::where('user_id', $user->id)->where('video_id', $videoId)->delete();
     
-            // Decrementa o número de likes no vídeo
             $video = Video::find($videoId);
             $video->likes -= 1;
             $video->save();
@@ -181,7 +169,5 @@ class VideoController extends Controller
 
             return response()->json(['likes' => $numeroCurtidas, 'mensagem' => $mensagem]);
         }
-
-        // Retorna a resposta em formato JSON ou outra lógica desejada
     }
 }

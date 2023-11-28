@@ -15,15 +15,9 @@
 
     <div class="perfil">
     @isset($canal)
-        <h1 class="title">Meu Canal</h1>
             <div class="cover-photo" style="background-image: url('/uploads/{{ $canal->imagem_fundo }}');">
                 <div class="btn">
-                    <button class="editar-canal-button">
-                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Edit-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0VkaXQtaWNvbi5wbmciLCJpYXQiOjE2OTU1MDE0MzUsImV4cCI6MTcyNzAzNzQzNX0.1E7_R6qzxJqlOdv2z0bmPoKpn19r8SlcFtPEguPrJEo&t=2023-09-23T20%3A37%3A15.323Z" width="26" height="26"></img>
-                </button>
-                <button class="editar-canal-button">
-                    <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Upload-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL1VwbG9hZC1pY29uLnBuZyIsImlhdCI6MTY5NTUwMTcxOSwiZXhwIjoxNzI3MDM3NzE5fQ.rsMTONXa74m3fJs6pSCoLqE0vLxsk5PCX5QCZT-kQvE&t=2023-09-23T20%3A42%3A00.023Z" width="26" height="26"></img>
-                </button>
+                    <button type="button" class="editar-canal-button">Editar Canal</button>
                 </div>
                 <div class="gray-background"></div>
                 <!-- Foto de Perfil Redonda -->
@@ -75,4 +69,9 @@
         @endif
 </body>
 <script src="meu_canal.js"></script>
+<script>
+    document.querySelector('.editar-canal-button').addEventListener('click', function() {
+    window.location.href = "{{ route('editar_canal', ['id' => $canal->id]) }}";
+});
+</script>
 @endsection
