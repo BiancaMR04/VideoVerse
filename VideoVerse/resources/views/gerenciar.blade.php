@@ -7,18 +7,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
 </head>
 <style>
-        body {
-            background: #1A1818;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
 
         .opções.admin {
-            text-align: center;
+            text-align: left;
             color: white;
+            margin-left: 200px;
         }
 
         .icons a {
@@ -26,16 +19,15 @@
             margin-bottom: 10px;
             color: white;
         }
+
         .element.style{
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
-            margin-left: 0px;
         }
     </style>
 <body style="background: #1A1818;">
- 
 @section('content')
 @extends('layouts.upbar')
 @extends('layouts.sidebar')

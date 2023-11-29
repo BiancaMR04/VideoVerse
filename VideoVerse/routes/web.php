@@ -26,7 +26,7 @@ use App\Http\Controllers\AdminController;
 
 //rotas da home
 Route::get('/', 'VideoController@index')->name('visitante');
-Route::get('/home', 'VideoController@index2')->name('home');
+Route::get('/home', 'VideoController@index')->name('home');
 Route::get('/dashboard_adm', 'VideoController@index2')->name('dashboard_adm');
 
 Route::view('/login', 'login')->name('login');
