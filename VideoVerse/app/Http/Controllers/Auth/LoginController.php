@@ -24,10 +24,6 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if ($user->adm == 'True') {
-            return redirect()->route('dashboard_adm');
-        }
-
         return redirect()->route('home');
     }
 }

@@ -49,7 +49,7 @@
                             </svg>
                         </button>
                             <div class="dropdown-menu">
-                                <form method="POST" action="{{ route('excluir.video', ['videoId' => $video->id]) }}">
+                                <form method="POST" action="{{ route('excluir.video', ['id' => $video->id]) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="dropdown-item">

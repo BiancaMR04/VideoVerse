@@ -96,8 +96,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Canal::class);
     }
+
+    public function adm() {
+        return $this->adm;
+    }
+    
     protected $attributes = [
-        'adm' => false, // Valor padrão para 'adm'
+        'adm' => false, 
     ];
 
 }

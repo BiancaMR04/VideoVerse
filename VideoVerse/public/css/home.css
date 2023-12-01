@@ -36,6 +36,7 @@ body {
 .icon-container:hover {
     background: linear-gradient(144deg, #411C48, #965C97, #9046C2 50%) ; /* Cor de destaque ao passar o mouse */
     margin-right: -25px;
+    text-decoration: none;
 }
 
 .icon {
@@ -160,15 +161,13 @@ body {
     display: block;
 }
 
-/* Estilo dos links do dropdown quando o mouse passa por cima */
 .dropdown-content a:hover {
     background-color: #B42DF4;
     border-radius: 10px;
 }
 
-/* Exibir o dropdown quando o mouse passa sobre a imagem */
 .dropdown:hover .dropdown-content {
-    opacity: 1; /* Torna o dropdown visível */
+    opacity: 1; 
     transform: translateY(0); 
 }
 
@@ -202,6 +201,10 @@ h1{
 }
 
 .video a {
+    text-decoration: none;
+}
+
+.video a:hover {
     text-decoration: none;
 }
 

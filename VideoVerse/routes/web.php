@@ -27,7 +27,6 @@ use App\Http\Controllers\AdminController;
 //rotas da home
 Route::get('/', 'VideoController@index')->name('visitante');
 Route::get('/home', 'VideoController@index')->name('home');
-Route::get('/dashboard_adm', 'VideoController@index2')->name('dashboard_adm');
 
 Route::view('/login', 'login')->name('login');
 Route::view('/register', 'register')->name('register');
@@ -98,9 +97,9 @@ Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.
 Route::get('/usuarios', 'admController@listaUsuarios')->name('lista.usuarios');
 Route::delete('/usuarios/{id}', 'admController@excluirUsuario')->name('excluir.usuario');
 
-Route::get('/gerenciar', function () {
-    return view('gerenciar');
-})->name('gerenciar')->middleware('auth');
+Route::get('/gerenciar', 'admController@index')->name('gerenciar')->middleware('auth');
+Route::post('/admy/{id}', 'admController@tornarAdm')->name('tornar.adm')->middleware('auth');
+Route::post('/admn/{id}', 'admController@removerAdm')->name('remover.adm')->middleware('auth');
 
 Route::get('/gerenciar-videos', 'admController@listaVideos')->name('lista.videos');
-Route::delete('/excluir-video/{id}', 'AdmController@excluirVideo')->name('excluir.video');
+Route::delete('/excluir-video/{id}', 'admController@excluirVideo')->name('excluir.video');
