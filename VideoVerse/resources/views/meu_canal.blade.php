@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
     
 </head>
-<body style="background: linear-gradient(144deg, #160F2E, #2A163A 50%, #411C48)";>
+<body style="background: #1A1818;">
 @section('content')
 @extends('layouts.upbar')
 @extends('layouts.sidebar')
 
     <div class="perfil">
     @isset($canal)
-        <h1 class="title">{{ $canal->nome }}</h1>
-            <div class="cover-photo" style="background-image: url('/uploads/{{ $canal->imagem_fundo }}'); ">
+            <div class="cover-photo" style="background-image: url('/uploads/{{ $canal->imagem_fundo }}');">
                 <div class="btn">
                     <button class="editar-canal-button">
                     <img src="https://hlqycjtucbyqizmxjbsq.supabase.co/storage/v1/object/sign/imagens/Edit-icon.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJpbWFnZW5zL0VkaXQtaWNvbi5wbmciLCJpYXQiOjE2OTU1MDE0MzUsImV4cCI6MTcyNzAzNzQzNX0.1E7_R6qzxJqlOdv2z0bmPoKpn19r8SlcFtPEguPrJEo&t=2023-09-23T20%3A37%3A15.323Z" width="26" height="26"></img>
@@ -29,13 +28,12 @@
                 <!-- Foto de Perfil Redonda -->
                 <div class="profile-photo" style="background-image: url('/uploads/{{ $canal->imagem_perfil }}');"></div>
             </div>
-            <div class="inscritos">
-                <h2 style="font-size: 30px; margin-top: 10px; color:#ffff;">INSCRITOS</h2>
-                <h3 style="font-size: 18px; margin-top: -10px; color:#ffff;">{{ $canal->inscritos }}</h3>
+            <div class="nome-do-canal">
+                <h1>{{ $canal->nome }}</h1>
+                <h1 style="font-size: 16px; color: grey; margin-top: -10px;">{{ $canal->inscritos }} Inscritos</h1>
             </div>
             <div class="channel-info">
-                <h2 style="font-size: 30px; margin-top: -91,5px; color:#ffff;">DESCRIÇÃO</h2>
-                <h3 style="font-size: 18px; margin-top: -10px; color:#ffff;">{{ $canal->descricao }}</h3>
+                <p>{{ $canal->descricao }}</p>
             </div>
             <h1 class="title" style="margin-top: 40px; margin-left: 300px; font-size: 24px;">Vídeos</h1>
             <div class="video-grid">
@@ -59,13 +57,13 @@
                             <form method="POST" action="{{ route('excluir.video', ['videoId' => $video->id]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button class="dropdown-item" >
-                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAlUlEQVR4nOWTQQqDMBBF33Fc6D30RGpXLj2X4iGaZbsQ5hJThCyCtGDSyULyYWCYkP8gfwKlaAL0VHOq2fbFTC/WegWw/gFYKEaaWIUCnsAISDA7+h5wFoDBz2pvLL4/9LAASGBYn3qxykCAJjivgN0yZMkJkNxPNOQO2f1Y09FqTfWWP/mdYP6KAXT+gkaYtzGA++gD63/T/SYvXbsAAAAASUVORK5CYII=">
+                                <button class="dropdown-item">
                                     Excluir
+                                    </button>
+                                </form>
                                 </button>
                             </form>
                                 <button class="dropdown-item" >
-                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAABXElEQVR4nN2Vu0oDQRSGvyJewA2IYlAI5Al8A8EIYq1vIeQJtNHSZ7AQUlmbWIuYysLG9VKpkJDSQoIKgq6s/MgwzNlNhEX0wLAwc875Zs9t4D/KVJHOd4FbYKGom8dAom9F+2XgEHgAnoFXoAccAw1gZhRIxYCsA2/a99cA2AJKw0IWgfcRIQlwDlTznM8DN55h7EAmFMo60ApA7oCa5Tw1vDZuFzsQV7YDuukFoxBgP6B8auTElXbArukrLRk3X5XTbgZkxbBNw/gtJ4bSrM4fM8JVNmw7LqBjKEU672fkZNKorjMXUM/5zb2cxG94kA9g2c9DM+CkpbNxQfoKVzcHchAohq9w+D2QqBR9SZ1eGc14kTUwa2oWH9JWtURK/JpKOBSuMXKkqrZPRlxWnwSlpAE2GMLxE3D/EwgaxQ2N5p5G9YuSfARsAtOBKVzIozUHXAI7/NXnll+RT3SJxryK+e+1AAAAAElFTkSuQmCC">
                                    Privacidade
                                 </button>
                         </div>
