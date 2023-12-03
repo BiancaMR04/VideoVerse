@@ -14,7 +14,6 @@ class MonetizacaoController extends Controller
         // Recuperar vídeos do usuário
         $user = auth()->user();
         $monetizacao = Monetizacao::where('user_id', $user->id)->first();
-        $temCanal = Canal::where('user_id', auth()->id())->exists();
         $videosDoUsuario = Video::whereHas('canal', function ($query) use ($user) {
     $query->where('user_id', $user->id);
 })->get();
@@ -25,16 +24,11 @@ class MonetizacaoController extends Controller
             ->exists();
 
         if (!$existeMonetizacao) {
-            return view('monetizacao_cadastro', [
-                'temCanal' => $temCanal,
-            ]);
+            return view('monetizacao_cadastro');
         }
 
         if($videosDoUsuario->isEmpty()) {
-            return view('monetizacao', [
-                'videosDoUsuario' => $videosDoUsuario,
-                'temCanal' => $temCanal,
-            ]);
+            return view('monetizacao');
         }
 
         $somaVisualizacoes = $videosDoUsuario->sum('visualizacao');
@@ -45,7 +39,6 @@ class MonetizacaoController extends Controller
             'videosDoUsuario' => $videosDoUsuario,
             'somaVisualizacoes' => $somaVisualizacoes,
             'valorTotal' => $valorTotal,
-            'temCanal' => $temCanal,
             'nomeCanal' => $nomeCanal,
             'valorRetirado' => $monetizacao->valor_retirado,
             'valorTodasVisualizacoes' => $somaVisualizacoes * 0.15,
@@ -74,7 +67,6 @@ class MonetizacaoController extends Controller
             // Salva a monetização no banco de dados
             $monetizacao->save();
             
-            $temCanal = Canal::where('user_id', auth()->id())->exists();
             $videosDoUsuario = Video::whereHas('canal', function ($query) use ($user) {
     $query->where('user_id', $user->id);
 })->get();
@@ -87,7 +79,6 @@ class MonetizacaoController extends Controller
                 'videosDoUsuario' => $videosDoUsuario,
                 'somaVisualizacoes' => $somaVisualizacoes,
                 'valorTotal' => $valorTotal,
-                'temCanal' => $temCanal,
                 'nomeCanal' => $nomeCanal,
                 'valorRetirado' => $monetizacao->valor_retirado,
             ]);
@@ -101,12 +92,10 @@ class MonetizacaoController extends Controller
 
             $somaVisualizacoes = $videosDoUsuario->sum('visualizacao');
             $valorTotal = ($somaVisualizacoes * 0.15) - $monetizacao->valor_retirado ?? 0;
-            $temCanal = Canal::where('user_id', auth()->id())->exists();
             return view('monetizacao', ['msg' => $msg], [
                 'videosDoUsuario' => $videosDoUsuario,
                 'somaVisualizacoes' => $somaVisualizacoes,
                 'valorTotal' => $valorTotal,
-                'temCanal' => $temCanal,
                 'valorRetirado' => $monetizacao->valor_retirado,
             ]);
         }
@@ -115,10 +104,7 @@ class MonetizacaoController extends Controller
 
     public function cadastroView()
     {
-        $temCanal = Canal::where('user_id', auth()->id())->exists();
-        return view('monetizacao_cadastro', [
-            'temCanal' => $temCanal,
-        ]);
+        return view('monetizacao_cadastro');
     }
 
     public function retirarValor()

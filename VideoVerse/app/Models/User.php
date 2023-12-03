@@ -46,10 +46,10 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'name',
         'username',
-        'date_of_birth',
         'email',
         'password',
-        'date_of_birth', 
+        'date_of_birth',
+        'adm',
     ];
 
     /**
@@ -70,6 +70,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'timestamp',
         'password' => 'hashed',
+        'adm' => 'boolean',
     ];
 
     public function comments()
@@ -95,5 +96,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(Canal::class);
     }
+
+    public function adm() {
+        return $this->adm;
+    }
+    
+    protected $attributes = [
+        'adm' => false, 
+    ];
 
 }

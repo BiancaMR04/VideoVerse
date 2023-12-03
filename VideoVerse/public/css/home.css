@@ -36,6 +36,7 @@ body {
 .icon-container:hover {
     background: linear-gradient(-45deg, #4F6ED9 0%, #B42DF4 100% );
     margin-right: -25px;
+    text-decoration: none;
 }
 
 .icon {
@@ -52,6 +53,11 @@ body {
     color: white;
     font-size: 20px;
     opacity: 0; /* Começa com opacidade 0 para ficar escondido */
+}
+
+.icon-label:hover .icon-container {
+    background: linear-gradient(144deg, #411C48, #965C97, #9046C2 50%) ; /* Cor de destaque ao passar o mouse */
+    margin-right: -25px;
 }
 
 .icon-container:hover .icon-label {
@@ -156,15 +162,13 @@ body {
     display: block;
 }
 
-/* Estilo dos links do dropdown quando o mouse passa por cima */
 .dropdown-content a:hover {
     background-color: #B42DF4;
     border-radius: 10px;
 }
 
-/* Exibir o dropdown quando o mouse passa sobre a imagem */
 .dropdown:hover .dropdown-content {
-    opacity: 1; /* Torna o dropdown visível */
+    opacity: 1; 
     transform: translateY(0); 
 }
 
@@ -191,6 +195,10 @@ body {
 }
 
 .video a {
+    text-decoration: none;
+}
+
+.video a:hover {
     text-decoration: none;
 }
 

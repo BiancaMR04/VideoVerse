@@ -24,7 +24,7 @@
             </video>
 
             <div class="video-info">
-                <h1 style="color: white;">{{ $video->titulo }}</h1>
+                <h1 class="video-title">{{ $video->titulo }}</h1>
                 @csrf
                 @guest
                     <button id="curtirButtonDeslogado" type="button" onclick="redirecionarParaLogin()" class="like-button">

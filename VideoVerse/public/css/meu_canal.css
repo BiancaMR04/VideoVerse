@@ -62,6 +62,24 @@ body {
   top: 220px; /* Ajuste a distância do topo conforme necessário */
   right: 25px; /* Ajuste a distância da direita conforme necessário */
 }
+
+.editar-canal-button{
+    padding: 0.5em;
+    margin-top: 200px;
+    border-radius: 5px;
+    width: 110px;
+    height: 40px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: #252525;
+    color: white;
+}
+
+.editar-canal-button:hover {
+    background-color: #B42DF4;
+    color: white;
+}
 .editar-canal-button {
   padding: 0.5em;
   margin-right: 5px;
