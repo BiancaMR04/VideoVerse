@@ -209,7 +209,7 @@
         <a href="javascript:void(0);" onclick="toggleListaUsuarios()"><i class="fas fa-users"></i>__Listar Usuários</a>
         <a href="javascript:void(0);" onclick="toggleListaCanais()"><i class="fas fa-list"></i>__Listar Canais</a>
         <a href="javascript:void(0);" onclick="toggleListaVideos()"><i class="fas fa-film"></i>__Listar Vídeos</a>
-        <a href="#"><i class="fas fa-exclamation-triangle"></i>__Listar Reports</a>
+        <a href="javascript:void(0);" onclick="toggleListaReports()"><i class="fas fa-report"></i>__Listar Reports</a>
     </div>
 
     <!-- Lista de usuários inicialmente oculta -->
@@ -283,6 +283,25 @@
         @endforeach
     </div>
 
+<!-- lista de todos os reportes -->
+<div class="reports-lista">
+    <h1 style="color: white; margin-left: 350px;">Lista de report</h1>
+    @foreach ($denuncias as $denuncia)
+        <form method="POST" action="{{ route('excluir.report', ['id' => $denuncia->id]) }}">
+            @csrf
+            <div class="item-lista">
+                <p style="margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">
+                    {{ $denuncia->user->name }} reportou o vídeo {{ $denuncia->video->titulo }}
+                </p>
+                @method('DELETE')
+                <button class="gerenciar-button" type="submit">Excluir</button>
+            </div>
+        </form>
+    @endforeach
+</div>
+
+
+
     @else
     <h1 style="color: white; margin-left: 250px; margin-top: 20px;">Você não tem permissão para acessar essa página</h1>
     @endif
@@ -310,6 +329,16 @@
         ListaCanais.style.display = (ListaCanais.style.display === 'none' || ListaCanais.style.display === '') ? 'block' : 'none';
         document.querySelector('.user-grid').style.display = 'none';
         document.querySelector('.video-lista').style.display = 'none';
+    }
+</script>
+
+<script>
+    function toggleListaReports() {
+        var ListaReports = document.querySelector('.reports-lista');
+        ListaReports.style.display = (ListaReports.style.display === 'none' || ListaReports.style.display === '') ? 'block' : 'none';
+        document.querySelector('.user-grid').style.display = 'none';
+        document.querySelector('.video-lista').style.display = 'none';
+        document.querySelector('.canais-lista').style.display = 'none';
     }
 </script>
 

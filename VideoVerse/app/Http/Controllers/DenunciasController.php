@@ -51,4 +51,9 @@ class DenunciasController extends Controller
             return redirect()->route('denuncia.motivo', ['id' => $id_video])->with('error', 'Erro ao processar denúncia: ' . $e->getMessage());
         }*/
     }
+    public function listarDenuncias()
+    {
+        $denuncias = Denuncia::all(); // Ou qualquer outra lógica para buscar denúncias
+        return view('gerenciar', ['denuncias' => $denuncias]); 
+    }
 }
