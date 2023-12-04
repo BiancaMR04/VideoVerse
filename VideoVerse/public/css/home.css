@@ -7,7 +7,7 @@ body {
 
 .sidebar {
     width: 100px;
-    background-color: #1A1818;
+    background: linear-gradient(to botton, #160F2E, #2A163A);
     position: fixed;
     top: 0;
     left: 0;
@@ -34,7 +34,7 @@ body {
 }
 
 .icon-container:hover {
-    background: linear-gradient(144deg, #411C48, #965C97, #9046C2 50%) ; /* Cor de destaque ao passar o mouse */
+    background: linear-gradient(-45deg, #4F6ED9 0%, #B42DF4 100% );
     margin-right: -25px;
     text-decoration: none;
 }
@@ -76,11 +76,11 @@ body {
 .search-icon {
     position: absolute;
     top: 28px;
+    top: 32px;
     left: 1240px;
     color: #ffffff;
     z-index: 1000;
 }
-
 .btn {
     position: absolute;
     top: 20px; /* Ajuste a distância do topo conforme necessário */
@@ -99,13 +99,14 @@ body {
     border: none;
     outline: none;
     transition: .4s ease-in-out;
-    background-color: #252525;
+    background: linear-gradient(-45deg, #4F6ED9 0%, #B42DF4 100% );
     color: white;
 }
 
 .button:hover {
-    background-color: #B42DF4;
-    color: white;
+    outline: 2px solid #B42DF4;
+    background: linear-gradient(-45deg, #2A163A 0%, #2A163A 100% );
+    color: #e8e8e8;
 }
 
 
@@ -171,17 +172,10 @@ body {
     transform: translateY(0); 
 }
 
-body {
-    font-family: 'Questrial';
-}
-
-a{
+.video a{
     text-decoration: none;
 }
 
-h1{
-    color: white
-}
 
 .video-grid {
     display: grid;

@@ -56,10 +56,13 @@
                                     Excluir
                                     </button>
                                 </form>
+                                </button>
+                            </form>
                                 <button class="dropdown-item" >
                                    Privacidade
                                 </button>
                         </div>
+                      </div>
                     </div>
                 @endforeach
             </div>

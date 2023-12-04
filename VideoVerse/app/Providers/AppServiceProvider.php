@@ -7,6 +7,8 @@ use App\Observers\CommentObserver;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Seguidor;
 use App\Observers\SeguidorObserver;
+use App\Models\Denuncia;
+use App\Observers\DenunciaObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +27,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Comentario::observe(CommentObserver::class);
         Seguidor::observe(SeguidorObserver::class);
+        Denuncia::observe(DenunciaObserver::class);
     }
 }

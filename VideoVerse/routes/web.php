@@ -103,3 +103,7 @@ Route::post('/admn/{id}', 'admController@removerAdm')->name('remover.adm')->midd
 
 Route::get('/gerenciar-videos', 'admController@listaVideos')->name('lista.videos');
 Route::delete('/excluir-video/{id}', 'admController@excluirVideo')->name('excluir.video');
+
+
+Route::get('/denunciar/{id}', 'DenunciasController@view')->name('denuncia.motivo');
+Route::post('/denunciar/{id}', 'DenunciasController@denunciar')->name('denuncia_concluida');
