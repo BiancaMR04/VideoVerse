@@ -70,17 +70,33 @@ body {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    margin-left: 950px;
-    margin-top: -40px; 
     margin-left: 1000px;
-    margin-top: -60px; 
+    margin-top: -65px; 
     transition-duration: 0.4s;
 }
 .like-button:hover {
     background-color: #B42DF4; 
     color: white; 
 }
+
 .like-button.curtido {
+    background-color: #B42DF4; 
+    color: white; 
+}
+
+.compartilhar-button {
+    background-color: #272727; 
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 920px;
+    margin-bottom: -5px; 
+    margin-top: 5px;
+    transition-duration: 0.4s;
+}
+.compartilhar-button:hover {
     background-color: #B42DF4; 
     color: white; 
 }
@@ -166,6 +182,8 @@ body {
     background-color: transparent;
     position: relative;
     border: none;
+    margin-top: -60px;
+    margin-left: 30px;
   }
   
   .btn-denunciar::after {
@@ -206,4 +224,38 @@ body {
     opacity: 1;
     top: -160%;
   }
-  
+
+.modal-dialog {
+    margin: 0 auto;
+}
+
+.modal-footer a {
+    text-decoration: none;
+    color: black;
+}  
+
+.link-video {
+    background-color: #131313;
+    color: white;
+    padding: 15px 15px;
+    border-radius: 10px;
+    border: .1px solid #3f3f3f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-copiar {
+    background-color: #B42DF4;
+    border-radius: 25px;
+    border: none;
+    padding: 6px 10px;
+    font-weight: bold;
+    margin-top: -57px;
+    margin-left: 385px;
+}
+
+.link-video-text {
+    margin-right: 10px; /* Ajuste a margem conforme necessário */
+    color: white;
+}

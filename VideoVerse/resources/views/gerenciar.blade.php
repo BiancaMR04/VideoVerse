@@ -4,199 +4,9 @@
     <title>Adm</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/gerenciar.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
 </head>
-<style>
-
-        .opções.admin {
-            text-align: left;
-            color: white;
-            margin-left: 200px;
-        }
-
-        .icons {
-            margin-left: 250px;
-        }
-
-        .icons a {
-            display: block;
-            margin-bottom: 10px;
-            color: white;
-        }
-
-        .user-grid {
-            margin-left: 450px;
-            display: none; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;  
-            height: 100vh;
-        }
-
-        .adm-button {
-            padding: 0.2em;
-            border-radius: 5px;
-            width: 105px;
-            height: 38px;
-            border: none;
-            outline: none;
-            transition: .4s ease-in-out;
-            background-color: #1a1818;
-            color: white;
-            margin-top: -68px; 
-            margin-left: 900px;
-        }
-
-        .adm-button:hover {
-            border: #B42DF4 solid .5px;
-        }
-
-        .gerenciar-button{
-            padding: 0.2em;
-            margin-top: 0px;
-            border-radius: 5px;
-            width: 100px;
-            height: 40px;
-            border: none;
-            outline: none;
-            transition: .4s ease-in-out;
-            background-color: #1a1818;
-            color: white;
-        }
-
-        .item-lista {
-            color: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            width: 1100px;
-            transition: .2s ease-in-out;
-            border-radius: 5px;
-            border: #1a1818 solid .5px;
-        }
-
-        .item-lista:hover{
-            border: #B42DF4 solid .5px;
-        }
-
-        .item-lista:hover .gerenciar-button{
-            background-color: #B42DF4;
-        }
-
-        .video-lista {
-            margin-left: 450px;
-            display: none; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;  
-            height: 100vh;
-        }
-
-        .thumbnail {
-            width: 150px;
-            height: auto;
-            border-radius: 10%;
-        }
-
-        .item-lista-video{
-            width: 1100px;
-            height: 87px;
-            margin-top: 20px;
-            color: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            transition: .2s ease-in-out;
-            border-radius: 10px;
-            border: #1a1818 solid .5px;
-        }
-
-        .item-lista-video:hover{
-            border: #B42DF4 solid .5px;
-        }
-
-        .item-lista-video:hover .gerenciar-button{
-            background-color: #B42DF4;
-        }
-
-        .item-lista-video a {
-           text-decoration: none; 
-        }
-
-        .item-lista-video a:hover {
-            text-decoration: none;
-        }
-
-        .information_video {
-            display: flex;
-            align-items: center;
-            gap: 20px; 
-            margin-bottom: 0px; 
-            align-self: center; 
-        }
-
-        .info {
-            color: #fff;
-            text-decoration: none;
-            margin-top: 2px;
-            margin-bottom: 2px;
-        }
-
-        .canais-lista {
-            margin-left: 450px;
-            display: none; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center;  
-            height: 100vh;
-        }
-
-        .item-lista-canal {
-            width: 1100px;
-            height: 90px;
-            margin-top: 20px;
-            color: white; 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            transition: .2s ease-in-out;
-            border-radius: 10px;
-            border-bottom-left-radius: 50px;
-            border-top-left-radius: 50px;
-            border: #1a1818 solid .5px;
-        }
-
-        .item-lista-canal:hover{
-            border: #B42DF4 solid .5px;
-        }
-
-        .item-lista-canal:hover .gerenciar-button{
-            background-color: #B42DF4;
-        }
-
-        .item-lista-canal a {
-            text-decoration: none; 
-        }
-
-        .item-lista-canal a:hover {
-            text-decoration: none;
-        }
-
-        .information_canal {
-            display: flex;
-            align-items: center;
-            gap: 20px; 
-            margin-bottom: 0px; 
-            align-self: center; 
-        }
-
-        .foto-canal-image {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-        }
-
-    </style>
 <body style="background: #1A1818;">
 @section('content')
 @extends('layouts.upbar')
@@ -209,7 +19,7 @@
         <a href="javascript:void(0);" onclick="toggleListaUsuarios()"><i class="fas fa-users"></i>__Listar Usuários</a>
         <a href="javascript:void(0);" onclick="toggleListaCanais()"><i class="fas fa-list"></i>__Listar Canais</a>
         <a href="javascript:void(0);" onclick="toggleListaVideos()"><i class="fas fa-film"></i>__Listar Vídeos</a>
-        <a href="javascript:void(0);" onclick="toggleListaReports()"><i class="fas fa-report"></i>__Listar Reports</a>
+        <a href="javascript:void(0);" onclick="toggleListaReports()"><i class="fas fa-exclamation-triangle"></i>__Listar Denúncias</a>
     </div>
 
     <!-- Lista de usuários inicialmente oculta -->
@@ -283,22 +93,26 @@
         @endforeach
     </div>
 
-<!-- lista de todos os reportes -->
-<div class="reports-lista">
-    <h1 style="color: white; margin-left: 350px;">Lista de report</h1>
-    @foreach ($denuncias as $denuncia)
-        <form method="POST" action="{{ route('excluir.report', ['id' => $denuncia->id]) }}">
-            @csrf
-            <div class="item-lista">
-                <p style="margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">
-                    {{ $denuncia->user->name }} reportou o vídeo {{ $denuncia->video->titulo }}
-                </p>
-                @method('DELETE')
-                <button class="gerenciar-button" type="submit">Excluir</button>
-            </div>
-        </form>
-    @endforeach
-</div>
+    <div class="reports-lista">
+        <h1 style="color: white; margin-left: 350px;">Lista de Denúncias</h1>
+        @foreach ($denuncias as $denuncia)
+            <form method="POST" action="{{ route('excluir.report', ['id' => $denuncia->id]) }}">
+                @csrf
+                <div class="item-lista-report">
+                    <p style="margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">
+                        <span style="color: #b42df4;">{{ $denuncia->user->name }}</span>
+                        reportou o vídeo
+                        <span style="color: #b42df4;">{{ $denuncia->video->titulo }}</span>
+                        por
+                        <span style="color: red;">{{ $denuncia->denuncia }}</span>
+                    </p>
+                    @method('DELETE')
+                    <button class="gerenciar-button" type="submit">Excluir</button>
+                </div>
+            </form>
+            <button class="ver-video-button" onclick="redirecionarParaTela('{{ $denuncia->video->id }}')">Ver vídeo</button>
+        @endforeach
+    </div>
 
 
 
@@ -313,6 +127,7 @@
         listaUsuarios.style.display = (listaUsuarios.style.display === 'none' || listaUsuarios.style.display === '') ? 'block' : 'none';
         document.querySelector('.video-lista').style.display = 'none';
         document.querySelector('.canais-lista').style.display = 'none';
+        document.querySelector('.reports-lista').style.display = 'none';
     }
 </script>
 <script>
@@ -321,6 +136,7 @@
         listaVideos.style.display = (listaVideos.style.display === 'none' || listaVideos.style.display === '') ? 'block' : 'none';
         document.querySelector('.user-grid').style.display = 'none';
         document.querySelector('.canais-lista').style.display = 'none';
+        document.querySelector('.reports-lista').style.display = 'none';
     }
 </script>
 <script>
@@ -329,6 +145,7 @@
         ListaCanais.style.display = (ListaCanais.style.display === 'none' || ListaCanais.style.display === '') ? 'block' : 'none';
         document.querySelector('.user-grid').style.display = 'none';
         document.querySelector('.video-lista').style.display = 'none';
+        document.querySelector('.reports-lista').style.display = 'none';
     }
 </script>
 
@@ -339,6 +156,12 @@
         document.querySelector('.user-grid').style.display = 'none';
         document.querySelector('.video-lista').style.display = 'none';
         document.querySelector('.canais-lista').style.display = 'none';
+    }
+</script>
+
+<script>
+    function redirecionarParaTela(videoId) {
+        window.location.href = '/videos/' + videoId;
     }
 </script>
 

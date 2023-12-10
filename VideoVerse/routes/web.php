@@ -81,29 +81,22 @@ Route::post('/updateViewCount/{id}', 'VideoController@updateViewCount')->name('u
 
 Route::get('/monetizacao', 'MonetizacaoController@index')->name('monetizacao.index');
 
-
 Route::get('/videos/{id}', 'VideoController@show')->name('video.show')->where('id', '[0-9]+');
 Route::post('/pesquisar', 'SearchController@pesquisar')->name('pesquisar');
-
-
 
 Route::get('/monetizacao-cadastro', 'MonetizacaoController@cadastroView')->name('monetizacao_cadastro')->middleware('auth');
 Route::post('/monetizacao-cadastro', 'MonetizacaoController@cadastro')->name('monetizacao_cadastro')->middleware('auth');
 
-Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar_valor');
+Route::post('/retirar-valor', 'MonetizacaoController@retirarValor')->name('retirar_valor')->middleware('auth');
 
-Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.favorite');
-
-Route::get('/usuarios', 'admController@listaUsuarios')->name('lista.usuarios');
-Route::delete('/usuarios/{id}', 'admController@excluirUsuario')->name('excluir.usuario');
+Route::post('/video/{video}/favorite', 'VideoController@favorite')->name('video.favorite')->middleware('auth');
 
 Route::get('/gerenciar', 'admController@index')->name('gerenciar')->middleware('auth');
 Route::post('/admy/{id}', 'admController@tornarAdm')->name('tornar.adm')->middleware('auth');
 Route::post('/admn/{id}', 'admController@removerAdm')->name('remover.adm')->middleware('auth');
+Route::delete('/usuarios/{id}', 'admController@excluirUsuario')->name('excluir.usuario')->middleware('auth');
+Route::delete('/excluir-video/{id}', 'admController@excluirVideo')->name('excluir.video')->middleware('auth');
+Route::delete('/excluir-denuncia/{id}', 'admController@excluirDenuncia')->name('excluir.report')->middleware('auth');
 
-Route::get('/gerenciar-videos', 'admController@listaVideos')->name('lista.videos');
-Route::delete('/excluir-video/{id}', 'admController@excluirVideo')->name('excluir.video');
-
-
-Route::get('/denunciar/{id}', 'DenunciasController@view')->name('denuncia.motivo');
-Route::post('/denunciar/{id}', 'DenunciasController@denunciar')->name('denuncia_concluida');
+Route::get('/denunciar/{id}', 'DenunciasController@view')->name('denuncia.motivo')->middleware('auth');
+Route::post('/denunciar/{id}', 'DenunciasController@denunciar')->name('denuncia_concluida')->middleware('auth');
