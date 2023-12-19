@@ -17,7 +17,7 @@
     @isset($canal)
             <div class="cover-photo" style="background-image: url('/uploads/{{ $canal->imagem_fundo }}');">
                 <div class="btn">
-                    <button type="button" class="editar-canal-button">Editar Canal</button>
+                    <button type="button" class="editar-canal-button">Editar</button>
                 </div>
                 <div class="gray-background"></div>
                 <!-- Foto de Perfil Redonda -->
