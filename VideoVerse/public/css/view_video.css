@@ -70,8 +70,7 @@ body {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    margin-left: 1000px;
-    margin-top: -65px; 
+    margin-left: 900px;
     transition-duration: 0.4s;
 }
 .like-button:hover {
@@ -91,9 +90,8 @@ body {
     border: none;
     border-radius: 20px;
     cursor: pointer;
-    margin-left: 920px;
-    margin-bottom: -5px; 
-    margin-top: 5px;
+    margin-bottom: -50px;
+    margin-left: 800px;
     transition-duration: 0.4s;
 }
 .compartilhar-button:hover {
@@ -251,7 +249,7 @@ body {
     border: none;
     padding: 6px 10px;
     font-weight: bold;
-    margin-top: -57px;
+    margin-top: -45px;
     margin-left: 385px;
 }
 
