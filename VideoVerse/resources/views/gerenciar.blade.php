@@ -102,15 +102,22 @@
                     <p style="margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">
                         <span style="color: #b42df4;">{{ $denuncia->user->name }}</span>
                         reportou o vídeo
+                        <a style="text-decoration: none;" href="{{ route('video.show', ['id' => $denuncia->video->id]) }}">
                         <span style="color: #b42df4;">{{ $denuncia->video->titulo }}</span>
+                        </a>
                         por
                         <span style="color: red;">{{ $denuncia->denuncia }}</span>
                     </p>
                     @method('DELETE')
-                    <button class="gerenciar-button" type="submit">Excluir</button>
+                    <button class="gerenciar-button" type="submit">Concluir</button>
+
+                    <form method="POST" action="{{ route('excluir.video', ['id' => $video->id]) }}">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="excluir-video-button">Excluir</button>
+                    </form>
                 </div>
             </form>
-            <button class="ver-video-button" onclick="redirecionarParaTela('{{ $denuncia->video->id }}')">Ver vídeo</button>
         @endforeach
     </div>
 
@@ -160,9 +167,13 @@
 </script>
 
 <script>
-    function redirecionarParaTela(videoId) {
-        window.location.href = '/videos/' + videoId;
+    function excluirVideo(videoId) {
+        var form = document.createElement('form');
+        form.setAttribute('method', 'POST');
+        form.setAttribute('action', "{{ route('excluir.video', ['id' => $video->id]) }}");
+
     }
+
 </script>
 
 </body>
