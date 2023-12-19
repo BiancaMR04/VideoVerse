@@ -10,42 +10,47 @@ use Illuminate\Http\Request;
 class MonetizacaoController extends Controller
 {
     public function index()
-    {
-        // Recuperar vídeos do usuário
-        $user = auth()->user();
-        $monetizacao = Monetizacao::where('user_id', $user->id)->first();
-        $videosDoUsuario = Video::whereHas('canal', function ($query) use ($user) {
-    $query->where('user_id', $user->id);
-})->get();
+{
+    // Recuperar vídeos do usuário
+    $user = auth()->user();
+    $monetizacao = Monetizacao::where('user_id', $user->id)->first();
+    $videosDoUsuario = Video::whereHas('canal', function ($query) use ($user) {
+        $query->where('user_id', $user->id);
+    })->get();
 
-        // Verifica se já existe uma entrada na tabela de monetizacao para o usuário ou canal
-        $existeMonetizacao = Monetizacao::where('user_id', $user->id)
-            ->orWhereIn('canal_id', $user->canal->pluck('id'))
-            ->exists();
+    // Verifica se já existe uma entrada na tabela de monetizacao para o usuário ou canal
+    $existeMonetizacao = Monetizacao::where('user_id', $user->id)
+        ->orWhereIn('canal_id', $user->canal->pluck('id'))
+        ->exists();
 
-        if (!$existeMonetizacao) {
-            return view('monetizacao_cadastro');
-        }
+    if (!$existeMonetizacao) {
+        return view('monetizacao_cadastro');
+    }
 
-        if($videosDoUsuario->isEmpty()) {
-            return view('monetizacao', [
-                'videosDoUsuario' => $videosDoUsuario,
-            ]);
-        }
-
-        $somaVisualizacoes = $videosDoUsuario->sum('visualizacao');
-        $valorTotal = max(($somaVisualizacoes * 0.15) - ($monetizacao->valor_retirado), 0);
-        $nomeCanal = $user->canal->nome;
-
+    if ($videosDoUsuario->isEmpty()) {
         return view('monetizacao', [
             'videosDoUsuario' => $videosDoUsuario,
-            'somaVisualizacoes' => $somaVisualizacoes,
-            'valorTotal' => $valorTotal,
-            'nomeCanal' => $nomeCanal,
-            'valorRetirado' => $monetizacao->valor_retirado,
-            'valorTodasVisualizacoes' => $somaVisualizacoes * 0.15,
         ]);
     }
+
+    $somaVisualizacoes = $videosDoUsuario->sum('visualizacao');
+    
+    // Verifica se há uma instância válida de Monetizacao antes de acessar a propriedade
+    $valorTotal = $monetizacao ? max(($somaVisualizacoes * 0.15) - ($monetizacao->valor_retirado ?? 0), 0) : 0;
+    
+
+    $nomeCanal = $user->canal->nome;
+
+    return view('monetizacao', [
+        'videosDoUsuario' => $videosDoUsuario,
+        'somaVisualizacoes' => $somaVisualizacoes,
+        'valorTotal' => $valorTotal,
+        'nomeCanal' => $nomeCanal,
+        'valorRetirado' => $monetizacao ? $monetizacao->valor_retirado : 0,
+        'valorTodasVisualizacoes' => $somaVisualizacoes * 0.15,
+    ]);
+}
+
 
     public function cadastro(Request $request)
     {
@@ -83,6 +88,7 @@ class MonetizacaoController extends Controller
                 'valorTotal' => $valorTotal,
                 'nomeCanal' => $nomeCanal,
                 'valorRetirado' => $monetizacao->valor_retirado,
+                'valorTodasVisualizacoes' => $somaVisualizacoes * 0.15,
             ]);
         } catch (\Exception $e) {
             // Em caso de erro, volta para o formulário de cadastro com uma mensagem de erro
@@ -99,6 +105,7 @@ class MonetizacaoController extends Controller
                 'somaVisualizacoes' => $somaVisualizacoes,
                 'valorTotal' => $valorTotal,
                 'valorRetirado' => $monetizacao->valor_retirado,
+                'valorTodasVisualizacoes' => $somaVisualizacoes * 0.15,
             ]);
         }
     }
@@ -111,10 +118,14 @@ class MonetizacaoController extends Controller
 
     public function retirarValor()
     {
-        // Recuperar a monetização do usuário
         $user = auth()->user();
-        $monetizacao = Monetizacao::where('user_id', $user->id)->first();
-    
+    $monetizacao = Monetizacao::where('user_id', $user->id)->first();
+
+    // Verifica se já existe uma entrada na tabela de monetizacao para o usuário
+    if (!$monetizacao) {
+        // Se não existir, redirecione para a tela de cadastro de monetização
+        return redirect()->route('monetizacao_cadastro')->with('error', 'Você precisa cadastrar a monetização antes de realizar um saque.');
+    }else{
         // Calcular o valor a ser retirado (pode ser ajustado conforme sua lógica)
         $videosDoUsuario = Video::whereHas('canal', function ($query) use ($user) {
             $query->where('user_id', $user->id);
@@ -128,15 +139,15 @@ class MonetizacaoController extends Controller
         if($valorARetirar < $valorRetiradoAtual) {
             return redirect()->back()->with('error', 'Você não possui saldo suficiente para realizar o saque!');
         }
-    
-        // Somar o valor a ser retirado ao que já estava na tabela
+
+        if($valorARetirar-$monetizacao->valor_retirado == 0) {
+            return redirect()->back()->with('error', 'Você não possui saldo suficiente para realizar o saque!');
+        }
+
         $novoValorRetirado = $valorRetiradoAtual + $valorARetirar;
-    
-        // Atualizar valor_retirado na tabela monetizacao
+
         $monetizacao->update(['valor_retirado' => $novoValorRetirado]);
-    
-        // Enviar um email para o usuário informando sobre a retirada (você pode personalizar isso)
-        // ... lógica para enviar o email ...
+    }
     
         return redirect()->back()->with('success', 'Valor retirado com sucesso!');
     }

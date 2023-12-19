@@ -47,7 +47,7 @@
 
             <div>
                 <button type="button" href="/home" class="btn-cancelar">Cancelar</button>
-                <button type="submit" class="btn-criar">Criar Canal</button>
+                <button type="submit" class="btn-criar">Cadastrar</button>
             </div>
         </form>
     </div>

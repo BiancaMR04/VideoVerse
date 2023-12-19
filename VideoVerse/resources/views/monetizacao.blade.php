@@ -16,6 +16,18 @@
     <div class="container">
         <h1 class="text-center text-white" style="margin-top: 70px; margin-bottom: 30px;">Monetização</h1>
 
+        @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
         <div class="row justify-content-center">
             <div class="col-md-8">
                 @if ($videosDoUsuario->isEmpty())

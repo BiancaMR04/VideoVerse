@@ -9,6 +9,8 @@ use App\Models\Seguidor;
 use App\Observers\SeguidorObserver;
 use App\Models\Denuncia;
 use App\Observers\DenunciaObserver;
+use App\Models\Video;
+use App\Observers\VideoObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
         Comentario::observe(CommentObserver::class);
         Seguidor::observe(SeguidorObserver::class);
         Denuncia::observe(DenunciaObserver::class);
+        Video::observe(VideoObserver::class);
     }
 }
