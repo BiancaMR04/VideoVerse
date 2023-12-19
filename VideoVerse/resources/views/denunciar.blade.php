@@ -44,8 +44,8 @@
             <input type="radio" id="outro" name="reason" value="outro">
             <label for="outro">Outro</label><br>
 
-            <label for="details">Detalhes (opcional):</label><br>
-            <textarea name="details" id="details" rows="4"></textarea><br>
+            <label for="descricao">Detalhes (opcional):</label><br>
+            <textarea name="descricao" id="descricao" rows="4"></textarea><br>
 
             <button type="submit">Enviar Denúncia</button>
         </form>
