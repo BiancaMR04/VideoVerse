@@ -174,19 +174,20 @@ p {
 
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(2, 33%);
+  grid-template-columns: repeat(3, 33%);
   grid-gap: 20px;
   grid-column-gap: 10px;
   grid-row-gap: 10px;
   gap:10px;
   margin-left: 300px;
-  margin-top: -10px;
 }
 .video-thumbnail {
   width: 100%; /* A imagem preencherá todo o espaço disponível na div */
   height: auto; /* A altura se ajustará automaticamente para manter a proporção */
   border-radius: 5%;
 }
+
+
 
 
 .menuexcluir {

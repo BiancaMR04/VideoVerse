@@ -32,39 +32,24 @@
             </div>
             <h1 class="title" style="margin-top: 40px; margin-left: 300px; font-size: 24px;">Vídeos</h1>
             <div class="video-grid">
-                @foreach ($videos as $video)
-                    <div class="video">
-                        <a href="{{ route('video.show', ['id' => $video->id]) }}">
-                            <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
-                            <h2 class="video-title">{{ $video->titulo }}</h2>
-                            <p class="video-info">{{ $video->canal->nome }}</p>
-                            <p class="video-info">{{ $video->visualizacao }} visualizações</p>
-                            <p class="video-info">{{ $video->data }}</p>
-                        </a>
-                    </div>
-                    <div class="dropdown">
-                        <button class="button-excluir dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M140,128a12,12,0,1,1-12-12A12,12,0,0,1,140,128ZM128,72a12,12,0,1,0-12-12A12,12,0,0,0,128,72Zm0,112a12,12,0,1,0,12,12A12,12,0,0,0,128,184Z"></path>
-                            </svg>
-                        </button>
-                            <div class="dropdown-menu">
-                                <form method="POST" action="{{ route('excluir.video', ['id' => $video->id]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="dropdown-item">
-                                    Excluir
-                                    </button>
-                                </form>
-                                </button>
-                            </form>
-                                <button class="dropdown-item" >
-                                   Privacidade
-                                </button>
-                        </div>
-                      </div>
-                    </div>
-                @endforeach
+            @foreach ($videos as $video)
+    <div class="video">
+        <a href="{{ route('video.show', ['id' => $video->id]) }}">
+            <img src="{{ $video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="video-thumbnail">
+            <h2 class="video-title">{{ $video->titulo }}</h2>
+            <p class="video-info">{{ $video->canal->nome }}</p>
+            <p class="video-info">{{ $video->visualizacao }} visualizações</p>
+            <p class="video-info">{{ $video->data }}</p>
+        </a>
+       
+            <form method="POST" action="{{ route('excluir.video', ['id' => $video->id]) }}">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="excluir-video-button">Excluir</button>
+            </form>
+
+    </div>
+@endforeach
             </div>
         @else
             <!-- Se o canal não existir (usuário não logado ou canal não criado), você pode exibir uma mensagem ou redirecionar para a página de criação do canal -->
