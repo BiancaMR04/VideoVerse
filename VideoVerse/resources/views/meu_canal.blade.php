@@ -30,7 +30,7 @@
                 <p>{{ $canal->descricao }}</p>
             </div>
             <h1 class="title" style="margin-top: 40px; margin-left: 300px; font-size: 24px;">Vídeos</h1>
-            <div class="video-grid">
+            <div class="video-grade">
             @foreach ($videos as $video)
     <div class="video">
         <a href="{{ route('video.show', ['id' => $video->id]) }}">
@@ -40,14 +40,15 @@
             <p class="video-info">{{ $video->visualizacao }} visualizações</p>
             <p class="video-info">{{ $video->data }}</p>
         </a>
+        <div class="dropdown-conteudo">
+            <form method="POST" action="{{ route('excluir.meuvideo', ['videoId' => $video->id]) }}">
+                @csrf
+                @method('DELETE')
+            <button id="excluir-video" class="excluir-video" href="#">Excluir Vídeo</button>
+            </form>
          
-    </div>
-                        <div class="dropdown-conteudo">
-                            <form method="POST" action="{{ route('excluir.meuvideo', ['videoId' => $video->id]) }}">
-                                @csrf
-                                @method('DELETE')
-                            <button id="excluir-video"  href="#">Excluir Vídeo</button>
-                            </form>
+            
+                        
                             
                
             </div>
