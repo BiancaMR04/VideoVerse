@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/meu_canal.css') }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Questrial&display=swap">
-    
 </head>
 <body style="background: #1A1818;">
 @section('content')
@@ -41,16 +40,19 @@
             <p class="video-info">{{ $video->visualizacao }} visualizações</p>
             <p class="video-info">{{ $video->data }}</p>
         </a>
-       
-            <form method="POST" action="{{ route('excluir.video', ['id' => $video->id]) }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="excluir-video-button">Excluir</button>
-            </form>
-
+         
     </div>
-@endforeach
+                        <div class="dropdown-conteudo">
+                            <form method="POST" action="{{ route('excluir.meuvideo', ['videoId' => $video->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                            <button id="excluir-video"  href="#">Excluir Vídeo</button>
+                            </form>
+                            
+               
             </div>
+        @endforeach
+    </div>
         @else
             <!-- Se o canal não existir (usuário não logado ou canal não criado), você pode exibir uma mensagem ou redirecionar para a página de criação do canal -->
             <h1 class="title">Canal não encontrado</h1>
