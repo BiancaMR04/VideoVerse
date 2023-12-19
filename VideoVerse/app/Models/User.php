@@ -105,4 +105,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'adm' => false, 
     ];
 
+    public function historico()
+    {
+        return $this->hasMany(Historico::class);
+    }
+
 }
