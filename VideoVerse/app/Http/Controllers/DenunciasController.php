@@ -22,23 +22,15 @@ class DenunciasController extends Controller
     {
         // Obtenha os dados do formulário
         $id_video = $request->input('id_video');
-        $outro = $request->input('outro');
+        $descricao = $request->input('descricao');
         $status = "pendente"; 
         $denuncias = $request->input('reason');
 
-        /*
-        $request->validate([
-            'id_video' => 'required|numeric',
-            'outro' => 'nullable|string|max:255',
-            'reason' => 'required|string|max:255',
-        ]);*/
-
-       /* try {*/
-            // Insira os dados no banco de dados
+       
             $denuncia = new Denuncia();
             $denuncia->video_id = $id_video;
             $denuncia->user_id = auth()->user()->id;
-            $denuncia->outro = $outro;
+            $denuncia->descricao = $descricao;
             $denuncia->data_denuncia = now();
             $denuncia->denuncia = $denuncias;    
             $denuncia->status = $status;
@@ -47,9 +39,7 @@ class DenunciasController extends Controller
 
             return redirect()->route('home')->with('success', 'Denúncia enviada com sucesso!');
 
-       /* } catch (\Exception $e) {
-            return redirect()->route('denuncia.motivo', ['id' => $id_video])->with('error', 'Erro ao processar denúncia: ' . $e->getMessage());
-        }*/
+    
     }
     public function listarDenuncias()
     {

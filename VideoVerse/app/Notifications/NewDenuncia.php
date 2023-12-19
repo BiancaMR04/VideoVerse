@@ -12,14 +12,19 @@ class NewDenuncia extends Notification
 {
     use Queueable;
     protected $video;
-
+    protected $nome;
     /**
      * Create a new notification instance.
      */
     public function __construct($video)
-    {
-        $this->video = $video;
+{
+    $this->video = $video;
+    
+    if ($video->canal) {
+        $this->nome = $video->canal->nome;
     }
+}
+
 
     public function toDatabase($notifiable)
     {
@@ -43,11 +48,19 @@ class NewDenuncia extends Notification
      * Get the mail representation of the notification.
      */
     public function toMail(object $notifiable): MailMessage
-    {
-        return (new MailMessage)
-                    ->line('Uma denúncia foi feita!')
-                    ->line('Verifique a denúncia e tome as medidas necessárias.');
+{
+    $message = (new MailMessage)
+        ->line('Um vídeo foi denunciado.');
+
+    if ($this->video->canal) {
+        $message->line('No canal ' . $this->video->canal->nome . '.');
     }
+
+    return $message
+        ->line($this->video->titulo)
+        ->action('Assistir ao Vídeo', url('/videos/' . $this->video->id))
+        ->line('Verifique a denúncia e tome as medidas necessárias.');
+}
 
     /**
      * Get the array representation of the notification.

@@ -10,15 +10,22 @@ use Illuminate\Notifications\Notification;
 class NewComment extends Notification
 {
     use Queueable;
-
+    protected $video;
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct($video)
     {
-        //
+      $this->video = $video;
     }
-
+    public function toDatabase($notifiable)
+    {
+        return [
+            'video_id' => $this->video->id,
+            'video_titulo' => $this->video->titulo,
+            'canal_nome' => $this->video->canal->nome,
+        ];
+    }
     /**
      * Get the notification's delivery channels.
      *
@@ -36,6 +43,7 @@ class NewComment extends Notification
     {
         return (new MailMessage)
             ->line('Você recebeu um novo comentário no seu vídeo.')
+            ->line($this->video->titulo)
             ->line('Obrigado por usar nossa aplicação!');
     }
 

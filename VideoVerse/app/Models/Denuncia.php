@@ -14,7 +14,7 @@ class Denuncia extends Model
         'video_id',
         'user_id',
         'denuncia',
-        'outro',
+        'descricao',
         'data_denuncia',
         'status',
     ];

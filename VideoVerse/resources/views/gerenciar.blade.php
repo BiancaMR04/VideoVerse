@@ -94,39 +94,58 @@
     </div>
 
     <div class="reports-lista">
-        <h1 style="color: white; margin-left: 350px;">Lista de Denúncias</h1>
-        @foreach ($denuncias as $denuncia)
-            <form method="POST" action="{{ route('excluir.report', ['id' => $denuncia->id]) }}">
-                @csrf
-                <div class="item-lista-report">
-                    <p style="margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">
-                        <span style="color: #b42df4;">{{ $denuncia->user->name }}</span>
-                        reportou o vídeo
-                        <a style="text-decoration: none;" href="{{ route('video.show', ['id' => $denuncia->video->id]) }}">
+    <h1 style="color: white; margin-left: 350px;">Lista de Denúncias</h1>
+    @foreach ($denuncias as $denuncia)
+        <form method="POST" action="{{ route('excluir.report', ['id' => $denuncia->id]) }}">
+            @csrf
+            <div class="item-lista-report">
+                <a href="{{ route('video.show', ['id' => $denuncia->video->id]) }}" class="information_video">
+                    <img src="{{ $denuncia->video->caminho_imagem }}" alt="Thumbnail do Vídeo" class="thumbnail">
+                    <div class="info">
+                        <h2 style="font-size: 20px; margin-top: 20px;">{{ $denuncia->video->titulo }}</h2>
+                        <p style="margin-bottom: 0px;">{{ $denuncia->video->canal->nome }}</p>
+                        <p style="color: grey; margin-bottom: 20px;">{{ $denuncia->video->visualizacao }} visualizações - {{ \Carbon\Carbon::parse($denuncia->video->data)->format('d/m/Y') }}</p>
+                    </div>
+                </a>
+                <p style="margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">
+                    <span style="color: #b42df4;">{{ $denuncia->user->name }}</span>
+                    reportou o vídeo
+                    <a style="text-decoration: none;" href="{{ route('video.show', ['id' => $denuncia->video->id]) }}">
                         <span style="color: #b42df4;">{{ $denuncia->video->titulo }}</span>
-                        </a>
-                        por
-                        <span style="color: red;">{{ $denuncia->denuncia }}</span>
-                    </p>
-                    @method('DELETE')
-                    <button class="gerenciar-button" type="submit">Concluir</button>
-
-                    <form method="POST" action="{{ route('excluir.video', ['id' => $video->id]) }}">
+                    </a>
+                    por
+                    <span style="color: red;">{{ $denuncia->denuncia }}</span>
+                </p>
+                <!-- Botão para concluir o relatório -->
+                <button class="gerenciar-button" type="submit">Concluir</button>
+                
+                <!-- Formulário para excluir o vídeo -->
+                <form method="POST" action="{{ route('excluir.video', ['id' => $denuncia->video->id]) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="excluir-video-button">Excluir</button>
-                    </form>
+                    <button type="submit" class="excluir-video-button">Excluir Vídeo</button>
+                </form>
+                
+                <!-- Descrição do relatório -->
+                <div class="descricao">
+                    <p style="margin-left: 5px; margin-top: 8px; margin-bottom: 8px;">Descrição: {{ $denuncia->descricao }}</p>
                 </div>
-            </form>
-        @endforeach
-    </div>
-
-
+            </div>
+        </form>
+    @endforeach
+</div>
 
     @else
     <h1 style="color: white; margin-left: 250px; margin-top: 20px;">Você não tem permissão para acessar essa página</h1>
     @endif
 </div>
+
+<script>
+    function toggleDescricao(descricao) {
+        var descricao = document.querySelector('.descricao');
+        descricao.style.display = (descricao.style.display === 'none' || descricao.style.display === '') ? 'block' : 'none';
+    }
+</script>
 
 <script>
     function toggleListaUsuarios() {
