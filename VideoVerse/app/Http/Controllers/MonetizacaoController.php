@@ -28,7 +28,9 @@ class MonetizacaoController extends Controller
         }
 
         if($videosDoUsuario->isEmpty()) {
-            return view('monetizacao');
+            return view('monetizacao', [
+                'videosDoUsuario' => $videosDoUsuario,
+            ]);
         }
 
         $somaVisualizacoes = $videosDoUsuario->sum('visualizacao');
