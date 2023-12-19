@@ -45,10 +45,11 @@ class NewDenuncia extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('Uma denúncia foi feita!')
-                    ->line('Verifique a denúncia e tome as medidas necessárias.');
+                ->line('Um vídeo foi denunciado no canal ' . $this->video->canal->nome . ':')
+                ->line($this->video->titulo)
+                ->action('Assistir ao Vídeo', url('/videos/' . $this->video->id))
+                ->line('Verifique a denúncia e tome as medidas necessárias.');
     }
-
     /**
      * Get the array representation of the notification.
      *

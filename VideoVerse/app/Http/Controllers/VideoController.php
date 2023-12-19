@@ -5,6 +5,8 @@ use App\Events\NewComment;
 use App\Models\Comentario;
 use App\Models\Favorito;
 use App\Models\Video;
+use App\Models\User;
+use App\Models\Historico;
 use App\Models\Canal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -170,4 +172,19 @@ class VideoController extends Controller
             return response()->json(['likes' => $numeroCurtidas, 'mensagem' => $mensagem]);
         }
     }
+
+    public function exibirVideo($id)
+{
+    // Lógica para recuperar o vídeo com ID $id
+    $video = Video::findOrFail($id);
+
+    // Registra o histórico
+    //auth()->user()->historico()->create([
+        //'video_id' => $video->id,
+        // Outros campos do histórico, se necessário
+   // ]);
+
+    // Lógica para exibir o vídeo
+    return view('videos.exibir', compact('video'));
+}
 }

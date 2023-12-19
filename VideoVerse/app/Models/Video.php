@@ -45,4 +45,9 @@ class Video extends Model
     {
         return $this->hasMany(Favorito::class);
     }
+
+    public function historico()
+    {
+        return $this->hasMany(Historico::class);
+    }
 }

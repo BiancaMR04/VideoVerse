@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Página Inicial</title>
+    <title>Criar Canal</title>
     <link rel="stylesheet" href="VideoVerse/resources/css/styles.min.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/criar_canal.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/home.css') }}">

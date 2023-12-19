@@ -38,8 +38,9 @@ class NewFollowerNotification extends Notification
     {
         return (new MailMessage)
             ->line('Você tem uma nova inscrição no seu canal.')
-            ->action('Ver Inscrição', url('/'))
-            ->line('Obrigado por usar nosso aplicativo!');
+            ->line($this->inscricao->canal->nome)
+            ->line('Agora você tem ' . $this->inscricao->canal->inscritos . ' inscritos em seu canal.')
+            ->line('Obrigado por usar nosso site!');
     }
 
     /**

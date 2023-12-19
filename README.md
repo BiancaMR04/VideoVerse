@@ -54,11 +54,14 @@ DB_DATABASE=videoverse //nome do banco criado
 DB_USERNAME=meu_usuario
 DB_PASSWORD=minha_senha
 ```
-### SQLite
+### Supabase
 
 ```dotenv
-DB_CONNECTION=sqlite
-DB_DATABASE=../database/videoverse.sqlite
-DB_FOREIGN_KEYS=true
+DB_CONNECTION=supabase
+DB_HOST=link_da_host
+DB_PORT=5432
+DB_DATABASE=postgres
+DB_USERNAME=meu_usuario
+DB_PASSWORD=minha_senha
 ```
 
