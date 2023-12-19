@@ -75,9 +75,8 @@ body {
 /* Estilo para o ícone de lupa */
 .search-icon {
     position: absolute;
-    top: 28px;
-    top: 32px;
-    left: 1240px;
+    top: 26px;
+    left: 1245px;
     color: #ffffff;
     z-index: 1000;
 }
