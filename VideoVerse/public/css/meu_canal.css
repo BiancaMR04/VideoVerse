@@ -89,12 +89,12 @@ body {
   border: none;
   outline: none;
   transition: .4s ease-in-out;
-  background-color: #252525;
+  background: linear-gradient(-45deg, #4F6ED9 0%, #B42DF4 100% );
   color: white;
 }
 .editar-canal-button:hover {
-  background-color: #B42DF4;
-  color: white;
+  background: linear-gradient(-45deg, #252525 0%, #252525 100% );
+    color: white;
 }
 .inscrever-se-button {
   padding: 0.5em;
