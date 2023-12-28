@@ -1,0 +1,259 @@
+body {
+    font-family: 'Questrial';
+    background: #1A1818;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Alinha os elementos verticalmente ao topo */
+}
+
+.video-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    margin-top: 50px;
+    margin-left: -10rem;
+}
+
+.video-title {
+    font-size: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex; 
+    max-width: 94%; /* ou defina um valor fixo em pixels */
+}
+
+.video-container video {
+    width: 1100px; 
+    height: 700px; 
+    margin-left: 15rem;
+}
+
+.description-box {
+    background-color: #2c2c2c; 
+    padding: 4px;
+    padding-bottom: -5px;
+    border-radius: 8px;
+    width: 1100px; 
+    display: inline-block; 
+    vertical-align: top; 
+}
+
+.channel-info {
+    margin-top: 15px; 
+}
+
+.channel-avatar {
+    display: inline-block;
+    vertical-align: middle; 
+    width: 50px; /* Defina a largura desejada */
+    height: 50px; /* Defina a altura desejada */
+    border-radius: 50%; /* Cria um círculo com metade do valor da largura/altura */
+    object-fit: cover; /* Garante que a imagem preencha o círculo */
+}
+
+.channel-name {
+    display: inline-block; 
+    margin-left: 13px; 
+    margin-top: 7px;
+    color: white;
+}
+
+.like-button {
+    background-color: #272727; 
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-left: 900px;
+    transition-duration: 0.4s;
+}
+.like-button:hover {
+    background-color: #B42DF4; 
+    color: white; 
+}
+
+.like-button.curtido {
+    background-color: #B42DF4; 
+    color: white; 
+}
+
+.compartilhar-button {
+    background-color: #272727; 
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: -50px;
+    margin-left: 800px;
+    transition-duration: 0.4s;
+}
+.compartilhar-button:hover {
+    background-color: #B42DF4; 
+    color: white; 
+}
+
+.comment-container {
+    flex: 1;
+    margin-left: 5rem;
+    margin-top: 3rem;
+}
+
+.comment-container h2 {
+    font-size: 24px;
+}
+
+.comment-container form {
+    display: flex;
+    text-align: center;
+}
+
+.comment-container form button {
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1A1818; 
+    color: white; 
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.comment-container form button:hover {
+    background-color: #B42DF4; 
+    color: white; 
+}
+
+.comment {
+    align-items: center;
+    margin-bottom: 10px;
+    margin-left: 0rem;
+    margin-top: 2rem;
+}
+
+.comment p {
+    margin: 0;
+    display: inline-block;
+    width: 1100px; /* Defina a largura que deseja */
+}
+
+
+.comment p:first-child {
+    margin-right: 10px;
+}
+
+.comment-username {
+    color: white;
+    margin-left: 13px;
+}
+
+.comment-details {
+    color: grey;
+    margin-left: 5px;
+}
+
+.leave-comment {
+    font-size: 16px; 
+    border-radius: 5px; 
+    border: none;
+    border-bottom: 1.017px solid rgba(255, 255, 255, 0.10);
+    background: #1A1818;
+    width: 550px;
+    color: rgb(255,255,255);
+    width: 1020px;
+    margin-top: 10px;
+    display: block;
+    outline: none;
+    resize: none;
+    min-height: 35px;
+}
+
+.btn-denunciar {
+    background-color: transparent;
+    position: relative;
+    border: none;
+    margin-top: -60px;
+    margin-left: 30px;
+  }
+  
+  .btn-denunciar::after {
+    content: 'Denunciar';
+    position: absolute;
+    top: -150%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    height: fit-content;
+    background-color: rgb(249, 187, 16);
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: .2s linear;
+    transition-delay: .2s;
+    color: rgb(0, 0, 0);
+    text-transform: uppercase;
+    font-size: 12px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .icone {
+    transform: scale(1.2);
+    transition: .2s linear;
+  }
+  
+  .btn-denunciar:hover > .icone {
+    transform: scale(1.5);
+  }
+  
+  .btn-denunciar:hover > .icone path {
+    fill: rgb(255, 167, 26);
+  }
+  
+  .btn-denunciar:hover::after {
+    visibility: visible;
+    opacity: 1;
+    top: -160%;
+  }
+
+.modal-dialog {
+    margin: 0 auto;
+}
+
+.modal-footer a {
+    text-decoration: none;
+    color: black;
+}  
+
+.link-video {
+    background-color: #131313;
+    color: white;
+    padding: 15px 15px;
+    border-radius: 10px;
+    border: .1px solid #3f3f3f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-copiar {
+    background-color: #B42DF4;
+    border-radius: 25px;
+    border: none;
+    padding: 6px 10px;
+    font-weight: bold;
+    margin-top: -45px;
+    margin-left: 385px;
+}
+
+.link-video-text {
+    margin-right: 10px; /* Ajuste a margem conforme necessário */
+    color: white;
+}

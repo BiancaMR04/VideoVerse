@@ -43,7 +43,28 @@ Para rodar a aplicação utilize o comando abaixo:
 ```
 php artisan serve
 ```
-```
-npm run dev
-```
 
+### Configurar banco de dados no laravel:
+
+Deve-se modificar no arquivo .env como nos trechos abaixo:
+
+### Postgresql
+
+```dotenv
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432 //porta padrão do postgresql
+DB_DATABASE=videoverse //nome do banco criado
+DB_USERNAME=meu_usuario
+DB_PASSWORD=minha_senha
+```
+### Supabase
+
+```dotenv
+DB_CONNECTION=supabase
+DB_HOST=link_da_host
+DB_PORT=5432
+DB_DATABASE=postgres
+DB_USERNAME=meu_usuario
+DB_PASSWORD=minha_senha
+```

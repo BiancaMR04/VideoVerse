@@ -4,6 +4,7 @@ use Illuminate\Support\Str;
 
 return [
 
+
     /*
     |--------------------------------------------------------------------------
     | Default Database Connection Name
@@ -15,7 +16,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'supabase'),
 
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +34,22 @@ return [
     |
     */
 
+    
+
     'connections' => [
+
+        'supabase' => [
+            'driver' => 'pgsql',
+            'host' => env('SUPABASE_HOST', 'db.hlqycjtucbyqizmxjbsq.supabase.co'),
+            'port' => env('SUPABASE_PORT', 5432),
+            'database' => env('SUPABASE_DATABASE', 'postgres'),
+            'username' => env('SUPABASE_USERNAME', 'postgres'),
+            'password' => env('SUPABASE_PASSWORD', 'gtPLZfsXxf312o1I'),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'schema' => 'public',
+        ],
+        
 
         'sqlite' => [
             'driver' => 'sqlite',
